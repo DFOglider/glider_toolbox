@@ -56,14 +56,14 @@ function local_paths = configDTPathsLocal()
 
   error(nargchk(0, 0, nargin, 'struct'));
 
-  local_paths.binary_path    = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/binary';
-  local_paths.cache_path     = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/binary';
-  local_paths.log_path       = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/log';
-  local_paths.ascii_path     = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/ascii';
-  local_paths.figure_path    = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/figures';
-  local_paths.netcdf_l0      = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l0.nc';
-  local_paths.netcdf_l1      = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l1.nc';
-  local_paths.netcdf_l2      = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l2.nc';
-  local_paths.processing_log = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/processing.log';
+  local_paths.binary_path    = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/binary';
+  local_paths.cache_path     = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/binary';
+  local_paths.log_path       = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/logfiles';
+  local_paths.ascii_path     = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/all_data';
+  local_paths.figure_path    = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/figures';
+  local_paths.netcdf_l0      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L0.nc';
+  local_paths.netcdf_l1      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L1.nc';
+  local_paths.netcdf_l2      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L2.nc';
+  local_paths.processing_log = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/processing.log';
 
 end
