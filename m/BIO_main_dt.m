@@ -113,7 +113,7 @@ nc2 = generateOutputNetCDF(configPaths.netcdf_l2, data_grid, meta_grid,'test' , 
 %         netcdf_l2_options.attributes);
 %% Figures
 [figures_proc, figures_grid] = configFigures();
-figure_dir='C:/Users/BelzileM/Documents/Gliders/Socib/Data/SEA019/M36/figures/';
+figure_dir=configPaths.figure_path;
 figures = struct();
 figproc_options = figures_proc;
 figgrid_options = figures_grid;
