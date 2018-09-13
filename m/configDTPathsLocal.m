@@ -56,14 +56,14 @@ function local_paths = configDTPathsLocal()
 
   error(nargchk(0, 0, nargin, 'struct'));
 
-  local_paths.binary_path    = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/binary';
-  local_paths.cache_path     = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/binary';
-  local_paths.log_path       = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/logfiles';
-  local_paths.ascii_path     = 'R:/Shared/Gliders/SEA019/Data/M36/all_data';
-  local_paths.figure_path    = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/figures';
-  local_paths.netcdf_l0      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L0.nc';
-  local_paths.netcdf_l1      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L1.nc';
-  local_paths.netcdf_l2      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L2.nc';
-  local_paths.processing_log = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/processing.log';
+  local_paths.binary_path    = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/binary';
+  local_paths.cache_path     = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/binary';
+  local_paths.log_path       = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/logfiles';
+  local_paths.ascii_path     = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/all_data';
+  local_paths.figure_path    = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/figures';
+  local_paths.netcdf_l0      = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/netcdf/GLI2018_SEA019_049DM_L0.nc';
+  local_paths.netcdf_l1      = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/netcdf/GLI2018_SEA019_049DM_L1.nc';
+  local_paths.netcdf_l2      = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/netcdf/GLI2018_SEA019_049DM_L2.nc';
+  local_paths.processing_log = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA019/Data/M49/testSOCIB/processing.log';
 
 end
