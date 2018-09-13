@@ -1,4 +1,4 @@
-function [figures_proc, figures_grid] = configFigures()
+function [figures_proc, figures_grid] = configFigures(deployment)
 %CONFIGFIGURES  Configure generation of figures from glider data.
 %
 %  Syntax:
@@ -50,8 +50,8 @@ function [figures_proc, figures_grid] = configFigures()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  error(nargchk(0, 0, nargin, 'struct'));
+narginchk(1,1); 
+%  error(nargchk(0, 0, nargin, 'struct'));
   
   
   %% Get handle to current figure or create one.
@@ -134,14 +134,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.temperature.dataopts.cdata = 'temperature';
   figures_proc.temperature.plotopts.sdata = 2;
   figures_proc.temperature.plotopts.logscale = false;
-  figures_proc.temperature.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.temperature.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.temperature.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.temperature.plotopts.clabel = setfield(default_label, 'String', 'temperature (deg C)');
   figures_proc.temperature.plotopts.title = setfield(default_title, 'String', 'In situ temperature');
   figures_proc.temperature.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.temperature.plotopts.figprops = default_figure;
   figures_proc.temperature.prntopts = default_prntopts;
-  figures_proc.temperature.prntopts.filename = 'temperature';
+  figures_proc.temperature.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_temperature'];
   figures_proc.temperature.prntopts.title = 'Temperature section';
   figures_proc.temperature.prntopts.comment = 'Cross section of in situ measured temperature.';
   
@@ -152,14 +152,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.salinity.dataopts.cdata = 'salinity';
   figures_proc.salinity.plotopts.sdata = 2;
   figures_proc.salinity.plotopts.logscale = false;
-  figures_proc.salinity.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.salinity.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.salinity.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.salinity.plotopts.clabel = setfield(default_label, 'String', 'salinity (PSU)');
   figures_proc.salinity.plotopts.title = setfield(default_title, 'String', 'In situ salinity (raw)');
   figures_proc.salinity.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.salinity.plotopts.figprops = default_figure;
   figures_proc.salinity.prntopts = default_prntopts;
-  figures_proc.salinity.prntopts.filename = 'salinity';
+  figures_proc.salinity.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_salinity'];
   figures_proc.salinity.prntopts.title = 'Salinity section';
   figures_proc.salinity.prntopts.comment = 'Cross section of in situ derived salinity without corrections.';
 
@@ -170,14 +170,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.salinity_corrected_thermal.dataopts.cdata = 'salinity_corrected_thermal';
   figures_proc.salinity_corrected_thermal.plotopts.sdata = 2;
   figures_proc.salinity_corrected_thermal.plotopts.logscale = false;
-  figures_proc.salinity_corrected_thermal.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.salinity_corrected_thermal.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.salinity_corrected_thermal.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.salinity_corrected_thermal.plotopts.clabel = setfield(default_label, 'String', 'salinity (PSU)');
   figures_proc.salinity_corrected_thermal.plotopts.title = setfield(default_title, 'String', 'In situ salinity (thermal lag corrected)');
   figures_proc.salinity_corrected_thermal.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.salinity_corrected_thermal.plotopts.figprops = default_figure;
   figures_proc.salinity_corrected_thermal.prntopts = default_prntopts;
-  figures_proc.salinity_corrected_thermal.prntopts.filename = 'salinity_corrected_thermal';
+  figures_proc.salinity_corrected_thermal.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_salinity_corrected_thermal'];
   figures_proc.salinity_corrected_thermal.prntopts.title = 'Salinity section';
   figures_proc.salinity_corrected_thermal.prntopts.comment = 'Cross section of in situ derived salinity with thermal lag corrections.';
 
@@ -188,14 +188,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.density.dataopts.cdata = 'density';
   figures_proc.density.plotopts.sdata = 2;
   figures_proc.density.plotopts.logscale = false;
-  figures_proc.density.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.density.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.density.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.density.plotopts.clabel = setfield(default_label, 'String', 'density (kg m-3)');
   figures_proc.density.plotopts.title = setfield(default_title, 'String', 'In situ density (from raw salinity)');
   figures_proc.density.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.density.plotopts.figprops = default_figure;
   figures_proc.density.prntopts = default_prntopts;
-  figures_proc.density.prntopts.filename = 'density';
+  figures_proc.density.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_density'];
   figures_proc.density.prntopts.title = 'Density section';
   figures_proc.density.prntopts.comment = 'Cross section of in situ derived density from salinity without corrections.';
 
@@ -206,14 +206,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.density_corrected_thermal.dataopts.cdata = 'density_corrected_thermal';
   figures_proc.density_corrected_thermal.plotopts.sdata = 2;
   figures_proc.density_corrected_thermal.plotopts.logscale = false;
-  figures_proc.density_corrected_thermal.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.density_corrected_thermal.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.density_corrected_thermal.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.density_corrected_thermal.plotopts.clabel = setfield(default_label, 'String', 'salinity (PSU)');
   figures_proc.density_corrected_thermal.plotopts.title = setfield(default_title, 'String', 'In situ density (from thermal lag corrected salinity)');
   figures_proc.density_corrected_thermal.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.density_corrected_thermal.plotopts.figprops = default_figure;
   figures_proc.density_corrected_thermal.prntopts = default_prntopts;
-  figures_proc.density_corrected_thermal.prntopts.filename = 'density_corrected_thermal';
+  figures_proc.density_corrected_thermal.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_density_corrected_thermal'];
   figures_proc.density_corrected_thermal.prntopts.title = 'Density section';
   figures_proc.density_corrected_thermal.prntopts.comment = 'Cross section of in situ derived density from salinity with thermal lag corrections.';
 
@@ -224,14 +224,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.chlorophyll.dataopts.cdata = 'chlorophyll';
   figures_proc.chlorophyll.plotopts.sdata = 2;
   figures_proc.chlorophyll.plotopts.logscale = true;
-  figures_proc.chlorophyll.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.chlorophyll.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.chlorophyll.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.chlorophyll.plotopts.clabel = setfield(default_label, 'String', 'chlorophyll (ug l-1)');
   figures_proc.chlorophyll.plotopts.title = setfield(default_title, 'String', 'In situ chlorophyll');
   figures_proc.chlorophyll.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.chlorophyll.plotopts.figprops = default_figure;
   figures_proc.chlorophyll.prntopts = default_prntopts;
-  figures_proc.chlorophyll.prntopts.filename = 'chlorophyll';
+  figures_proc.chlorophyll.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_chlorophyll'];
   figures_proc.chlorophyll.prntopts.title = 'Chlorophyll section';
   figures_proc.chlorophyll.prntopts.comment = 'Cross section of in situ measured chlorophyll.';
 
@@ -242,14 +242,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.turbidity.dataopts.cdata = 'turbidity';
   figures_proc.turbidity.plotopts.sdata = 2;
   figures_proc.turbidity.plotopts.logscale = true;
-  figures_proc.turbidity.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.turbidity.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.turbidity.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.turbidity.plotopts.clabel = setfield(default_label, 'String', 'turbidity (NTU)');
   figures_proc.turbidity.plotopts.title = setfield(default_title, 'String', 'In situ turbidity');
   figures_proc.turbidity.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.turbidity.plotopts.figprops = default_figure;
   figures_proc.turbidity.prntopts = default_prntopts;
-  figures_proc.turbidity.prntopts.filename = 'turbidity';
+  figures_proc.turbidity.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_turbidity'];
   figures_proc.turbidity.prntopts.title = 'Turbidity section';
   figures_proc.turbidity.prntopts.comment = 'Cross section of in situ measured turbidity.';
 
@@ -260,14 +260,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.cdom.dataopts.cdata = 'cdom';
   figures_proc.cdom.plotopts.sdata = 2;
   figures_proc.cdom.plotopts.logscale = false;
-  figures_proc.cdom.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.cdom.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.cdom.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.cdom.plotopts.clabel = setfield(default_label, 'String', 'CDOM (ppb)');
   figures_proc.cdom.plotopts.title = setfield(default_title, 'String', 'In situ CDOM');
   figures_proc.cdom.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.cdom.plotopts.figprops = default_figure;
   figures_proc.cdom.prntopts = default_prntopts;
-  figures_proc.cdom.prntopts.filename = 'cdom';
+  figures_proc.cdom.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_cdom'];
   figures_proc.cdom.prntopts.title = 'CDOM section';
   figures_proc.cdom.prntopts.comment = 'Cross section of in situ measured CDOM.';  
 
@@ -278,14 +278,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.oxygen_concentration.dataopts.cdata = 'oxygen_concentration';
   figures_proc.oxygen_concentration.plotopts.sdata = 2;
   figures_proc.oxygen_concentration.plotopts.logscale = false;
-  figures_proc.oxygen_concentration.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.oxygen_concentration.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.oxygen_concentration.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.oxygen_concentration.plotopts.clabel = setfield(default_label, 'String', 'oxygen concentration (umol l-1)');
   figures_proc.oxygen_concentration.plotopts.title = setfield(default_title, 'String', 'In situ oxygen concentration');
   figures_proc.oxygen_concentration.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.oxygen_concentration.figprops = default_figure;
   figures_proc.oxygen_concentration.prntopts = default_prntopts;
-  figures_proc.oxygen_concentration.prntopts.filename = 'oxygen_concentration';
+  figures_proc.oxygen_concentration.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_oxygen_concentration'];
   figures_proc.oxygen_concentration.prntopts.title = 'Oxygen concentration section';
   figures_proc.oxygen_concentration.prntopts.comment = 'Cross section of in situ measured oxygen saturation.';
 
@@ -296,14 +296,14 @@ function [figures_proc, figures_grid] = configFigures()
   figures_proc.oxygen_saturation.dataopts.cdata = 'oxygen_saturation';
   figures_proc.oxygen_saturation.plotopts.sdata = 2;
   figures_proc.oxygen_saturation.plotopts.logscale = false;
-  figures_proc.oxygen_saturation.plotopts.xlabel = setfield(default_label, 'String', 'distance (km)');
+  figures_proc.oxygen_saturation.plotopts.xlabel = setfield(default_label, 'String', 'distance (m)');
   figures_proc.oxygen_saturation.plotopts.ylabel = setfield(default_label, 'String', 'depth (m)');
   figures_proc.oxygen_saturation.plotopts.clabel = setfield(default_label, 'String', 'oxygen saturation (%)');
   figures_proc.oxygen_saturation.plotopts.title = setfield(default_title, 'String', 'In situ oxygen saturation');
   figures_proc.oxygen_saturation.plotopts.axsprops = setfield(default_axes, 'Ydir', 'reverse');
   figures_proc.oxygen_saturation.plotopts.figprops = default_figure;
   figures_proc.oxygen_saturation.prntopts = default_prntopts;
-  figures_proc.oxygen_saturation.prntopts.filename = 'oxygen_saturation';
+  figures_proc.oxygen_saturation.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_oxygen_saturation'];
   figures_proc.oxygen_saturation.prntopts.title = 'Oxygen saturation section';
   figures_proc.oxygen_saturation.prntopts.comment = 'Cross section of in situ measured oxygen saturation.';
 
@@ -322,7 +322,7 @@ function [figures_proc, figures_grid] = configFigures()
                                                           'PaperSize', [4.80 3.84]), ...
                                                           'PaperPosition', [0 0 4.80 3.84]);
   figures_proc.temperature_salinity.prntopts = default_prntopts;
-  figures_proc.temperature_salinity.prntopts.filename = 'temperature_salinity';
+  figures_proc.temperature_salinity.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_temperature_salinity'];
   figures_proc.temperature_salinity.prntopts.title = 'Temperature - Salinity diagram';
   figures_proc.temperature_salinity.prntopts.comment = 'Diagram of temperature versus salinity without corrections over constant sigma-t contour levels.';
   
@@ -340,7 +340,7 @@ function [figures_proc, figures_grid] = configFigures()
                                                                             'PaperSize', [4.80 3.84]), ...
                                                                             'PaperPosition', [0 0 4.80 3.84]);
   figures_proc.temperature_salinity_corrected_thermal.prntopts = default_prntopts;
-  figures_proc.temperature_salinity_corrected_thermal.prntopts.filename = 'temperature_salinity_corrected_thermal';
+  figures_proc.temperature_salinity_corrected_thermal.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_temperature_salinity_corrected_thermal'];
   figures_proc.temperature_salinity_corrected_thermal.prntopts.title = 'Temperature - Salinity diagram';
   figures_proc.temperature_salinity_corrected_thermal.prntopts.comment = 'Diagram of temperature versus salinity with thermal lag corrections over constant sigma-t contour levels.';
 
@@ -367,7 +367,7 @@ function [figures_proc, figures_grid] = configFigures()
                                                                  'PaperSize', [4.80 3.84]), ...
                                                                  'PaperPosition', [0 0 4.80 3.84]);
   figures_proc.current_map.prntopts = default_prntopts;
-  figures_proc.current_map.prntopts.filename = 'current_map';
+  figures_proc.current_map.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_current_map'];
   figures_proc.current_map.prntopts.title = 'Current map';
   figures_proc.current_map.prntopts.comment = 'Map of glider planned waypoint path, actual track and column integrated water current estimates.';
   
@@ -398,7 +398,7 @@ function [figures_proc, figures_grid] = configFigures()
   figures_grid.profiles_ctd.plotopts.title(3) = setfield(default_title, 'String', 'Density profiles');
   figures_grid.profiles_ctd.plotopts.axsprops(1:3) = default_axes;
   figures_grid.profiles_ctd.prntopts = default_prntopts;
-  figures_grid.profiles_ctd.prntopts.filename = 'ctd_profiles';
+  figures_grid.profiles_ctd.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_ctd_profiles'];
   figures_grid.profiles_ctd.prntopts.title = 'CTD profiles';
   figures_grid.profiles_ctd.prntopts.comment = 'Profile statistics of temperature, salinity and density, derived from raw CTD measurements.';
 
@@ -420,7 +420,7 @@ function [figures_proc, figures_grid] = configFigures()
   figures_grid.profiles_ctd_corrected_thermal.plotopts.title(3) = setfield(default_title, 'String', {'Density profiles'; '(corrected thermal lag)'});
   figures_grid.profiles_ctd_corrected_thermal.plotopts.axsprops(1:3) = default_axes;
   figures_grid.profiles_ctd_corrected_thermal.prntopts = default_prntopts;
-  figures_grid.profiles_ctd_corrected_thermal.prntopts.filename = 'ctd_profiles_corrected_thermal';
+  figures_grid.profiles_ctd_corrected_thermal.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_ctd_profiles_corrected_thermal'];
   figures_grid.profiles_ctd_corrected_thermal.prntopts.title = 'CTD profiles';
   figures_grid.profiles_ctd_corrected_thermal.prntopts.comment = 'Profile statistics of temperature, salinity and density, derived from CTD measurements with thermal lag corrections.';
 
@@ -437,7 +437,7 @@ function [figures_proc, figures_grid] = configFigures()
   figures_grid.profiles_flntu.plotopts.title(2) = setfield(default_title, 'String', 'Turbidity profiles');
   figures_grid.profiles_flntu.plotopts.axsprops(1:2) = default_axes;
   figures_grid.profiles_flntu.prntopts = default_prntopts;
-  figures_grid.profiles_flntu.prntopts.filename = 'flntu_profiles';
+  figures_grid.profiles_flntu.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_flntu_profiles'];
   figures_grid.profiles_flntu.prntopts.title = 'Chlorohpyll and turbidity profiles';
   figures_grid.profiles_flntu.prntopts.comment = 'Profile statistics of chlorophyll and turbidity.';
 
@@ -454,7 +454,7 @@ function [figures_proc, figures_grid] = configFigures()
   figures_grid.profiles_bbfl2.plotopts.title(2) = setfield(default_title, 'String', 'CDOM profiles');
   figures_grid.profiles_bbfl2.plotopts.axsprops(1:2) = default_axes;
   figures_grid.profiles_bbfl2.prntopts = default_prntopts;
-  figures_grid.profiles_bbfl2.prntopts.filename = 'bbfl2_profiles';
+  figures_grid.profiles_bbfl2.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_bbfl2_profiles'];
   figures_grid.profiles_bbfl2.prntopts.title = 'Chlorohpyll and CDOM profiles';
   figures_grid.profiles_bbfl2.prntopts.comment = 'Profile statistics of chlorophyll and CDOM.';
 
@@ -471,7 +471,7 @@ function [figures_proc, figures_grid] = configFigures()
   figures_grid.profiles_oxygen.plotopts.title(2) = setfield(default_title, 'String', 'O2 saturation profiles');
   figures_grid.profiles_oxygen.plotopts.axsprops(1:2) = default_axes;
   figures_grid.profiles_oxygen.prntopts = default_prntopts;
-  figures_grid.profiles_oxygen.prntopts.filename = 'oxygen_profiles';
+  figures_grid.profiles_oxygen.prntopts.filename = [deployment.glider_name '_' deployment.deployment_id '_oxygen_profiles'];
   figures_grid.profiles_oxygen.prntopts.title = 'Oxygen profiles';
   figures_grid.profiles_oxygen.prntopts.comment = 'Profile statistics of oxygen concentration and saturation.';
 

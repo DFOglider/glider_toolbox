@@ -1,4 +1,4 @@
-function seaexplorer_options = configRTFileOptionsSeaExplorer()
+function seaexplorer_options = configRTFileOptionsSeaExplorer(deployment)
 %CONFIGRTFILEOPTIONSSEAEXPLORER  Configure loading options for SeaExplorer files in real time.
 %
 %  Syntax:
@@ -49,15 +49,18 @@ function seaexplorer_options = configRTFileOptionsSeaExplorer()
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(0, 0, nargin, 'struct'));
-  
+ % error(nargchk(1, 1, nargin, 'struct'));
+  narginchk(1, 1);
   % Glider (.gli) files to use:
-  seaexplorer_options.gli_name_pattern = '^.*\.gli(\..*)?$';
-  
+ % seaexplorer_options.gli_name_pattern = '^.*\.gli(\..*)?$';
+  %seaexplorer_options.gli_name_pattern = [lower(deployment.glider_name) '.' deployment.deployment_id '.*\.gli(\..*)?$']
+  seaexplorer_options.gli_name_pattern = [lower(deployment.glider_name) '.' deployment.deployment_id '.gli.sub.*']
   % Payload (.pld) files to use:
   % They used to have the suffix '.dat' during the SeaExplorer development.
-  seaexplorer_options.pld_name_pattern = '^.*\.(pld|dat)(\d*)?(\..*)?$';
-  
+  %seaexplorer_options.pld_name_pattern = '^.*\.(pld|dat|raw)(\d*)?(\..*)?$';
+  %seaexplorer_options.pld_name_pattern = [lower(deployment.glider_name) '.' deployment.deployment_id '.*\.(pld|dat)(\d*).(sub).\d*?(\..*)?$']
+  seaexplorer_options.pld_name_pattern = [lower(deployment.glider_name) '.' deployment.deployment_id '.(pld|dat)(\d*).sub.*']
+
   % Time variable column in glider files:
   seaexplorer_options.gli_time = 'Timestamp';
   

@@ -176,8 +176,16 @@ function [hfig, haxs, hlgs, hlns] = plotProfileStatistics(varargin)
     mdata = options.mdata{s};
     % mrange = quantile(options.mdata{s}, [0.01 0.99]);
     % mdata(mdata < mrange(1) | mdata > mrange(2)) = nan;
-    mmean = nanmean(mdata, 1);
-    mstd = nanstd(mdata, 1, 1); % 1 to compute the second moment biased estimator.
+   if exist('nanmedian')==2
+       mmean = nanmean(mdata, 1);
+   else
+       mmean = median(mdata, 1, 'omitnan');
+   end
+   if exist('nanstd')==2
+        mstd = nanstd(mdata, 1, 1); % 1 to compute the second moment biased estimator.
+   else 
+       mstd = std(mdata,1,1,'omitnan');
+   end 
     haxs(s) = subplot(m, n, s);
     % Use 0 because plot does not return lineseries handles if empty inputs.
     hlns(:,s) = plot(haxs(s), 0, 0, '-', 0, 0, ':'); 
@@ -200,7 +208,7 @@ function [hfig, haxs, hlgs, hlns] = plotProfileStatistics(varargin)
         'XData', [(mmean(:) - mstd(:)); nan; (mmean(:) + mstd(:))]);
     reverse_x = strcmp(get(haxs(s), 'XDir'), 'reverse');
     reverse_y = strcmp(get(haxs(s), 'YDir'), 'reverse');
-    increasing = [1 0] * nancov(mmean(:), ydata(:), 1) * [0 1]' > 0;
+    increasing = [1 0] * cov(mmean(:), ydata(:), 1,'omitrows') * [0 1]' > 0;
     legend_location_list = {'NorthWest' 'NorthEast'; 'SouthWest' 'SouthEast'};
     legend_location = ...
       legend_location_list{1 + reverse_y, ...

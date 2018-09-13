@@ -39,9 +39,9 @@ function local_paths = configDTPathsLocal()
 
 %  Copyright (C) 2013-2016
 %  ICTS SOCIB - Servei d'observacio i prediccio costaner de les Illes Balears
-%  <http://www.socib.es>
+%  <http:\\www.socib.es>
 %
-%  This program is free software: you can redistribute it and/or modify
+%  This program is free software: you can redistribute it and\or modify
 %  it under the terms of the GNU General Public License as published by
 %  the Free Software Foundation, either version 3 of the License, or
 %  (at your option) any later version.
@@ -52,18 +52,29 @@ function local_paths = configDTPathsLocal()
 %  GNU General Public License for more details.
 %
 %  You should have received a copy of the GNU General Public License
-%  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%  along with this program.  If not, see <http:\\www.gnu.org\licenses\>.
+narginchk(0, 0);
+ % error(nargchk(0, 0, nargin, 'struct'));
+  local_paths.binary_path    = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/binary';
+  local_paths.cache_path     = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/binary';
+  local_paths.log_path       = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/log';
+  local_paths.ascii_path     = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/ascii';
+  local_paths.figure_path    = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/figures';
+  local_paths.netcdf_l0      = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l0.nc';
+  local_paths.netcdf_l1      = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l1.nc';
+  local_paths.netcdf_l2      = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l2.nc';
+  local_paths.processing_log = '/path/to/delayed_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/processing.log';
 
-  error(nargchk(0, 0, nargin, 'struct'));
+%  pathe='c:\users\trana\matlab';
 
-  local_paths.binary_path    = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/binary';
-  local_paths.cache_path     = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/binary';
-  local_paths.log_path       = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/logfiles';
-  local_paths.ascii_path     = 'R:/Shared/Gliders/SEA019/Data/M36/all_data';
-  local_paths.figure_path    = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/figures';
-  local_paths.netcdf_l0      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L0.nc';
-  local_paths.netcdf_l1      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L1.nc';
-  local_paths.netcdf_l2      = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/netcdf/GLI2018_SEA019_036DM_L2.nc';
-  local_paths.processing_log = 'R:/Shared/Gliders/SEA019/Data/M36/testSOCIB/processing.log';
+%  local_paths.binary_path    = [pathe '\glider_Project\skookum_346\Deployments\20170218\binary'];
+%  local_paths.cache_path     = [pathe '\glider_Project\skookum_346\Deployments\20170218\binary'];
+%  local_paths.log_path       = [pathe '\glider_Project\skookum_346\Deployments\20170218\log'];
+%  local_paths.ascii_path     = [pathe '\glider_Project\skookum_346\Deployments\20170218\ascii'];
+%  local_paths.figure_path    = [pathe '\glider_Project\skookum_346\Deployments\20170218\figures'];
+% local_paths.netcdf_l0      = [pathe '\glider_Project\skookum_346\Deployments\20170218\netcdf_l0.nc'];
+%  local_paths.netcdf_l1      = [pathe '\glider_Project\skookum_346\Deployments\20170218\netcdf_l1.nc'];
+%  local_paths.netcdf_l2      = [pathe '\glider_Project\skookum_346\Deployments\20170218\netcdf_l2.nc'];
+%  local_paths.processing_log = [pathe '\glider_Project\skookum_346\Deployments\20170218\processing.log'];
 
 end

@@ -141,6 +141,7 @@ function dba_file_full = xbd2dba(dbd_files, dba_file, varargin)
   else
     cmd_str = [cmd_name ' -c ' cac_path ' ' cmd_opts ' ' input_str];
   end
+  disp (cmd_str)
   [status, cmd_out] = system(cmd_str);
   if status ~= 0
     error('glider_toolbox:xbd2dba:SystemCallError', ...

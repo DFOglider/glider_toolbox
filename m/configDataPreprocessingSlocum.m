@@ -39,17 +39,17 @@ function preprocessing_options = configDataPreprocessingSlocum()
   
   preprocessing_options = struct();
   
-  preprocessing_options.time_list(1).time = 'm_present_time';
-  preprocessing_options.time_list(2).time = 'sci_m_present_time';
+  preprocessing_options.time_list(1).time = 'sci_m_present_time';
+  preprocessing_options.time_list(2).time = 'm_present_time';
   
-  preprocessing_options.position_list(1).longitude = 'm_gps_lon';
-  preprocessing_options.position_list(1).latitude  = 'm_gps_lat';
+  preprocessing_options.position_list(1).longitude = 'm_lon';
+  preprocessing_options.position_list(1).latitude  = 'm_lat';
   preprocessing_options.position_list(1).conversion = @nmea2deg;
-  preprocessing_options.position_list(1).position_status = 'm_gps_status';
-  preprocessing_options.position_list(1).position_good = 0;
-  preprocessing_options.position_list(2).longitude = 'm_lon';
-  preprocessing_options.position_list(2).latitude  = 'm_lat';
+  preprocessing_options.position_list(2).longitude = 'm_gps_lon';
+  preprocessing_options.position_list(2).latitude  = 'm_gps_lat';
   preprocessing_options.position_list(2).conversion = @nmea2deg;
+  preprocessing_options.position_list(2).position_status = 'm_gps_status';
+  preprocessing_options.position_list(2).position_good = 0;
   
   preprocessing_options.depth_list.depth = 'm_depth';
   
@@ -68,7 +68,7 @@ function preprocessing_options = configDataPreprocessingSlocum()
   preprocessing_options.ctd_list(1).conductivity = 'sci_water_cond';
   preprocessing_options.ctd_list(1).temperature  = 'sci_water_temp';
   preprocessing_options.ctd_list(1).pressure     = 'sci_water_pressure';
-  preprocessing_options.ctd_list(1).time         = 'sci_ctd41cp_timestamp';
+  preprocessing_options.ctd_list(1).time         = 'sci_m_present_time';
   preprocessing_options.ctd_list(1).pressure_conversion = @bar2dbar;
   
   preprocessing_options.ctd_list(2).conductivity = 'm_water_cond';
@@ -77,16 +77,27 @@ function preprocessing_options = configDataPreprocessingSlocum()
   preprocessing_options.ctd_list(2).time         = [];
   preprocessing_options.ctd_list(2).pressure_conversion = @bar2dbar;
 
-  preprocessing_options.oxygen_list(1).oxygen_concentration = 'sci_oxy3835_oxygen';
-  preprocessing_options.oxygen_list(1).oxygen_saturation    = 'sci_oxy3835_saturation';
-  preprocessing_options.oxygen_list(1).temperature          = 'sci_oxy3835_temp';
-  preprocessing_options.oxygen_list(1).time                 = 'sci_oxy3835_timestamp';
+  preprocessing_options.oxygen_list(2).oxygen_concentration = 'sci_oxy3835_oxygen';
+  preprocessing_options.oxygen_list(2).oxygen_saturation    = 'sci_oxy3835_saturation';
+  preprocessing_options.oxygen_list(2).temperature          = 'sci_oxy3835_temp';
+  preprocessing_options.oxygen_list(2).time                 = 'sci_oxy3835_timestamp';
   
-  preprocessing_options.optics_list(1).chlorophyll = 'sci_flntu_chlor_units';
-  preprocessing_options.optics_list(1).turbidity   = 'sci_flntu_turb_units';
-  preprocessing_options.optics_list(1).temperature = 'sci_flntu_temp';
-  preprocessing_options.optics_list(1).time        = 'sci_flntu_timestamp';
+  preprocessing_options.oxygen_list(1).oxygen_concentration = 'sci_oxy4_oxygen';
+  preprocessing_options.oxygen_list(1).oxygen_saturation    = 'sci_oxy4_saturation';
+  preprocessing_options.oxygen_list(1).temperature          = 'sci_oxy4_temp';
+  preprocessing_options.oxygen_list(1).time                 = 'sci_m_present_time';
   
+  preprocessing_options.optics_list(1).chlorophyll = 'sci_flbbcd_chlor_sig';
+  preprocessing_options.optics_list(1).temperature = 'sci_flbbcd_bb_therm';
+  preprocessing_options.optics_list(1).time        = 'sci_m_present_time';
+  preprocessing_options.optics_list(1).cdom = 'sci_flbbcd_cdom_sig';
+  preprocessing_options.optics_list(1).backscatter = 'sci_flbbcd_bb_sig';
+
+  preprocessing_options.optics_list(2).chlorophyll = 'sci_flbbcd_chlor_sig';
+  preprocessing_options.optics_list(2).turbidity   = 'sci_turbflbbcd_bb_units';
+  preprocessing_options.optics_list(2).temperature = 'sci_flntu_temp';
+  preprocessing_options.optics_list(2).time        = 'sci_flntu_timestamp';
+
   preprocessing_options.extra_sensor_list = struct();
     
 end

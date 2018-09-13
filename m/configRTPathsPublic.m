@@ -58,14 +58,30 @@ function public_paths = configRTPathsPublic()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+narginchk(0, 0);
+ % error(nargchk(0, 0, nargin, 'struct'));
+ % public_paths.figure_info = 'http://myserver/url/to/real_time/glider_data/figures/${DEPLOYMENT_ID}.json';
 
-  error(nargchk(0, 0, nargin, 'struct'));
+% pathe='c:\users\trana\matlab';
+%   public_paths.netcdf_l0   = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\public\${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l0.nc'];
+%   public_paths.netcdf_l1   = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\public\${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l1.nc'];
+%   public_paths.netcdf_l2   = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\netcdf\${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l2.nc'];
+%   public_paths.figure_dir  = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\public\'];
+%   public_paths.figure_url  = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\public\'];
+%   public_paths.figure_info = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\public\${DEPLOYMENT_ID}.json'];
+%   public_paths.folder_dir  = [pathe '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\public\'];
 
-  public_paths.netcdf_l0   = '/path/to/public/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l0.nc';
-  public_paths.netcdf_l1   = '/path/to/public/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l1.nc';
-  public_paths.netcdf_l2   = '/path/to/public/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l2.nc';
-  public_paths.figure_dir  = '/path/to/public/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/figures';
-  public_paths.figure_url  = 'http://myserver/url/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/figures';
-  public_paths.figure_info = 'http://myserver/url/to/real_time/glider_data/figures/${DEPLOYMENT_ID}.json';
+if ispc
+    roote='w:\glider_project\';
+else
+    roote='/u01/rapps/glider_project/';
+end
+  public_paths.netcdf_l0   = fullfile(roote, 'data', 'public', '${GLIDER_NAME}_${DEPLOYMENT_START_DATE,Tyyyymmdd}_l0.nc');
+  public_paths.netcdf_l1   = fullfile(roote, 'data', 'public', '${GLIDER_NAME}_${DEPLOYMENT_START_DATE,Tyyyymmdd}_l1.nc');
+  public_paths.netcdf_l2   = fullfile(roote, 'data', 'public', '${GLIDER_NAME}_${DEPLOYMENT_START_DATE,Tyyyymmdd}_l2.nc');
+  public_paths.figure_dir  = fullfile(roote, 'data','public');
+  public_paths.figure_url  = fullfile(roote, 'data','public');
+  public_paths.figure_info = fullfile(roote, 'data','public', '${DEPLOYMENT_ID}.json');
+  public_paths.folder_dir  = fullfile(roote, 'data','public');
 
 end

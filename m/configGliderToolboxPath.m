@@ -31,8 +31,8 @@ function [glider_toolbox_dir] = configGliderToolboxPath()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  error(nargchk(0, 0, nargin, 'struct'));
+narginchk(0, 0);
+ % error(nargchk(0, 0, nargin, 'struct'));
 
   [glider_toolbox_dir, ~, ~] = fileparts(mfilename('fullpath'));
   addpath(genpath(glider_toolbox_dir));

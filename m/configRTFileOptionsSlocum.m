@@ -116,6 +116,20 @@ function slocum_options = configRTFileOptionsSlocum()
     'sci_oxy3835_saturation'
     'sci_oxy3835_temp'
     'sci_oxy3835_timestamp'
+    'sci_flbbcd_bb_ref'
+    'sci_flbbcd_bb_sig'
+    'sci_flbbcd_bb_units'
+    'sci_flbbcd_cdom_ref'
+    'sci_flbbcd_cdom_sig'
+    'sci_flbbcd_cdom_units'
+    'sci_flbbcd_chlor_ref'
+    'sci_flbbcd_chlor_sig'
+    'sci_flbbcd_chlor_units'
+    'sci_flbbcd_therm'
+    'sci_m_present_secs_into_mission'
+    'sci_oxy4_oxygen'
+    'sci_oxy4_saturation'
+    'sci_oxy4_temp'    
   };
   
 end

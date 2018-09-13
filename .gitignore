@@ -3,4 +3,5 @@ m/mex_tools/*.mex*
 m/mex_tools/gpcl/
 m/common_tools/@sftp/private/*.mex*
 m/common_tools/@sftp/private/libssh
+m/gsw/*.pdf
 doc/

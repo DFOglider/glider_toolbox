@@ -1,0 +1,16 @@
+function meds_add_rtqc_to_mono_profile(a_directory)
+    command = ['java' ' -jar' ...
+        ' -Dlog4j.configuration=file:///"C:\Users\trana\java projects\config\log4j.properties"' ...
+        ' "C:\Users\trana\java Projects\J2SE\GliderNetcdf\SocibNCToCoriolisNC\socibNCToCoriolisNC_fat.jar"'...
+        ' "c:\users\trana\input\SeaExplorer_003_20160725_l1.nc"'...
+        ' "c:\users\trana\batProcess\socib_to_if_var.txt"'...
+        ' "c:\users\trana\batProcess\glider_netcdf.ncml"'];
+    str = [a_directory '\*.nc']
+    files = ls (str);
+    for i = 1: length (files)
+        input = [a_directory '\' files(i,:)];
+        fprintf('Processing file : %s\n', input);
+        gl_add_rtqc_to_profile_file(input)
+    end
+
+end

@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="C:/Users/trana/glider/ego/ifm12_depl07_R.nc">
+  <dimension name="DATE_TIME" length="14" />
+  <dimension name="STRING1024" length="1024" />
+  <dimension name="STRING256" length="256" />
+  <dimension name="STRING512" length="512" />
+  <dimension name="STRING64" length="64" />
+  <dimension name="STRING32" length="32" />
+  <dimension name="STRING16" length="16" />
+  <dimension name="STRING8" length="8" />
+  <dimension name="STRING4" length="4" />
+  <dimension name="STRING2" length="2" />
+  <dimension name="N_PARAM" length="8" />
+  <dimension name="N_TRANS_SYSTEM" length="1" />
+  <dimension name="N_POSITIONING_SYSTEM" length="1" />
+  <dimension name="N_DERIVATION" length="1" />
+  <dimension name="N_HISTORY" length="1" />
+  <dimension name="TIME_GPS" length="1" />
+  <dimension name="TIME" length="35322" isUnlimited="true" />
+  <attribute name="data_type" value="EGO glider time-series data" />
+  <attribute name="format_version" value="1.0" />
+  <attribute name="platform_code" value="ifm12" />
+  <attribute name="date_update" value="2017-05-01T16:20:46Z" />
+  <attribute name="wmo_platform_code" value="6801590" />
+  <attribute name="source" value="Glider observation" />
+  <attribute name="history" value="2017-05-01T16:10:45Z Appended data from ifm12_2017_104_0_28_sbd.nc file; 2017-05-01T16:10:47Z Appended data from ifm12_2017_104_0_29_sbd.nc file; 2017-05-01T16:10:49Z Appended data from ifm12_2017_104_0_30_sbd.nc file; 2017-05-01T16:10:52Z Appended data from ifm12_2017_104_0_31_sbd.nc file; 2017-05-01T16:10:54Z Appended data from ifm12_2017_104_0_32_sbd.nc file; 2017-05-01T16:10:57Z Appended data from ifm12_2017_104_0_33_sbd.nc file; 2017-05-01T16:10:59Z Appended data from ifm12_2017_109_1_0_sbd.nc file; 2017-05-01T16:11:02Z Appended data from ifm12_2017_109_2_0_sbd.nc file; 2017-05-01T16:11:05Z Appended data from ifm12_2017_109_3_0_sbd.nc file; 2017-05-01T16:11:08Z Appended data from ifm12_2017_109_3_2_sbd.nc file; 2017-05-01T16:11:10Z Appended data from ifm12_2017_109_3_3_sbd.nc file; 2017-05-01T16:11:13Z Appended data from ifm12_2017_109_3_4_sbd.nc file; 2017-05-01T16:11:16Z Appended data from ifm12_2017_109_3_5_sbd.nc file; 2017-05-01T16:11:19Z Appended data from ifm12_2017_109_3_6_sbd.nc file; 2017-05-01T16:11:22Z Appended data from ifm12_2017_109_3_8_sbd.nc file; 2017-05-01T16:11:25Z Appended data from ifm12_2017_109_3_9_sbd.nc file; 2017-05-01T16:11:27Z Appended data from ifm12_2017_109_3_11_sbd.nc file; 2017-05-01T16:11:30Z Appended data from ifm12_2017_109_3_13_sbd.nc file; 2017-05-01T16:11:33Z Appended data from ifm12_2017_109_3_15_sbd.nc file; 2017-05-01T16:11:36Z Appended data from ifm12_2017_109_3_16_sbd.nc file; 2017-05-01T16:11:38Z Appended data from ifm12_2017_109_3_17_sbd.nc file; 2017-05-01T16:11:41Z Appended data from ifm12_2017_109_3_18_sbd.nc file; 2017-05-01T16:11:44Z Appended data from ifm12_2017_110_0_0_sbd.nc file; 2017-05-01T16:11:47Z Appended data from ifm12_2017_110_0_2_sbd.nc file; 2017-05-01T16:11:50Z Appended data from ifm12_2017_110_0_4_sbd.nc file; 2017-05-01T16:11:53Z Appended data from ifm12_2017_110_0_6_sbd.nc file; 2017-05-01T16:11:56Z Appended data from ifm12_2017_110_0_8_sbd.nc file; 2017-05-01T16:11:59Z Appended data from ifm12_2017_110_0_10_sbd.nc file; 2017-05-01T16:12:01Z Appended data from ifm12_2017_110_0_11_sbd.nc file; 2017-05-01T16:12:05Z Appended data from ifm12_2017_110_0_12_sbd.nc file; 2017-05-01T16:12:08Z Appended data from ifm12_2017_110_0_14_sbd.nc file; 2017-05-01T16:12:11Z Appended data from ifm12_2017_110_0_16_sbd.nc file; 2017-05-01T16:12:15Z Appended data from ifm12_2017_110_0_18_sbd.nc file; 2017-05-01T16:12:18Z Appended data from ifm12_2017_110_0_20_sbd.nc file; 2017-05-01T16:12:21Z Appended data from ifm12_2017_110_0_22_sbd.nc file; 2017-05-01T16:12:24Z Appended data from ifm12_2017_110_0_23_sbd.nc file; 2017-05-01T16:12:27Z Appended data from ifm12_2017_110_0_24_sbd.nc file; 2017-05-01T16:12:30Z Appended data from ifm12_2017_110_0_26_sbd.nc file; 2017-05-01T16:12:34Z Appended data from ifm12_2017_110_0_28_sbd.nc file; 2017-05-01T16:12:37Z Appended data from ifm12_2017_110_0_30_sbd.nc file; 2017-05-01T16:12:40Z Appended data from ifm12_2017_110_0_32_sbd.nc file; 2017-05-01T16:12:43Z Appended data from ifm12_2017_110_0_33_sbd.nc file; 2017-05-01T16:12:46Z Appended data from ifm12_2017_110_0_34_sbd.nc file; 2017-05-01T16:12:50Z Appended data from ifm12_2017_110_0_36_sbd.nc file; 2017-05-01T16:12:54Z Appended data from ifm12_2017_110_0_38_sbd.nc file; 2017-05-01T16:12:57Z Appended data from ifm12_2017_110_0_40_sbd.nc file; 2017-05-01T16:13:01Z Appended data from ifm12_2017_110_0_42_sbd.nc file; 2017-05-01T16:13:05Z Appended data from ifm12_2017_110_0_44_sbd.nc file; 2017-05-01T16:13:09Z Appended data from ifm12_2017_110_0_46_sbd.nc file; 2017-05-01T16:13:12Z Appended data from ifm12_2017_110_0_48_sbd.nc file; 2017-05-01T16:13:16Z Appended data from ifm12_2017_110_0_50_sbd.nc file; 2017-05-01T16:13:20Z Appended data from ifm12_2017_110_0_52_sbd.nc file; 2017-05-01T16:13:24Z Appended data from ifm12_2017_110_0_54_sbd.nc file; 2017-05-01T16:13:28Z Appended data from ifm12_2017_110_0_56_sbd.nc file; 2017-05-01T16:13:32Z Appended data from ifm12_2017_110_0_58_sbd.nc file; 2017-05-01T16:13:35Z Appended data from ifm12_2017_110_0_60_sbd.nc file; 2017-05-01T16:13:39Z Appended data from ifm12_2017_110_0_62_sbd.nc file; 2017-05-01T16:13:43Z Appended data from ifm12_2017_110_0_64_sbd.nc file; 2017-05-01T16:13:47Z Appended data from ifm12_2017_110_0_66_sbd.nc file; 2017-05-01T16:13:51Z Appended data from ifm12_2017_110_0_68_sbd.nc file; 2017-05-01T16:13:55Z Appended data from ifm12_2017_110_0_70_sbd.nc file; 2017-05-01T16:13:59Z Appended data from ifm12_2017_110_0_72_sbd.nc file; 2017-05-01T16:14:03Z Appended data from ifm12_2017_110_0_74_sbd.nc file; 2017-05-01T16:14:07Z Appended data from ifm12_2017_110_0_75_sbd.nc file; 2017-05-01T16:14:11Z Appended data from ifm12_2017_110_0_76_sbd.nc file; 2017-05-01T16:14:14Z Appended data from ifm12_2017_110_0_77_sbd.nc file; 2017-05-01T16:14:18Z Appended data from ifm12_2017_110_0_79_sbd.nc file; 2017-05-01T16:14:22Z Appended data from ifm12_2017_110_0_81_sbd.nc file; 2017-05-01T16:14:26Z Appended data from ifm12_2017_110_0_82_sbd.nc file; 2017-05-01T16:14:30Z Appended data from ifm12_2017_110_0_84_sbd.nc file; 2017-05-01T16:14:35Z Appended data from ifm12_2017_110_0_85_sbd.nc file; 2017-05-01T16:14:39Z Appended data from ifm12_2017_110_0_87_sbd.nc file; 2017-05-01T16:14:43Z Appended data from ifm12_2017_110_0_90_sbd.nc file; 2017-05-01T16:14:50Z Appended data from ifm12_2017_110_0_92_sbd.nc file; 2017-05-01T16:14:56Z Appended data from ifm12_2017_110_0_94_sbd.nc file; 2017-05-01T16:15:01Z Appended data from ifm12_2017_110_0_96_sbd.nc file; 2017-05-01T16:15:05Z Appended data from ifm12_2017_110_0_98_sbd.nc file; 2017-05-01T16:15:09Z Appended data from ifm12_2017_110_0_100_sbd.nc file; 2017-05-01T16:15:14Z Appended data from ifm12_2017_110_0_102_sbd.nc file; 2017-05-01T16:15:18Z Appended data from ifm12_2017_110_0_106_sbd.nc file; 2017-05-01T16:15:22Z Appended data from ifm12_2017_110_0_108_sbd.nc file; 2017-05-01T16:20:46Z Processed RTQC tests (coriolis COQC software)" />
+  <attribute name="data_mode" value="R" />
+  <attribute name="quality_index" value="unknown quality" />
+  <attribute name="references" value="http://www.ego-network.org/" />
+  <attribute name="Conventions" value="CF-1.4 EGO-1.2" />
+  <attribute name="netcdf_version" value="4.1.3" />
+  <attribute name="title" value="ifm12 glider data on depl07 deployment" />
+  <attribute name="keywords" value="Turbidity, Chlorophyll, Oxygen, Water Temperature, Conductivity, Salinity" />
+  <attribute name="naming_authority" value="EGO" />
+  <attribute name="id" value="ifm12_depl07_R" />
+  <attribute name="cdm_data_type" value="Trajectory" />
+  <attribute name="geospatial_lat_min" value="-13.9102" />
+  <attribute name="geospatial_lat_max" value="-12.2893" />
+  <attribute name="geospatial_lon_min" value="-77.9694" />
+  <attribute name="geospatial_lon_max" value="-76.5774" />
+  <attribute name="geospatial_vertical_min" value="0" />
+  <attribute name="geospatial_vertical_max" value="807.54" />
+  <attribute name="time_coverage_start" value="2017-04-17T15:00:47Z" />
+  <attribute name="time_coverage_end" value="2286-11-20T17:46:39Z" />
+  <attribute name="institution" value="GEOMAR" />
+  <attribute name="institution_references" value="http://www.geomar.de" />
+  <attribute name="sdn_edmo_code" value="2947" />
+  <attribute name="contact" value="gkrahmann@geomar.de" />
+  <attribute name="author" value="Gerd Krahmann" />
+  <attribute name="data_assembly_center" value="IF" />
+  <attribute name="principal_investigator" value="Gerd Krahmann" />
+  <attribute name="principal_investigator_email" value="gkrahmann@geomar.de" />
+  <attribute name="deployment_code" value="depl07" />
+  <attribute name="deployment_label" value="ifm12_depl07" />
+  <attribute name="distribution_statement" value="Follows CLIVAR (Climate Varibility and Predictability) standards, cf. http://www.clivar.org/data/data_policy.php. Data available free of charge. User assumes all risk for use of data. User must display citation in any publication or product using data. User must contact PI prior to any commercial use of data." />
+  <attribute name="citation" value="These data were collected and made freely available by the EGO project and the national programs that contribute to it." />
+  <attribute name="update_interval" value="daily" />
+  <attribute name="qc_manual" value="http://www.coriolis.eu.org/Data-Services-Products/Documentation/QC-documentations" />
+  <variable name="TIME" shape="TIME" type="double">
+    <attribute name="long_name" value="Epoch time" />
+    <attribute name="standard_name" value="time" />
+    <attribute name="units" value="seconds since 1970-01-01T00:00:00Z" />
+    <attribute name="_FillValue" type="double" value="9.999999999E9" />
+    <attribute name="valid_min" type="double" value="0.0" />
+    <attribute name="valid_max" type="double" value="90000.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="T" />
+    <attribute name="ancillary_variable" value="TIME_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::ELTMEP01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::UTBB" />
+    <attribute name="glider_original_parameter_name" value="sci_m_present_time" />
+  </variable>
+  <variable name="JULD" shape="TIME" type="double">
+    <attribute name="long_name" value="Julian 1950 time" />
+    <attribute name="standard_name" value="time" />
+    <attribute name="units" value="days since 1950-01-01T00:00:00Z" />
+    <attribute name="_FillValue" type="double" value="999999.0" />
+    <attribute name="valid_min" type="double" value="0.0" />
+    <attribute name="valid_max" type="double" value="90000.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="T" />
+    <attribute name="ancillary_variable" value="JULD_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::XXX" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::UTAA" />
+    <attribute name="glider_original_parameter_name" value="sci_juld" />
+  </variable>
+  <variable name="LATITUDE" shape="TIME" type="double">
+    <attribute name="long_name" value="Measurement latitude" />
+    <attribute name="standard_name" value="latitude" />
+    <attribute name="units" value="degree_north" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-90.0" />
+    <attribute name="valid_max" type="double" value="90.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="Y" />
+    <attribute name="ancillary_variable" value="POSITION_QC" />
+    <attribute name="reference" value="WGS84" />
+    <attribute name="coordinate_reference_frame" value="urn:ogc:crs:EPSG::4326" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::ALATZZ01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::DEGN" />
+    <attribute name="glider_original_parameter_name" value="sci_m_lat" />
+  </variable>
+  <variable name="LONGITUDE" shape="TIME" type="double">
+    <attribute name="long_name" value="Measurement longitude" />
+    <attribute name="standard_name" value="longitude" />
+    <attribute name="units" value="degree_east" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-180.0" />
+    <attribute name="valid_max" type="double" value="180.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="X" />
+    <attribute name="ancillary_variable" value="POSITION_QC" />
+    <attribute name="reference" value="WGS84" />
+    <attribute name="coordinate_reference_frame" value="urn:ogc:crs:EPSG::4326" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::ALONZZ01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::DEGE" />
+    <attribute name="glider_original_parameter_name" value="sci_m_lon" />
+  </variable>
+  <variable name="TIME_GPS" shape="TIME_GPS" type="double">
+    <attribute name="long_name" value="Epoch time of the GPS fixes" />
+    <attribute name="standard_name" value="time" />
+    <attribute name="units" value="seconds since 1970-01-01T00:00:00Z" />
+    <attribute name="_FillValue" type="double" value="-1.0" />
+    <attribute name="valid_min" type="double" value="0.0" />
+    <attribute name="valid_max" type="double" value="90000.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="T" />
+    <attribute name="ancillary_variable" value="TIME_GPS_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::ELTMEP01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::UTBB" />
+    <attribute name="glider_original_parameter_name" value="time" />
+  </variable>
+  <variable name="LATITUDE_GPS" shape="TIME_GPS" type="double">
+    <attribute name="long_name" value="Gps fixed latitude" />
+    <attribute name="standard_name" value="latitude" />
+    <attribute name="units" value="degree_north" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-90.0" />
+    <attribute name="valid_max" type="double" value="90.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="Y" />
+    <attribute name="ancillary_variable" value="POSITION_GPS_QC" />
+    <attribute name="reference" value="WGS84" />
+    <attribute name="coordinate_reference_frame" value="urn:ogc:crs:EPSG::4326" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::ALATZZ01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::DEGN" />
+    <attribute name="glider_original_parameter_name" value="latitude" />
+  </variable>
+  <variable name="LONGITUDE_GPS" shape="TIME_GPS" type="double">
+    <attribute name="long_name" value="Gps fixed longitude" />
+    <attribute name="standard_name" value="longitude" />
+    <attribute name="units" value="degree_east" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-180.0" />
+    <attribute name="valid_max" type="double" value="180.0" />
+    <attribute name="QC_procedure" value="EGO QC not applied yet" />
+    <attribute name="comment" value="" />
+    <attribute name="axis" value="X" />
+    <attribute name="ancillary_variable" value="POSITION_GPS_QC" />
+    <attribute name="reference" value="WGS84" />
+    <attribute name="coordinate_reference_frame" value="urn:ogc:crs:EPSG::4326" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::ALONZZ01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::DEGE" />
+    <attribute name="glider_original_parameter_name" value="longitude" />
+  </variable>
+  <variable name="TIME_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="JULD_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="POSITION_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="TIME_GPS_QC" shape="TIME_GPS" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="POSITION_GPS_QC" shape="TIME_GPS" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="PRES" shape="TIME" type="float">
+    <attribute name="standard_name" value="sea_water_pressure" />
+    <attribute name="units" value="decibar" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="axis" value="Z" />
+    <attribute name="positive" value="down" />
+    <attribute name="long_name" value="Sea water pressure, equals 0 at sea-level" />
+    <attribute name="valid_min" type="float" value="0.0" />
+    <attribute name="valid_max" type="float" value="12000.0" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="PRES_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::PRESPR01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::UPDB" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_water_pressure" />
+    <attribute name="accuracy" value="0.1" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="0.002%" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="mounted_on_glider" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="CTD" />
+    <attribute name="sensor_serial_number" value="9007" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="TEMP" shape="TIME" type="float">
+    <attribute name="standard_name" value="sea_water_temperature" />
+    <attribute name="units" value="degree_Celsius" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Sea temperature in-situ ITS-90 scale" />
+    <attribute name="valid_min" type="float" value="-2.5" />
+    <attribute name="valid_max" type="float" value="40.0" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="TEMP_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::TEMPST01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::UPAA" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_water_temp" />
+    <attribute name="accuracy" value="0.002" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="0.001" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="mounted_on_glider" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="CTD" />
+    <attribute name="sensor_serial_number" value="9007" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="CNDC" shape="TIME" type="float">
+    <attribute name="standard_name" value="sea_water_electrical_conductivity" />
+    <attribute name="units" value="mhos/m" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Electrical conductivity" />
+    <attribute name="valid_min" type="float" value="0.0" />
+    <attribute name="valid_max" type="float" value="8.5" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="CNDC_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::CNDCST01" />
+    <attribute name="sdn_uom_urn" value="SDN:P061::UECA" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_water_cond" />
+    <attribute name="accuracy" value="0.0003" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="0.00001" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="mounted_on_glider" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="CTD" />
+    <attribute name="sensor_serial_number" value="9007" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="PSAL" shape="TIME" type="float">
+    <attribute name="standard_name" value="sea_water_salinity" />
+    <attribute name="units" value="psu" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Practical salinity" />
+    <attribute name="valid_min" type="float" value="2.0" />
+    <attribute name="valid_max" type="float" value="41.0" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="PSAL_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::PSALST01" />
+    <attribute name="sdn_uom_urn" value="DN:P061::UUUU" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="" />
+    <attribute name="accuracy" value="" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="mounted_on_glider" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="CTD" />
+    <attribute name="sensor_serial_number" value="9007" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="PRES_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="TEMP_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="CNDC_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="PSAL_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="PRES_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="decibar" />
+  </variable>
+  <variable name="TEMP_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="degree_Celsius" />
+  </variable>
+  <variable name="CNDC_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="mhos/m" />
+  </variable>
+  <variable name="PSAL_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="psu" />
+  </variable>
+  <variable name="CHLA" shape="TIME" type="float">
+    <attribute name="standard_name" value="mass_concentration_of_chlorophyll_a_in_sea_water" />
+    <attribute name="units" value="mg/m3" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Chlorophyll-A" />
+    <attribute name="valid_min" value="" />
+    <attribute name="valid_max" value="" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="CHLA_QC" />
+    <attribute name="sdn_parameter_urn" value="" />
+    <attribute name="sdn_uom_urn" value="" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_flbbcd_chlor_units" />
+    <attribute name="accuracy" value="" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="FLBBCD" />
+    <attribute name="sensor_serial_number" value="2517" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="BBP700" shape="TIME" type="float">
+    <attribute name="standard_name" value="Particle_backscattering_at_700_nanometers" />
+    <attribute name="units" value="m-1" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Particle backscattering at 700 nanometers" />
+    <attribute name="valid_min" value="" />
+    <attribute name="valid_max" value="" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="BBP700_QC" />
+    <attribute name="sdn_parameter_urn" value="" />
+    <attribute name="sdn_uom_urn" value="" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_flbbcd_bb_units" />
+    <attribute name="accuracy" value="" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="FLBBCD" />
+    <attribute name="sensor_serial_number" value="2517" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="CDOM" shape="TIME" type="float">
+    <attribute name="standard_name" value="Concentration_of_coloured_dissolved_organic_matter_in_sea_water" />
+    <attribute name="units" value="ppb" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Concentration of coloured dissolved organic matter in sea water" />
+    <attribute name="valid_min" value="" />
+    <attribute name="valid_max" value="" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="CDOM_QC" />
+    <attribute name="sdn_parameter_urn" value="" />
+    <attribute name="sdn_uom_urn" value="" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_flbbcd_cdom_units" />
+    <attribute name="accuracy" value="" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="FLBBCD" />
+    <attribute name="sensor_serial_number" value="2517" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="CHLA_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="BBP700_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="CDOM_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="CHLA_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="mg/m3" />
+  </variable>
+  <variable name="BBP700_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="m-1" />
+  </variable>
+  <variable name="CDOM_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="ppb" />
+  </variable>
+  <variable name="MOLAR_DOXY" shape="TIME" type="float">
+    <attribute name="standard_name" value="mole_concentration_of_dissolved_molecular_oxygen_in_sea_water" />
+    <attribute name="units" value="micromole/l" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="long_name" value="Uncompensated (pressure and salinity) oxygen concentration reported by the oxygen sensor" />
+    <attribute name="valid_min" type="float" value="0.0" />
+    <attribute name="valid_max" type="float" value="650.0" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="MOLAR_DOXY_QC" />
+    <attribute name="sdn_parameter_urn" value="" />
+    <attribute name="sdn_uom_urn" value="" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="sci_oxy4_oxygen" />
+    <attribute name="accuracy" value="5%" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="DOXY" />
+    <attribute name="sensor_serial_number" value="0018" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="MOLAR_DOXY_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="MOLAR_DOXY_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="micromole/l" />
+  </variable>
+  <variable name="FREQUENCY_DOXY" shape="TIME" type="float">
+  	<attribute name="standard_name" value="frequency_output_of_sensor_for_oxygen_in_sea_water" />
+    <attribute name="long_name" value="Frequency reported by oxygen sensor" />
+    <attribute name="units" value="hertz" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="valid_min" type="float" value="0.f" />
+    <attribute name="valid_max" type="float" value="25000.f" />
+    <attribute name="comment" value="" />
+    <attribute name="ancillary_variable" value="FREQUENCY_DOXY_QC" />
+    <attribute name="sdn_parameter_urn" value="SDN:P01::OXYOCPFR" />
+    <attribute name="sdn_uom_urn" value="" />
+    <attribute name="sdn_uom_name" value="" />
+    <attribute name="glider_original_parameter_name" value="GPCTD_DOF" />
+    <attribute name="accuracy" value="5%" />
+    <attribute name="precision" value="" />
+    <attribute name="resolution" value="" />
+    <attribute name="cell_methods" value="" />
+    <attribute name="reference_scale" value="" />
+    <attribute name="sensor_mount" value="" />
+    <attribute name="sensor_orientation" value="" />
+    <attribute name="sensor_name" value="DOXY" />
+    <attribute name="sensor_serial_number" value="0018" />
+    <attribute name="DM_indicator" value="" />
+    <attribute name="coordinates" value="TIME LATITUDE LONGITUDE PRES" />
+  </variable>
+  <variable name="FREQUENCY_DOXY_QC" shape="TIME" type="byte">
+    <attribute name="long_name" value="Quality flag" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="FREQUENCY_DOXY_UNCERTAINTY" shape="TIME" type="float">
+    <attribute name="long_name" value="Uncertainty" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+    <attribute name="units" value="micromole/l" />
+  </variable>
+  <variable name="PHASE" shape="TIME" type="byte">
+    <attribute name="long_name" value="Glider trajectory phase code" />
+    <attribute name="conventions" value="EGO reference table 9" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 6" />
+    <attribute name="flag_meanings" value="surface_drift descent subsurface_drift inflexion ascent grounded inconsistent" />
+  </variable>
+  <variable name="PHASE_NUMBER" shape="TIME" type="int">
+    <attribute name="long_name" value="Glider trajectory phase number" />
+    <attribute name="_FillValue" type="int" value="99999" />
+  </variable>
+  <variable name="POSITIONING_METHOD" shape="TIME" type="byte">
+    <attribute name="long_name" value="Positioning method" />
+    <attribute name="conventions" value="EGO reference table 10" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2" />
+    <attribute name="flag_meanings" value="GPS Argos interpolated" />
+  </variable>
+  <variable name="TRANS_SYSTEM" shape="N_TRANS_SYSTEM STRING16" type="char">
+    <attribute name="long_name" value="Telecommunication system used" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="TRANS_SYSTEM_ID" shape="N_TRANS_SYSTEM STRING32" type="char">
+    <attribute name="long_name" value="Program identifier used by the transmission system" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="TRANS_FREQUENCY" shape="N_TRANS_SYSTEM STRING16" type="char">
+    <attribute name="long_name" value="Frequency of transmission from the glider" />
+    <attribute name="units" value="hertz" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="POSITIONING_SYSTEM" shape="N_POSITIONING_SYSTEM STRING8" type="char">
+    <attribute name="long_name" value="Positioning system" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="PLATFORM_FAMILY" shape="STRING256" type="char">
+    <attribute name="long_name" value="Category of instrument" />
+    <attribute name="conventions" value="EGO reference table 22" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="PLATFORM_TYPE" shape="STRING32" type="char">
+    <attribute name="long_name" value="Type of glider" />
+    <attribute name="conventions" value="EGO reference table XX" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="PLATFORM_MAKER" shape="STRING256" type="char">
+    <attribute name="long_name" value="Name of the manufacturer" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="FIRMWARE_VERSION_NAVIGATION" shape="STRING16" type="char">
+    <attribute name="long_name" value="Firmware version of the navigation controller board" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="FIRMWARE_VERSION_SCIENCE" shape="STRING16" type="char">
+    <attribute name="long_name" value="Firmware version of the scientific sensors controller board" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="MANUAL_VERSION" shape="STRING16" type="char">
+    <attribute name="long_name" value="Manual version of the glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="GLIDER_SERIAL_NO" shape="STRING16" type="char">
+    <attribute name="long_name" value="Serial number of the glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="STANDARD_FORMAT_ID" shape="STRING16" type="char">
+    <attribute name="long_name" value="Standard format number which describes the data format type for each glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DAC_FORMAT_ID" shape="STRING16" type="char">
+    <attribute name="long_name" value="Format number used by the DAC to describe the data format type for each glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="WMO_INST_TYPE" shape="STRING4" type="char">
+    <attribute name="long_name" value="Coded instrument type" />
+    <attribute name="conventions" value="EGO reference table 8" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="PROJECT_NAME" shape="STRING64" type="char">
+    <attribute name="long_name" value="Program under which the glider was deployed" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DATA_CENTRE" shape="STRING2" type="char">
+    <attribute name="long_name" value="Data centre in charge of glider real-time processing" />
+    <attribute name="conventions" value="EGO reference table 4" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="PI_NAME" shape="STRING64" type="char">
+    <attribute name="long_name" value="Name of the Principal Investigator" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="ANOMALY" shape="STRING256" type="char">
+    <attribute name="long_name" value="Describe any anomalies or problems the glider may have had" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="BATTERY_TYPE" shape="STRING64" type="char">
+    <attribute name="long_name" value="Type of battery packs in the glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="BATTERY_PACKS" shape="STRING64" type="char">
+    <attribute name="long_name" value="Configuration of battery packs in the glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SPECIAL_FEATURES" shape="STRING1024" type="char">
+    <attribute name="long_name" value="Extra features of the glider (algorithms, compressee etc.)" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="GLIDER_OWNER" shape="STRING64" type="char">
+    <attribute name="long_name" value="Glider owner" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="OPERATING_INSTITUTION" shape="STRING64" type="char">
+    <attribute name="long_name" value="Operating institution of the glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="CUSTOMIZATION" shape="STRING1024" type="char">
+    <attribute name="long_name" value="Glider customization, i.e. (institutionand modifications)" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_START_DATE" shape="DATE_TIME" type="char">
+    <attribute name="long_name" value="Date (UTC) of the deployment" />
+    <attribute name="conventions" value="YYYYMMDDHHMISS" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_START_LATITUDE" shape="" type="double">
+    <attribute name="long_name" value="Latitude of the glider when deployed" />
+    <attribute name="units" value="degree_north" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-90.0" />
+    <attribute name="valid_max" type="double" value="90.0" />
+  </variable>
+  <variable name="DEPLOYMENT_START_LONGITUDE" shape="" type="double">
+    <attribute name="long_name" value="Longitude of the glider when deployed" />
+    <attribute name="units" value="degree_east" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-180.0" />
+    <attribute name="valid_max" type="double" value="180.0" />
+  </variable>
+  <variable name="DEPLOYMENT_START_QC" shape="" type="byte">
+    <attribute name="long_name" value="Quality on DEPLOYMENT_START date, time and location" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="DEPLOYMENT_PLATFORM" shape="STRING32" type="char">
+    <attribute name="long_name" value="Identifier of the deployment platform" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_CRUISE_ID" shape="STRING32" type="char">
+    <attribute name="long_name" value="Identifier of the cruise that deployed the glider" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_REFERENCE_STATION_ID" shape="STRING256" type="char">
+    <attribute name="long_name" value="Identifier of stations used to verify the parameter measurements" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_END_DATE" shape="DATE_TIME" type="char">
+    <attribute name="long_name" value="Date (UTC) of the glider recovery" />
+    <attribute name="conventions" value="YYYYMMDDHHMISS" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_END_LATITUDE" shape="" type="double">
+    <attribute name="long_name" value="Latitude of the glider recovery" />
+    <attribute name="units" value="degree_north" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-90.0" />
+    <attribute name="valid_max" type="double" value="90.0" />
+  </variable>
+  <variable name="DEPLOYMENT_END_LONGITUDE" shape="" type="double">
+    <attribute name="long_name" value="Longitude of the glider recovery" />
+    <attribute name="units" value="degree_east" />
+    <attribute name="_FillValue" type="double" value="99999.0" />
+    <attribute name="valid_min" type="double" value="-180.0" />
+    <attribute name="valid_max" type="double" value="180.0" />
+  </variable>
+  <variable name="DEPLOYMENT_END_QC" shape="" type="byte">
+    <attribute name="long_name" value="Quality on DEPLOYMENT_END date, time and location" />
+    <attribute name="conventions" value="EGO reference table 2" />
+    <attribute name="_FillValue" type="byte" value="-128" />
+    <attribute name="flag_values" value="0, 1, 2, 3, 4, 5, 8, 9" />
+    <attribute name="flag_meanings" value="no_qc_performed good_data probably_good_data bad_data_that_are_potentially_correctable bad_data value_changed interpolated_value missing_value" />
+  </variable>
+  <variable name="DEPLOYMENT_END_STATUS" shape="" type="char">
+    <attribute name="long_name" value="Status of the end of mission of the glider" />
+    <attribute name="conventions" value="R: retrieved, L: lost" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DEPLOYMENT_OPERATOR" shape="STRING256" type="char">
+    <attribute name="long_name" value="Name of the person in charge of the glider deployment" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR" shape="N_PARAM STRING64" type="char">
+    <attribute name="long_name" value="List of sensors on the glider" />
+    <attribute name="conventions" value="EGO reference table 3" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR_MAKER" shape="N_PARAM STRING256" type="char">
+    <attribute name="long_name" value="Name of the sensor manufacturer" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR_MODEL" shape="N_PARAM STRING256" type="char">
+    <attribute name="long_name" value="Model of the sensor" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR_SERIAL_NO" shape="N_PARAM STRING16" type="char">
+    <attribute name="long_name" value="Serial number of the sensor" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR_UNITS" shape="N_PARAM STRING16" type="char">
+    <attribute name="long_name" value="Units of the parameter measured by the sensor" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR_ACCURACY" shape="N_PARAM STRING32" type="char">
+    <attribute name="long_name" value="Accuracy of the parameter measured by the sensor" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="SENSOR_RESOLUTION" shape="N_PARAM STRING32" type="char">
+    <attribute name="long_name" value="Resolution of the parameter measured by the sensor" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DERIVATION_PARAMETER" shape="N_DERIVATION STRING64" type="char">
+    <attribute name="long_name" value="List of parameters with derivation or calibration information" />
+    <attribute name="conventions" value="EGO reference table 3" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DERIVATION_EQUATION" shape="N_DERIVATION STRING256" type="char">
+    <attribute name="long_name" value="Derivation or calibration equation for this parameter" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DERIVATION_COEFFICIENT" shape="N_DERIVATION STRING512" type="char">
+    <attribute name="long_name" value="Derivation or calibration coeffcicients for this equation" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DERIVATION_COMMENT" shape="N_DERIVATION STRING256" type="char">
+    <attribute name="long_name" value="Comment applying to this parameter derivation or calibration" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="DERIVATION_DATE" shape="N_DERIVATION DATE_TIME" type="char">
+    <attribute name="long_name" value="Date (UTC) of derivation or calibration" />
+    <attribute name="conventions" value="YYYYMMDDHHMISS" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_INSTITUTION" shape="N_HISTORY STRING2" type="char">
+    <attribute name="long_name" value="Institution which performed action" />
+    <attribute name="conventions" value="EGO reference table 4" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_STEP" shape="N_HISTORY STRING4" type="char">
+    <attribute name="long_name" value="Step in data processing" />
+    <attribute name="conventions" value="EGO reference table 12" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_SOFTWARE" shape="N_HISTORY STRING8" type="char">
+    <attribute name="long_name" value="Name of software which performed action" />
+    <attribute name="conventions" value="Institution dependent" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_SOFTWARE_RELEASE" shape="N_HISTORY STRING4" type="char">
+    <attribute name="long_name" value="Version/release of software which performed action" />
+    <attribute name="conventions" value="Institution dependent" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_REFERENCE" shape="N_HISTORY STRING64" type="char">
+    <attribute name="long_name" value="Reference of database" />
+    <attribute name="conventions" value="Institution dependent" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_DATE" shape="N_HISTORY DATE_TIME" type="char">
+    <attribute name="long_name" value="Date the history record was created" />
+    <attribute name="conventions" value="YYYYMMDDHHMISS" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_ACTION" shape="N_HISTORY STRING64" type="char">
+    <attribute name="long_name" value="Action performed on data" />
+    <attribute name="conventions" value="EGO reference table 7" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_PARAMETER" shape="N_HISTORY STRING16" type="char">
+    <attribute name="long_name" value="Parameter action is performed on" />
+    <attribute name="conventions" value="EGO reference table 3" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+  <variable name="HISTORY_PREVIOUS_VALUE" shape="N_HISTORY" type="float">
+    <attribute name="long_name" value="Parameter or flag previous value before action" />
+    <attribute name="_FillValue" type="float" value="99999.0" />
+  </variable>
+  <variable name="HISTORY_START_TIME_INDEX" shape="N_HISTORY" type="int">
+    <attribute name="long_name" value="Start time index action applied on" />
+    <attribute name="_FillValue" type="int" value="99999" />
+  </variable>
+  <variable name="HISTORY_STOP_TIME_INDEX" shape="N_HISTORY" type="int">
+    <attribute name="long_name" value="Stop time index action applied on" />
+    <attribute name="_FillValue" type="int" value="99999" />
+  </variable>
+  <variable name="HISTORY_QCTEST" shape="N_HISTORY STRING16" type="char">
+    <attribute name="long_name" value="Documentation of tests performed, tests failed (in hex form)" />
+    <attribute name="conventions" value="Write tests performed when ACTION=QCP$; tests failed when ACTION=QCF$" />
+    <attribute name="_FillValue" value=" " />
+  </variable>
+</netcdf>
+

@@ -357,8 +357,8 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
   
-  error(nargchk(2, 56, nargin, 'struct'));
-  
+narginchk(2, 56);
+
   %% Configure default values for optional profile identification settings.
   default_profiling_time = [];
   default_profiling_stall = 3;
@@ -390,7 +390,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   %% Set processing options and default values.
   options = struct();
   options.time_filling = false;
-  options.position_filling = false;
+  options.position_filling = true;
   options.depth_filling = false;
   options.attitude_filling = false;
   options.heading_filling = false;
@@ -631,7 +631,12 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   if options.depth_ctd_derivation ...
       && all(isfield(data_proc, {'pressure' 'latitude'}))
     fprintf('Deriving CTD depth from pressure and latitude readings...\n');
-    data_proc.depth_ctd = sw_dpth(data_proc.pressure, data_proc.latitude);
+    %%MO - DFO; replacing NaN latitude values temporarily so we don't
+    %%NaN the depth_ctd
+    temp_lat=data_proc.latitude;
+    notok=isnan(temp_lat);
+    temp_lat(notok)=mean(data_proc.latitude(~notok));
+    data_proc.depth_ctd = sw_dpth(data_proc.pressure, temp_lat);
     meta_proc.depth_ctd.sources = {'pressure' 'latitude'}';
     meta_proc.depth_ctd.method = 'sw_depth';
   end
@@ -1255,7 +1260,11 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
         end
         % Compute statistical estimate from individual profile estimates.
         % Use feval to allow estimator as either function handle or name string.
-        thermal_lag_constants = thermal_lag_estimator(thermal_lag_estimates);
+        if strcmp(func2str(thermal_lag_estimator),'nanmedian');
+            thermal_lag_constants = median(thermal_lag_estimates,'omitnan');
+        else
+            thermal_lag_constants = thermal_lag_estimator(thermal_lag_estimates);
+        end
       end
       % Correct thermal lag, if possible.
       if any(isnan(thermal_lag_constants))
@@ -1351,7 +1360,11 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       data_proc.(salinity_salt) = ...
         sw_salt(data_proc.(salinity_cond) * (10 / sw_c3515()), ...
                 data_proc.(salinity_temp), data_proc.(salinity_pres));
-      meta_proc.(salinity_salt).sources = ...
+%//MO added JULY ; sw_salt returns negative salinity when conductivity is 0
+%salinity should be 0 when conductivity is 0
+            data_proc.(salinity_salt)(data_proc.(salinity_cond)==0)=0;
+ %\\
+            meta_proc.(salinity_salt).sources = ...
         {salinity_cond salinity_temp salinity_pres}';
       meta_proc.(salinity_salt).method = 'sw_salt';
     end

@@ -96,8 +96,8 @@ function [meta, data] = loadSeaExplorerData(sxdir, gliregexp, pldregexp, varargi
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(3, 13, nargin, 'struct'));
-  
+%  error(nargchk(3, 13, nargin, 'struct'));
+  narginchk(3,13);
   
   %% Set options and default values.
   options.format = 'array';
@@ -139,6 +139,8 @@ function [meta, data] = loadSeaExplorerData(sxdir, gliregexp, pldregexp, varargi
   %% Get file names matching the desired patterns.
   % Flatten lists to discard unmatched files.
   sxdir_contents = dir(sxdir);
+   [~,idx]=sort([sxdir_contents.datenum]);
+   sxdir_contents = sxdir_contents(idx);      
   gli_sel = ~[sxdir_contents.isdir] ...
     & ~cellfun(@isempty, regexp({sxdir_contents.name}, gliregexp));
   pld_sel = ~[sxdir_contents.isdir] ...

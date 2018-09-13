@@ -80,5 +80,8 @@ function processing_options = configDataProcessingSlocumG2()
   processing_options.density_list(1).salinity    = 'salinity';
   processing_options.density_list(1).temperature = 'temperature';
   processing_options.density_list(1).pressure    = 'pressure';
+  
+ 
+  
 
 end

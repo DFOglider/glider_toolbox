@@ -111,5 +111,7 @@ function processing_options = configDataProcessingSlocumG1()
   processing_options.density_list(2).salinity    = 'salinity_corrected_thermal';
   processing_options.density_list(2).temperature = 'temperature';
   processing_options.density_list(2).pressure    = 'pressure';
+  
+  
 
 end

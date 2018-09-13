@@ -104,7 +104,7 @@ function str = strfstruct(pattern, repstruct)
 %  Authors:
 %    Joan Pau Beltran  <joanpau.beltran@socib.cat>
 
-%  Copyright (C) 2013-2016
+%  Copyright (C) 2013-2017
 %  ICTS SOCIB - Servei d'observacio i prediccio costaner de les Illes Balears
 %  <http://www.socib.es>
 %
@@ -120,8 +120,8 @@ function str = strfstruct(pattern, repstruct)
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  error(nargchk(2, 2, nargin, 'struct'));
+    narginchk(2, 2);
+  %error(nargchk(2, 2, nargin, 'struct'));
 
   repflds = fieldnames(repstruct);
   repvals = struct2cell(repstruct);

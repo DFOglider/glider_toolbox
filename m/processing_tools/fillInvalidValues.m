@@ -91,7 +91,7 @@ function [filled, invalid] = fillInvalidValues(varargin)
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(1, 5, nargin, 'struct'));
+narginchk(1,5);
   
   switch nargin
     case 5
@@ -133,8 +133,15 @@ function [filled, invalid] = fillInvalidValues(varargin)
   elseif nargin > 3
     self_fill = false;
   end
-    
-  invalid = isnan(y);
+
+  %MO EDIT JULY 2017
+%invalid = isnan(y);
+if all(size(x')==size(y)) && any(size(x)~=size(y))
+    xx=x';
+else
+    xx=x;
+end
+invalid = isnan(y) | isnan(xx);
   
   if value_fill
     % Fill invalid values with given scalar value.

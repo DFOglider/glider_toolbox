@@ -141,7 +141,7 @@ function nc = generateOutputNetCDF(filename, data, meta, deployment, vars, dims,
 %  Authors:
 %    Joan Pau Beltran  <joanpau.beltran@socib.cat>
 
-%  Copyright (C) 2013-2016
+%  Copyright (C) 2013-2017
 %  ICTS SOCIB - Servei d'observacio i prediccio costaner de les Illes Balears
 %  <http://www.socib.es>
 %
@@ -158,8 +158,8 @@ function nc = generateOutputNetCDF(filename, data, meta, deployment, vars, dims,
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(6, 26, nargin, 'struct'));
-  
+%  error(nargchk(6, 26, nargin, 'struct'));
+  narginchk(6,26); 
   %% Set options and default values.
   options.modified = ...
     datestr(posixtime2utc(posixtime()), 'yyyy-mm-ddTHH:MM:SS+00:00');
@@ -254,7 +254,7 @@ function nc = generateOutputNetCDF(filename, data, meta, deployment, vars, dims,
   % Geospatial coverage:
   position_field_list  = cellstr(options.position);
   position_field_present = all(isfield(data, position_field_list) ...
-                             & isfield(vars, position_field_list), 2);
+                             & isfield(vars, upper(position_field_list)), 2);
   if any(position_field_present)
     position_field_index = find(position_field_present, 1);
     [position_x_field, position_y_field] = ...
@@ -396,7 +396,7 @@ function nc = generateOutputNetCDF(filename, data, meta, deployment, vars, dims,
   variable_meta = struct();
   var_name_list = fieldnames(vars);
   for var_name_idx = 1:numel(var_name_list)
-    var_name = var_name_list{var_name_idx};
+    var_name = var_name_list{var_name_idx}
     if isfield(data, var_name)
       variable_meta.(var_name) = vars.(var_name);
       % Loop in reverse order to allow for deletion of indexed attributes.

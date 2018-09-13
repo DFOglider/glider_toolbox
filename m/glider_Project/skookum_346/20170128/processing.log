@@ -1,0 +1,73 @@
+[Warning: NARGCHK will be removed in a future release. Use NARGINCHK or NARGOUTCHK
+instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('posixtime2utc', 'C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m', 50)" style="font-weight:bold">posixtime2utc</a> (<a href="matlab: opentoline('C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m',50,0)">line 50</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_glider_data_processing_rt', 'c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m', 358)" style="font-weight:bold">main_glider_data_processing_rt</a> (<a href="matlab: opentoline('c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m',358,0)">line 358</a>)] 
+Deployment processing start time: 2017-03-08T14:08:10+00:00
+Toolbox version: 1.2.0
+Deployment information:
+  Glider name          : skookum_346
+  Glider model         : slocum_g1
+  Glider serial        : 346
+  Deployment identifier: 346
+  Deployment name      : ONC_TEST
+  Deployment start     : 28-Jan-2017
+  Deployment end       : 18-Feb-2017
+Download deployment new data...
+
+new_xbds =
+
+     ''
+
+
+
+new_logs =
+
+     ''
+
+
+Binary data files downloaded: 0.
+Surface log files downloaded: 0.
+Converting binary data files to ascii format...
+Binary files converted: 0 of 0.
+No new deployment data, processing and product generation will be skipped.
+[Warning: NARGCHK will be removed in a future release. Use NARGINCHK or NARGOUTCHK
+instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('posixtime2utc', 'C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m', 50)" style="font-weight:bold">posixtime2utc</a> (<a href="matlab: opentoline('C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m',50,0)">line 50</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_glider_data_processing_rt', 'c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m', 859)" style="font-weight:bold">main_glider_data_processing_rt</a> (<a href="matlab: opentoline('c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m',859,0)">line 859</a>)] 
+Deployment processing end time: 2017-03-08T14:08:10+00:00
+[Warning: NARGCHK will be removed in a future release. Use NARGINCHK or NARGOUTCHK instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('posixtime2utc', 'C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m', 50)" style="font-weight:bold">posixtime2utc</a> (<a href="matlab: opentoline('C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m',50,0)">line 50</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_glider_data_processing_rt', 'c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m', 358)" style="font-weight:bold">main_glider_data_processing_rt</a> (<a href="matlab: opentoline('c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m',358,0)">line 358</a>)] 
+Deployment processing start time: 2017-03-08T14:14:14+00:00
+Toolbox version: 1.2.0
+Deployment information:
+  Glider name          : skookum_346
+  Glider model         : slocum_g1
+  Glider serial        : 346
+  Deployment identifier: 346
+  Deployment name      : ONC_TEST
+  Deployment start     : 28-Jan-2017
+  Deployment end       : 18-Feb-2017
+Download deployment new data...
+currently at:c:\users\trana\matlab\glider_Project\glider_toolbox-master\m
+
+new_xbds =
+
+     ''
+
+
+
+new_logs =
+
+     ''
+
+
+Binary data files downloaded: 0.
+Surface log files downloaded: 0.
+Converting binary data files to ascii format...
+Binary files converted: 0 of 0.
+No new deployment data, processing and product generation will be skipped.
+[Warning: NARGCHK will be removed in a future release. Use NARGINCHK or NARGOUTCHK instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('posixtime2utc', 'C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m', 50)" style="font-weight:bold">posixtime2utc</a> (<a href="matlab: opentoline('C:\Users\trana\matlab\glider_Project\glider_toolbox-master\m\common_tools\posixtime2utc.m',50,0)">line 50</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_glider_data_processing_rt', 'c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m', 860)" style="font-weight:bold">main_glider_data_processing_rt</a> (<a href="matlab: opentoline('c:\users\trana\matlab\glider_Project\glider_toolbox-master\m\main_glider_data_processing_rt.m',860,0)">line 860</a>)] 
+Deployment processing end time: 2017-03-08T14:14:15+00:00

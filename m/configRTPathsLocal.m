@@ -53,17 +53,34 @@ function local_paths = configRTPathsLocal()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+narginchk(0, 0);
+%  error(nargchk(0, 0, nargin, 'struct'));
+if ispc
+    roote='w:\glider_project\';
+else
+    roote='/u01/rapps/glider_project/';
+end
 
-  error(nargchk(0, 0, nargin, 'struct'));
-
-  local_paths.binary_path    = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/binary';
-  local_paths.cache_path     = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/binary';
-  local_paths.log_path       = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/log';
-  local_paths.ascii_path     = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/ascii';
-  local_paths.figure_path    = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/figures';
-  local_paths.netcdf_l0      = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l0.nc';
-  local_paths.netcdf_l1      = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l1.nc';
-  local_paths.netcdf_l2      = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/netcdf/${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l2.nc';
-  local_paths.processing_log = '/path/to/real_time/glider_data/${GLIDER_NAME}/${DEPLOYMENT_START,Tyyyymmdd}/processing.log';
-
+%  % pathe='c:\users\trana\matlab';
+%   local_paths.binary_path    = [roote '\data\${GLIDER_TYPE}\input\'];
+%   local_paths.cache_path     = [roote '\data\${GLIDER_TYPE}\input\cache\'];
+%   local_paths.log_path       = [roote '\data\log\'];
+%   local_paths.ascii_path     = [roote '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\ascii\'];
+%   local_paths.figure_path    = [roote '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\output\'];
+%   local_paths.netcdf_l0      = [roote '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\output\${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymddm}_l0.nc'];
+%   local_paths.netcdf_l1      = [roote '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\output\${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l1.nc'];
+%   local_paths.netcdf_l2      = [roote '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\output\${GLIDER_NAME}_${DEPLOYMENT_START,Tyyyymmdd}_l2.nc'];
+%   local_paths.processing_log = [roote '\glider_Project\${GLIDER_NAME}\${DEPLOYMENT_START,Tyyyymmdd}\output\processing.log'];
+  local_paths.binary_path    = fullfile(roote, 'data', '${GLIDER_MODEL}', 'input');
+  local_paths.cache_path     = fullfile(roote, 'data', '${GLIDER_MODEL}', 'input', 'cache');
+  local_paths.log_path       = fullfile(roote ,'data', 'log');
+  local_paths.ascii_path     = fullfile(roote, 'data', '${GLIDER_MODEL}', 'input');
+  local_paths.figure_path    = fullfile(roote ,'data', '${GLIDER_MODEL}','output');  
+%     local_paths.netcdf_l0      = fullfile(roote, 'data', '${GLIDER_MODEL}', 'output', '${GLIDER_NAME}_${DEPLOYMENT_ID}_l0.nc');
+%     local_paths.netcdf_l1      = fullfile(roote, 'data', '${GLIDER_MODEL}', 'output', '${GLIDER_NAME}_${DEPLOYMENT_ID}_l1.nc');
+%     local_paths.netcdf_l2      = fullfile(roote, 'data', '${GLIDER_MODEL}', 'output', '${GLIDER_NAME}_${DEPLOYMENT_ID}_l2.nc');
+    local_paths.netcdf_l0      = fullfile(roote, 'data', '${GLIDER_MODEL}', 'output', '${GLIDER_NAME}_${DEPLOYMENT_START_DATE,Tyyyymmdd}_l0.nc');
+    local_paths.netcdf_l1      = fullfile(roote, 'data', '${GLIDER_MODEL}', 'output', '${GLIDER_NAME}_${DEPLOYMENT_START_DATE,Tyyyymmdd}_l1.nc');
+    local_paths.netcdf_l2      = fullfile(roote, 'data', '${GLIDER_MODEL}', 'output', '${GLIDER_NAME}_${DEPLOYMENT_START_DATE,Tyyyymmdd}_l2.nc');
+  local_paths.processing_log = fullfile(roote, 'data', 'log','${GLIDER_NAME}_${DEPLOYMENT_ID}_processing.log');
 end

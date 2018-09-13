@@ -204,8 +204,8 @@ config.paths_local = configRTPathsLocal();
 config.output_netcdf_l0_slocum = configRTOutputNetCDFL0Slocum();
 config.output_netcdf_l0_seaglider = configRTOutputNetCDFL0Seaglider();
 config.output_netcdf_l0_seaexplorer = configRTOutputNetCDFL0SeaExplorer();
-config.output_netcdf_l1 = configRTOutputNetCDFL1();
-config.output_netcdf_l2 = configRTOutputNetCDFL2();
+config.output_netcdf_l1 = configRTOutputNetCDFL1_Ego();
+config.output_netcdf_l2 = configRTEgoOutputNetCDFL2();
 
 
 %% Configure processing options.
@@ -218,6 +218,10 @@ config.processing_options_seaglider = configDataProcessingSeaglider();
 config.processing_options_seaexplorer = configDataProcessingSeaExplorer();
 config.gridding_options = configDataGridding();
 
+% %% Configure basic quality control options.
+% config.basic_qc_config = configRTBasicQualityControl();
+% config.basic_qc_config.ignore_qc_variables_for_netCDF = configRTOutputNetCDFIgnoreQcParameters();
+
 
 %% Configure file download and conversion and data loading.
 config.file_options_slocum = configRTFileOptionsSlocum();
@@ -229,25 +233,34 @@ config.file_options_seaexplorer = configRTFileOptionsSeaExplorer();
 config.dockservers = configDockservers();
 config.basestations = configBasestations();
 
-
+%% dowload data from from ftp site
+% ftp_command = ['"C:\Program Files (x86)\CoreFTP\coreftp.exe"' ...
+%         ' -s -O -site glider_bio -d \realData\*.* '... ' -p
+%         "C:\Users\trana\matlab\input\"']; [ftpstatus, cmdout] =
+%         system(ftp_command);
 %% Configure data base deployment information source.
 config.db_access = configDBAccess();
 [config.db_query, config.db_fields] = configRTDeploymentInfoQueryDB();
 
 
 %% Get list of deployments to process from database.
-disp('Querying information of glider deployments...');
-deployment_list = getDeploymentInfoDB( ...
-  config.db_query, config.db_access.name, ...
-  'user', config.db_access.user, 'pass', config.db_access.pass, ...
-  'server', config.db_access.server, 'driver', config.db_access.driver, ...
-  'fields', config.db_fields);
-if isempty(deployment_list)
-  disp('No active glider deployments available.');
-  return
-else
-  disp(['Active deployments found: ' num2str(numel(deployment_list)) '.']);
-end
+%disp('Querying information of glider deployments...');
+%deployment_list = getDeploymentInfoDB( ...
+%  config.db_query, config.db_access.name, ...
+%  'user', config.db_access.user, 'pass', config.db_access.pass, ...
+%  'server', config.db_access.server, 'driver', config.db_access.driver, ...
+%  'fields', config.db_fields);
+%if isempty(deployment_list)
+%  disp('No active glider deployments available.');
+%  return
+%else
+%  disp(['Active deployments found: ' num2str(numel(deployment_list)) '.']);
+%end
+
+
+%% get list of deployments from local files instead
+disp('Get local information of glider deployments...');
+deployment_list = getDeploymentInfoLocal();
 
 
 %% Process active deployments.
@@ -321,10 +334,13 @@ for deployment_idx = 1:numel(deployment_list)
     preprocessing_options.calibration_parameter_list = deployment.calibrations;
   end
   gridding_options = config.gridding_options;
-  netcdf_l1_options = config.output_netcdf_l1;
-  netcdf_l2_options = config.output_netcdf_l2;
   figproc_options = config.figures_processed;
   figgrid_options = config.figures_gridded;
+ %% Configure netCDF variables for QC variables.
+  netcdf_l1_options = config.output_netcdf_l1;
+  netcdf_l1_options.variables = addQcToNetcdfVariables(netcdf_l1_options.variables);
+  netcdf_l2_options = config.output_netcdf_l2;
+  netcdf_l2_options.variables = addQcToNetcdfVariables(netcdf_l2_options.variables);
 
 
   %% Start deployment processing logging.
@@ -389,24 +405,52 @@ for deployment_idx = 1:numel(deployment_list)
   end
   switch glider_type
     case {'slocum_g1' 'slocum_g2'}
-      new_xbds = cell(size(config.dockservers));
-      new_logs = cell(size(config.dockservers));
-      for dockserver_idx = 1:numel(config.dockservers)
-        dockserver = config.dockservers(dockserver_idx);
-        try
-          [new_xbds{dockserver_idx}, new_logs{dockserver_idx}] = ...
-            getDockserverFiles(dockserver, glider_name, binary_dir, log_dir, ...
-                               'xbd', file_options.xbd_name_pattern, ...                     
-                               'log', file_options.log_name_pattern, ...
-                               'start', download_start, ...
-                               'final', download_final);
-        catch exception
-          disp(['Error getting dockserver files from ' dockserver.host ':']);
-          disp(getReport(exception, 'extended'));
+        if 0
+            %      new_xbds = cell(size(config.dockservers));
+            %      new_logs = cell(size(config.dockservers));
+            %      for dockserver_idx = 1:numel(config.dockservers)
+            %        dockserver = config.dockservers(dockserver_idx);
+            %        try
+            %          [new_xbds{dockserver_idx}, new_logs{dockserver_idx}] = ...
+            %            getDockserverFiles(dockserver, glider_name, binary_dir, log_dir, ...
+            %                               'xbd', file_options.xbd_name_pattern, ...
+            %                               'log', file_options.log_name_pattern, ...
+            %                               'start', download_start, ...
+            %                               'final', download_final);
+            %        catch exception
+            %          disp(['Error getting dockserver files from ' dockserver.host ':']);
+            %          disp(getReport(exception, 'extended'));
+            %       end
+            %      end
+            %      new_xbds = [new_xbds{:}];
+            %      new_logs = [new_logs{:}];
+        else
+            [new_xbds,new_logs]=deal(cell(1));
+            aa{1}=dir([binary_dir '*.*bd']);
+            aa{2}=dir([log_dir '*.log']);
+            for jj=1:length(aa)
+                tdate=nan(size(aa));
+                for ii=1:length(aa{jj})
+                    if jj==1
+                    dashes=find(aa{jj}(ii).name=='-');
+                    tdate(ii)=datenum(aa{jj}(ii).name(dashes(1)+1:dashes(3)-1),'yyyy-dd');
+                    elseif jj==2 %log
+                    underscores=find(aa{jj}(ii).name=='_');
+                    tdate(ii)=datenum(aa{jj}(ii).name(underscores(3)+1:underscores(3)+8),'yyyymmdd');
+                    end
+                end
+                okk=tdate>=download_start & tdate<=download_final;
+                aa{jj}=aa{jj}(okk);
+            end
+            for ii=1:length(aa{1})
+                new_xbds{1}{ii}=[binary_dir aa{1}(ii).name];
+            end
+            for ii=1:length(aa{2})
+                new_logs{1}{ii}=[log_dir aa{2}(ii).name];
+            end
+            new_xbds = [new_xbds{:}];
+            new_logs = [new_logs{:}];
         end
-      end  
-      new_xbds = [new_xbds{:}];
-      new_logs = [new_logs{:}];
       disp(['Binary data files downloaded: '  num2str(numel(new_xbds)) '.']);
       disp(['Surface log files downloaded: '  num2str(numel(new_logs)) '.']);
     case {'seaglider'}
@@ -450,8 +494,8 @@ for deployment_idx = 1:numel(deployment_list)
       disp('Converting binary data files to ascii format...');
       new_files = cell(size(new_xbds));
       for conversion_retry = 1:2
-        for xbd_idx = 1:numel(new_xbds)
-          if isempty(new_files{xbd_idx})
+          for xbd_idx = 1:numel(new_xbds)
+           if isempty(new_files{xbd_idx})
             xbd_fullfile = new_xbds{xbd_idx};
             [~, xbd_name, xbd_ext] = fileparts(xbd_fullfile);
             xbd_name_ext = [xbd_name xbd_ext];
@@ -459,6 +503,7 @@ for deployment_idx = 1:numel(deployment_list)
                                      file_options.xbd_name_pattern, ...
                                      file_options.dba_name_replace);
             dba_fullfile = fullfile(ascii_dir, dba_name_ext);
+           
             try
               new_files{xbd_idx} = ...
                 {xbd2dba(xbd_fullfile, dba_fullfile, 'cache', cache_dir, ...
@@ -466,7 +511,7 @@ for deployment_idx = 1:numel(deployment_list)
             catch exception
               new_files{xbd_idx} = {};
               if conversion_retry == 2
-                disp(['Error converting binary file ' xbd_name_ext ':']);
+                disp(['Error converting binary file:' xbd_name_ext ':']);
                 disp(getReport(exception, 'extended'));
               end
             end
@@ -629,6 +674,19 @@ for deployment_idx = 1:numel(deployment_list)
     end
   end
 
+   
+  %% Process preprocessed glider data.
+  if ~isempty(fieldnames(data_preprocessed))
+    disp('Processing glider data...');
+    try
+      [data_processed, meta_processed] = ...
+        processGliderData(data_preprocessed, meta_preprocessed, processing_options);
+    catch exception
+      disp('Error processing glider deployment data:');
+      disp(getReport(exception, 'extended'));
+    end
+  end
+  
 
   %% Generate L1 NetCDF file (processed data), if needed and possible.
   if ~isempty(fieldnames(data_processed)) && ~isempty(netcdf_l1_file)
@@ -639,6 +697,7 @@ for deployment_idx = 1:numel(deployment_list)
         netcdf_l1_options.variables, ...
         netcdf_l1_options.dimensions, ...
         netcdf_l1_options.attributes);
+         
       disp(['Output NetCDF L1 (processed data) generated: ' ...
             outputs.netcdf_l1 '.']);
     catch exception
@@ -849,10 +908,42 @@ for deployment_idx = 1:numel(deployment_list)
     end
   end
 
+%% Convert Socib netcdf format to Argo Netcdf format
+command = ['java' ' -jar' ...
+        ' -Dlog4j.configuration=file:///"C:\Users\trana\java projects\config\log4j.properties"' ...
+        ' "C:\Users\trana\java Projects\J2SE\GliderNetcdf\SocibNCToCoriolisNC\socibNCToCoriolisNC_fat.jar" '...
+        netcdf_l1_file...
+        ' "C:\Users\trana\java Projects\J2SE\GliderNetcdf\SocibNCToCoriolisNC\deploy\socib_to_if_var.txt"'...
+        ' "C:\Users\trana\java Projects\J2SE\GliderNetcdf\SocibNCToCoriolisNC\deploy\glider_netcdf.ncml"'];
+[status, cmdout] = system(command)
+%% add real-time qc to output generate by the java program
+realtime_ncfile = strrep(netcdf_l1_file, '_l1.nc', '_R.nc');
+[o_testDoneListAll, o_testFailedListAll] = gl_add_rtqc_to_ego_file(realtime_ncfile);
+%%
+public_folder = strfstruct(config.paths_public.folder_dir, deployment)
+[success, message] = copyfile(realtime_ncfile, public_folder);
+[success, message] = copyfile(netcdf_l2_file, public_folder);
 
-  %% Stop deployment processing logging.
+%% split multi profile into mono profile
+wmo_number_filename = [deployment.wmo_platform_code '_'...
+    datestr(deployment.deployment_start, 'yyyymmdd')]
+ gl_generate_prof_from_socib_ego_file('egofile',realtime_ncfile,'wmo',...
+     wmo_number_filename,'outputdir', public_folder);
+
+ %% apply realtime qc procedure to the  mono files
+ [pathstr,name, ext]= fileparts (realtime_ncfile);
+     mono_nc_dir = [public_folder name '\*.nc'];
+    files = ls (mono_nc_dir);
+    for i = 1: size (files, 1)
+        input = [public_folder name '\' files(i,:)];
+        fprintf('Processing file : %s\n', input);
+        gl_add_rtqc_to_profile_file(input)
+    end
+
+   %% Stop deployment processing logging.
   disp(['Deployment processing end time: ' ...
         datestr(posixtime2utc(posixtime()), 'yyyy-mm-ddTHH:MM:SS+00:00')]);
   diary('off');
 
 end
+

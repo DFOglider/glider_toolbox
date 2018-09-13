@@ -66,8 +66,8 @@ function ncl0_info = configRTOutputNetCDFL0Slocum()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  error(nargchk(0, 0, nargin, 'struct'));
+narginchk(0,0); 
+%  error(nargchk(0, 0, nargin, 'struct'));
 
   %% Define variable information.
   % To define the variable attributes easily and readably, add the corresponding
@@ -565,6 +565,17 @@ function ncl0_info = configRTOutputNetCDFL0Slocum()
     'units'         '1'
     '_FillValue'    default_fill_value };
 
+  var_attr_list.sci_flbbcd_bb_ref = {
+    'long_name'     'backscattering reference'
+    'units'         '1'
+    '_FillValue'    default_fill_value };
+
+  var_attr_list.sci_flbbcd_bb_sig = {
+    'long_name'     'backscattering signal'
+    'units'         '1'
+    '_FillValue'    default_fill_value };
+
+
   var_attr_list.sci_bbfl2s_cdom_ref = {
     'long_name'     'CDOM reference'
     'units'         '1'
@@ -580,6 +591,17 @@ function ncl0_info = configRTOutputNetCDFL0Slocum()
     'units'         'ppb'
     '_FillValue'    default_fill_value };
 
+  var_attr_list.sci_flbbcd_cdom_ref = {
+    'long_name'     'CDOM reference'
+    'units'         '1'
+    '_FillValue'    default_fill_value };
+
+  var_attr_list.sci_flbbcd_cdom_sig = {
+    'long_name'     'CDOM signal'
+    'units'         '1'
+    '_FillValue'    default_fill_value };
+
+
   var_attr_list.sci_bbfl2s_chlor_ref = {
     'long_name'     'chlorophyll reference'
     'units'         '1'
@@ -594,6 +616,15 @@ function ncl0_info = configRTOutputNetCDFL0Slocum()
     'long_name'     'chlorophyll'
     'standard_name' 'concentration_of_chlorophyll_in_sea_water'
     'units'         'mg m-3'
+    '_FillValue'    default_fill_value };
+  var_attr_list.sci_flbbcd_chlor_ref = {
+    'long_name'     'chlorophyll reference'
+    'units'         '1'
+    '_FillValue'    default_fill_value };
+
+  var_attr_list.sci_flbbcd_chlor_sig = {
+    'long_name'     'chlorophyll signal'
+    'units'         '1'
     '_FillValue'    default_fill_value };
 
   var_attr_list.sci_bbfl2s_temp = {

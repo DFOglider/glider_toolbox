@@ -50,6 +50,9 @@ function savenc(var_data, var_meta, global_meta, filename)
 %    cause trouble with attributes like '_FillValue' (because it is not a valid
 %    field name).
 %
+%    AK: Added 'stable' to intersect call to prevent alphabetical sorting 
+%    of QC and non-QC variables.
+%
 %  Examples:
 %    global_meta = struct()
 %    global_meta.name = 'random.nc'
@@ -86,7 +89,7 @@ function savenc(var_data, var_meta, global_meta, filename)
 %  Authors:
 %    Joan Pau Beltran  <joanpau.beltran@socib.cat>
 
-%  Copyright (C) 2013-2016
+%  Copyright (C) 2013-2017
 %  ICTS SOCIB - Servei d'observacio i prediccio costaner de les Illes Balears
 %  <http://www.socib.es>
 %
@@ -108,7 +111,7 @@ function savenc(var_data, var_meta, global_meta, filename)
   NETCDF_TYPES = {'double' 'float'  'int'   'short' 'byte' 'char'};
   NATIVE_TYPES = {'double' 'single' 'int32' 'int16' 'int8' 'char'};
 
-  error(nargchk(3, 4, nargin, 'struct'));
+  narginchk(3, 4);
 
   if nargin < 4
     filename = global_meta.name;
@@ -206,7 +209,7 @@ function savenc(var_data, var_meta, global_meta, filename)
         end
       end
       % Set variable dimensions and attributes, and variable data.
-      field_name_list = intersect(fieldnames(var_data), fieldnames(var_meta));
+      field_name_list = intersect(fieldnames(var_data), fieldnames(var_meta), 'stable');
       for var_idx = 1:numel(field_name_list)
         field_name = field_name_list{var_idx};
         if isfield(var_meta.(field_name), 'name')
@@ -237,7 +240,7 @@ function savenc(var_data, var_meta, global_meta, filename)
         nc_addvar(filename, nc_var);
       end
       for var_idx = 1:numel(field_name_list)
-        field_name = field_name_list{var_idx};
+        field_name = field_name_list{var_idx};        
         if isfield(var_meta.(field_name), 'name')
           var_name = var_meta.(field_name).name;
         else

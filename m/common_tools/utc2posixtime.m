@@ -30,7 +30,7 @@ function s = utc2posixtime(d)
 %  Authors:
 %    Joan Pau Beltran  <joanpau.beltran@socib.cat>
 
-%  Copyright (C) 2013-2016
+%  Copyright (C) 2013-2017
 %  ICTS SOCIB - Servei d'observacio i prediccio costaner de les Illes Balears
 %  <http://www.socib.es>
 %
@@ -47,8 +47,8 @@ function s = utc2posixtime(d)
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(1, 1, nargin, 'struct'));
-  
+%  error(nargchk(1, 1, nargin, 'struct'));
+  narginchk(1, 1);
   s = 86400 * (d - 719529);
   
 end

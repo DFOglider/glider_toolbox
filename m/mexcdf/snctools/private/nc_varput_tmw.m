@@ -11,18 +11,18 @@ try
     info = nc_getvarinfo_tmw(ncid,varid);
     [start,count,stride] = snc_get_varput_indexing(ndims,info.Size,size(data),varargin{:});
     if ~preserve_fvd
-        start = fliplr(start); 
-        count = fliplr(count); 
+        start = fliplr(start);
+        count = fliplr(count);
         stride = fliplr(stride);
     end
     data = pre_process(ncid,varid,xtype,preserve_fvd,data);
-
+    
     if ndims == 0
         netcdf.putVar(ncid,varid,data);
     else
         netcdf.putVar(ncid,varid,start,count,stride,data);
     end
-
+    
 catch myException
     netcdf.close(ncid);
     rethrow(myException);
@@ -53,8 +53,12 @@ have_scale_factor = 0;
 have_add_offset = 0;
 
 
-varname = netcdf.inqVar(ncid,varid);
-try
+[varname,xtype,dimids,natts] = netcdf.inqVar(ncid,varid);
+for i=1:natts
+    attName{i}=netcdf.inqAttName(ncid,varid,i-1);
+end
+
+if ~isempty(strmatch('scale_factor',attName))
     att_type = netcdf.inqAtt(ncid, varid, 'scale_factor' );
     if att_type == netcdf.getConstant('NC_CHAR')
         warning('snctools:varput:scaleFactorShouldNotBeChar', ...
@@ -64,11 +68,11 @@ try
         have_scale_factor = 1;
         scale_factor = netcdf.getAtt(ncid, varid, 'scale_factor','double');
     end
-catch %#ok<CTCH>
+else
     scale_factor = 1.0;
 end
 
-try
+if ~isempty(strmatch('add_offset',attName))
     att_type = netcdf.inqAtt(ncid, varid, 'add_offset' );
     if att_type == netcdf.getConstant('NC_CHAR')
         warning('snctools:varput:addOffsetShouldNotBeChar', ...
@@ -78,7 +82,7 @@ try
         have_add_offset = 1;
         add_offset = netcdf.getAtt(ncid, varid, 'add_offset','double');
     end
-catch %#ok<CTCH>
+else
     add_offset = 0.0;
 end
 
@@ -116,8 +120,7 @@ return
 function data = handle_fill_value(ncid,varid,data)
 % Handle the fill value.  We do this by changing any NaNs into
 % the _FillValue.  That way the netcdf library will recognize it.
-try
-    
+try    
     [varname,xtype] = netcdf.inqVar(ncid,varid);
     att_type = netcdf.inqAtt(ncid,varid,'_FillValue');
     if att_type ~= xtype
@@ -148,11 +151,11 @@ try
                 'Unhandled datatype for fill value, ''%s''.', ...
                 class(data) );
     end
-
+    
     fill_value  = netcdf.getAtt(ncid,varid,'_FillValue',myClass);
-
+    
     data(isnan(data)) = fill_value;
-
+    
 catch myException %#ok<NASGU>
     return
 end

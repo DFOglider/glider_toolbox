@@ -150,7 +150,7 @@ function imginfo = printfigure(varargin)
 %  Authors:
 %    Joan Pau Beltran  <joanpau.beltran@socib.cat>
 
-%  Copyright (C) 2013-2016
+%  Copyright (C) 2013-2017
 %  ICTS SOCIB - Servei d'observacio i prediccio costaner de les Illes Balears
 %  <http://www.socib.es>
 %
@@ -182,7 +182,6 @@ function imginfo = printfigure(varargin)
   %% Set plot options and default values.
   options = struct();
   options.dirname = pwd();
-%   options.filename = sprintf('figure%03d', hfig);
   options.filename = sprintf('figure%03d', hfig.Number);
   options.format = 'eps';
   options.resolution = 72;
@@ -246,6 +245,7 @@ function imginfo = printfigure(varargin)
   resdpiopt = ['-r' num2str(options.resolution)];
   driveropt = ['-d' options.driver];
   renderopt = '';
+  formattype = ['-d' options.format];
   if ~isempty(options.render)
     renderopt = ['-' options.render];
   end
@@ -253,26 +253,27 @@ function imginfo = printfigure(varargin)
   if ~isempty(options.loose) % needed to create an uncropped image (eps bounding box better matches figure position)
     looseopt = ['-' options.loose];
   end
-  if isempty(options.convert) || strcmpi(options.format, 'eps')
-    print(hfig, resdpiopt, renderopt, driveropt, looseopt, fullfile_ext);
+  if isempty(options.convert) || strcmpi(options.format, 'eps')    
+      print(hfig, resdpiopt, renderopt, driveropt, looseopt,'-tiff',fullfile_eps);
   else
-    print(hfig, resdpiopt, renderopt, driveropt, looseopt, fullfile_eps);
-    [failure, output] = system( ...
-        [options.convert ...
-         ' -depth 8' ...        % needed because ImageMagick identifies the eps as 16 bit color depth.
-         ' -colorspace RGB' ... % needed because ImageMagick identifies the eps as CMYK due to the %%DocumentProcessColor comment.
-         ' -density ' num2str(options.resolution) ... 
-         ' ' fullfile_eps ...
-         ' -set date ''' options.date '''' ...
-         ' -set label ''' options.title '''' ...
-         ' -set comment ''' options.comment ''''  ...
-         ' ' fullfile_ext ';'] );
-     if failure
-       error('glider_toolbox:printfigure:ConvertError', ...
-             'Command convert failed (eps file preserved): %s.', output);
-     elseif ~options.keepeps
-       delete(fullfile_eps);
-     end
+    print (hfig,  formattype, fullfile_ext);
+%     print(hfig, resdpiopt, renderopt, driveropt, looseopt, fullfile_eps);
+%    [failure, output] = system( ...
+%        [options.convert ...
+%        ' -depth 8' ...        % needed because ImageMagick identifies the eps as 16 bit color depth.
+%          ' -colorspace RGB' ... % needed because ImageMagick identifies the eps as CMYK due to the %%DocumentProcessColor comment.
+%          ' -density ' num2str(options.resolution) ... 
+%          ' ' fullfile_eps ...
+%          ' -set date ''' options.date '''' ...
+%          ' -set label ''' options.title '''' ...
+%          ' -set comment ''' options.comment ''''  ...
+%          ' ' fullfile_ext ';'] );
+%      if failure
+%        error('glider_toolbox:printfigure:ConvertError', ...
+%              'Command convert failed (eps file preserved): %s.', output);
+%      elseif ~options.keepeps
+%        delete(fullfile_eps);
+%     end
   end
   
   

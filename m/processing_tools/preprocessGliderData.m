@@ -271,8 +271,8 @@ function [data_pre, meta_pre] = preprocessGliderData(data_raw, meta_raw, varargi
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(2, 24, nargin, 'struct'));
-  
+%  error(nargchk(2, 24, nargin, 'struct'));
+  narginchk(2,24); 
   
   %% Set preprocessing options.
   % Set default options values.
@@ -281,8 +281,8 @@ function [data_pre, meta_pre] = preprocessGliderData(data_raw, meta_raw, varargi
   options.time_list = ...
     struct('time', {'m_present_time' 'sci_m_present_time'});
   options.position_list = ...
-    struct('longitude',            {'m_gps_lon'    'm_lon'}, ...
-           'latitude',             {'m_gps_lat'    'm_lat'}, ...
+    struct('longitude',            { 'm_lon'    'm_gps_lon'}, ...
+           'latitude',             { 'm_lat'    'm_gps_lat'}, ...
            'position_status',      {'m_gps_status' []}, ...
            'position_good',        {0              []}, ...
            'position_bad',         {[]             []}, ...
@@ -418,8 +418,8 @@ function [data_pre, meta_pre] = preprocessGliderData(data_raw, meta_raw, varargi
   position_choice_list = options.position_list;
   for position_choice_idx = 1:numel(position_choice_list)
     position_choice = position_choice_list(position_choice_idx);
-    lon_field = position_choice.longitude;
-    lat_field = position_choice.latitude;
+    lon_field = position_choice.longitude
+    lat_field = position_choice.latitude
     position_date_field = [];
     position_time_field = [];
     position_status_field = [];

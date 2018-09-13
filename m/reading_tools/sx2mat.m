@@ -78,8 +78,8 @@ function [meta, data] = sx2mat(filename, varargin)
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-  error(nargchk(1, 7, nargin, 'struct'));
-  
+%  error(nargchk(1, 7, nargin, 'struct'));
+  narginchk(1, 17);
   
   %% Set options and default values.
   options.format = 'array';

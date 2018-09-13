@@ -65,8 +65,8 @@ function ncl1_info = configRTOutputNetCDFL1()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  error(nargchk(0, 0, nargin, 'struct'));
+narginchk(0,0); 
+%  error(nargchk(0, 0, nargin, 'struct'));
 
   %% Define variable information.
   % To define the variable attributes easily and readably, add the corresponding
@@ -729,6 +729,18 @@ function ncl1_info = configRTOutputNetCDFL1()
   % representation needed by SAVENC.
   global_atts = ...
   {
+    'data_type'                    'EGO glider time-series data'
+    'format_version'               '1.2'
+    'institution'                   'DFO'
+    'data_assembly_center'          'ME'
+    'platform_code'                 'SeaExplorer_003'
+    'wmo_platform_code'             '4901800'
+    'source'                        'glider'
+    'data_mode'                     'R'
+    'quality_index'                 'unknown quality'
+    'Conventions'                   'CF-1.4 EGO-1.0'
+    'netcdf_version'               '4.1.3'
+
     'abstract'                     '' % deployment_description
     'acknowledgement'              '' % deployment_acknowledgement
     'author'                       '' % deployment_author

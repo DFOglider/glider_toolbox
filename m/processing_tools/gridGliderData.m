@@ -312,13 +312,18 @@ function [data_grid, meta_grid] = gridGliderData(data_proc, meta_proc, varargin)
     cast_depth = depth(cast_select);
     cast_time = time(cast_select);
     cast_variables = variables(cast_select, :);
-    data_grid.time(cast_idx) = nanmean(cast_time);
-    data_grid.latitude(cast_idx) = nanmean(cast_lat);
-    data_grid.longitude(cast_idx) = nanmean(cast_lon);
+    data_grid.time(cast_idx) = median(cast_time, 'omitnan');
+    data_grid.latitude(cast_idx) = median(cast_lat, 'omitnan');
+    data_grid.longitude(cast_idx) = median(cast_lon,'omitnan');
+%        cell2mat(arrayfun(@(d) nanmean(cast_variables(abs(cast_depth-d)<=0.5*depth_resolution, :), 1), ...
+%                          depth_range(:), 'UniformOutput', false));
+
     if ~isempty(cast_variables) % Speed up when there are no variables.
+       
       data_grid_variables(cast_idx, :, :) = ...
-        cell2mat(arrayfun(@(d) nanmean(cast_variables(abs(cast_depth-d)<=0.5*depth_resolution, :), 1), ...
+        cell2mat(arrayfun(@(d) median(cast_variables(abs(cast_depth-d)<=0.5*depth_resolution, :), 1, 'omitnan'), ...
                           depth_range(:), 'UniformOutput', false));
+
     end
   end
   % Move binned variable data to output struct.

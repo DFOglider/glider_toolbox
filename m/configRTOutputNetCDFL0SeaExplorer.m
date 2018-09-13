@@ -67,8 +67,8 @@ function ncl0_info = configRTOutputNetCDFL0SeaExplorer()
 %
 %  You should have received a copy of the GNU General Public License
 %  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  error(nargchk(0, 0, nargin, 'struct'));
+narginchk(0,0); 
+ % error(nargchk(0, 0, nargin, 'struct'));
 
   %% Define variable information.
   % To define the variable attributes easily and readably, add the corresponding
@@ -216,7 +216,7 @@ function ncl0_info = configRTOutputNetCDFL0SeaExplorer()
     'units'         '1'
     '_FillValue'    default_fill_value };
 
-   var_attr_list.NAV_RESSOURCE = {
+   var_attr_list.NAV_RESOURCE = {
     'long_name'     'Number describing navigation state (same as NavState from glider)'
     'units'         'N/A'
     '_FillValue'    default_fill_value };
