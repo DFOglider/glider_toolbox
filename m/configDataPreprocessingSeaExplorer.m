@@ -82,7 +82,7 @@ function preprocessing_options = configDataPreprocessingSeaExplorer()
   preprocessing_options.oxygen_list(1).oxygen_frequency = 'GPCTD_DOF';
 
   preprocessing_options.oxygen_list(2).oxygen_frequency = 'SBD_DOF';
-
+  
   preprocessing_options.optics_list(1).chlorophyll = 'FLBBCD_CHL_SCALED';
   preprocessing_options.optics_list(1).cdom        = 'FLBBCD_CDOM_SCALED';
   preprocessing_options.optics_list(1).backscatter_700 = 'FLBBCD_BB_700_SCALED';
@@ -138,5 +138,8 @@ function preprocessing_options = configDataPreprocessingSeaExplorer()
   preprocessing_options.extra_sensor_list.methane(1).mets_circuit_temperature_volt = 'METS_TEMP_VOLT';
   preprocessing_options.extra_sensor_list.methane(1).mets_circuit_temperature = 'METS_TEMP_SCALED';
 
+  % Rinko DO
+  preprocessing_options.extra_sensor_list.rinko(1).oxygen_concentration = 'AROD_FT_DO';
+  preprocessing_options.extra_sensor_list.rinko(1).temperature_oxygen = 'AROD_FT_TEMP';
 end
 

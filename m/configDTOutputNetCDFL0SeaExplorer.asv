@@ -420,14 +420,14 @@ function ncl0_info = configDTOutputNetCDFL0SeaExplorer()
     'long_name'     'Oxygen concentration'
     'standard_name' 'Oxygen concentration'
     'units'         'umol L-1'
-    'comment'       'Rinko FT sensor'
+    'comment'       'Rinko FL sensor'
     '_FillValue'    default_fill_value };
 
   var_attr_list.AROD_FT_TEMP = {
     'long_name'     'Temperature associated with Oxygen concentration'
     'standard_name' 'Temperature associated with Oxygen concentration'
-    'units'         'Celsius'
-    'comment'       'Rinko FT sensor'
+    'units'         'ug L-1'
+    'comment'       'Alseamar methane sensor'
     '_FillValue'    default_fill_value };
 
   % MFL sensor (variable names new software April 2016).

@@ -532,7 +532,7 @@ function ncl1_info = configDTOutputNetCDFL1()
   var_attr_list.oxygen_concentration = {
     'long_name'     'oxygen concentration'
     'standard_name' 'mole_concentration_of_dissolved_molecular_oxygen_in_sea_water'
-    'units'         'umol l-1'
+    'units'         'umol L-1'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
     'sources'                []
