@@ -1441,7 +1441,3 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   end
   
 end
-
-
- 
-oxySat=(oxyConc./sw_satO2(L1_salinity,L1_temp))*100;

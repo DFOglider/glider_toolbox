@@ -56,14 +56,14 @@ function local_paths = configDTPathsLocal()
 
   error(nargchk(0, 0, nargin, 'struct'));
 
-  local_paths.binary_path    = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/binary';
-  local_paths.cache_path     = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/binary';
-  local_paths.log_path       = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/logfiles';
-  local_paths.ascii_path     = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/all_data';
-  local_paths.figure_path    = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/figures';
-  local_paths.netcdf_l0      = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/netcdf/GLI2018_SEA032_026DM_L0.nc';
-  local_paths.netcdf_l1      = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/netcdf/GLI2018_SEA032_026DM_L1.nc';
-  local_paths.netcdf_l2      = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/netcdf/GLI2018_SEA032_026DM_L2.nc';
-  local_paths.processing_log = '//ent.dfo-mpo.ca/atlshares/MARFIS/Shares/OSD_Common/Gliders/SEA032/Data/M26/testSOCIB/processing.log';
+  local_paths.binary_path    = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/binary';
+  local_paths.cache_path     = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/binary';
+  local_paths.log_path       = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/logfiles';
+  local_paths.ascii_path     = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/all_data';
+  local_paths.figure_path    = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/figures';
+  local_paths.netcdf_l0      = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/netcdf/GLI2018_SEA024_032DM_L0.nc';
+  local_paths.netcdf_l1      = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/netcdf/GLI2018_SEA024_032DM_L1.nc';
+  local_paths.netcdf_l2      = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/netcdf/GLI2018_SEA024_032DM_L2.nc';
+  local_paths.processing_log = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/testSOCIBox/processing.log';
 
 end
