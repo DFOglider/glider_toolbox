@@ -1394,7 +1394,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   for oxygen_conc_option_idx = 1:numel(options.oxygen_conc_list)
     oxygen_conc_option = options.oxygen_conc_list(oxygen_conc_option_idx);
     oxygen_conc_oxc = oxygen_conc_option.oxygen_conc;
-    oxygen_conc_oxf = oxygen_conc_option.oxygen_freq;
+    oxygen_conc_oxf = oxygen_conc_option.oxygen_frequency;
     oxygen_conc_salt = oxygen_conc_option.salinity;
     oxygen_conc_temp = oxygen_conc_option.temperature;
     oxygen_conc_pres = oxygen_conc_option.pressure;
@@ -1425,7 +1425,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %         end
       fprintf('Deriving oxygen_conc %d with settings:\n', oxygen_conc_option_idx);
       fprintf('  output oxygen_conc sequence   : %s\n', oxygen_conc_oxc);
-      fprintf('  input oxygen_freq sequence: %s\n', oxygen_conc_freq);
+      fprintf('  input oxygen_freq sequence: %s\n', oxygen_conc_oxf);
       fprintf('  input salinity sequence: %s\n', oxygen_conc_salt);
       fprintf('  input temperature sequence : %s\n', oxygen_conc_temp);
       fprintf('  input pressure sequence    : %s\n', oxygen_conc_pres);
