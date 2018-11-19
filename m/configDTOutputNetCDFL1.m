@@ -780,7 +780,7 @@ function ncl1_info = configDTOutputNetCDFL1()
     'publisher_url'                '' % deployment_publisher_url
     'source'                       'glider'
     'source_files'                 'undefined' % source_files field set by processing script after loading data.
-    'standard_name_vocabulary'     'http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/16/cf-standard-name-table.html'
+    'standard_name_vocabulary'     ''
     'summary'                      '' % deployment_description
     'time_coverage_end'            'undefined'
     'time_coverage_start'          'undefined'
