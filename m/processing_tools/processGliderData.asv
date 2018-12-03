@@ -1527,7 +1527,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
     oxygen_sat_option = options.oxygen_sat_list(oxygen_sat_option_idx);
     oxygen_sat_oxs = oxygen_sat_option.oxygen_sat;
     oxygen_sat_oxc = oxygen_sat_option.oxygen_conc;
-    oxygen_sat_salt = oxygen_sat_option.salinity;
+    oxygen_sat_salt = oxygen_sat_option.abs_salinity;
     oxygen_sat_temp = oxygen_sat_option.temperature;
     if all(isfield(data_proc, {oxygen_sat_oxc oxygen_sat_salt oxygen_sat_temp}))
      
