@@ -573,7 +573,7 @@ function ncl1_info = configDTOutputNetCDFL1()
     'calibration'            []
     'calibration_parameters' [] };
 
-var_attr_list.oxygen_sat = {
+var_attr_list.oxygen_saturation = {
     'long_name'     'oxygen saturation'
     'standard_name' 'saturation_of_dissolved_oxygen_in_sea_water'
     'units'         '%'
@@ -595,7 +595,7 @@ var_attr_list.sigmat = {
     'calibration'            []
     'calibration_parameters' [] };
 
-var_attr_list.abs_salinity = {
+var_attr_list.absolute_salinity = {
     'long_name'     'absolute salinity'
     'standard_name' 'mass_fraction_of_dissolved_material_in_seawater'
     'units'         'g kg-1'

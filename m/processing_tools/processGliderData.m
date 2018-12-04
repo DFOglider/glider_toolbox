@@ -442,7 +442,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
            'pressure',     {'pressure'     'pressure'});
        
-  options.abs_salinity_list = ...
+  options.absolute_salinity_list = ...
     struct('absolute_salinity', {'absolute_salinity'     'absolute_salinity_corrected_thermal'}, ...
            'conductivity', {'conductivity' 'conductivity'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
@@ -458,7 +458,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
    
    options.sigmat_list = ...
     struct('sigma_theta', {'sigma_theta'     'sigma_theta_corrected_thermal'}, ...
-           'abs_salinity',    {'abs_salinity'    'abs_salinity_corrected_thermal'}, ...
+           'absolute_salinity',    {'absolute_salinity'    'absolute_salinity_corrected_thermal'}, ...
            'temperature', {'temperature' 'temperature'}, ...
            'pressure',    {'pressure'    'pressure'});
   
@@ -469,8 +469,8 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
            'pressure',     {'pressure'     'pressure'});
        
-   options.oxygen_sat_list = ...
-    struct('oxygen_sat',  {'oxygen_sat'     'oxygen_sat_corrected_thermal'}, ...
+   options.oxygen_saturation_list = ...
+    struct('oxygen_saturation',{'oxygen_saturation'   'oxygen_saturation_corrected_thermal'}, ...
            'oxygen_conc',  {'oxygen_conc'     'oxygen_conc_corrected_thermal'}, ...
            'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'});
@@ -1393,33 +1393,33 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   end
   
   %% Derive absolute salinity from pressure, conductivity, temperature, lat and long if available.
-  for abs_salinity_option_idx = 1:numel(options.abs_salinity_list)
-    abs_salinity_option = options.abs_salinity_list(abs_salinity_option_idx);
-    abs_salinity_salt = abs_salinity_option.abs_salinity;
-    abs_salinity_cond = abs_salinity_option.conductivity;
-    abs_salinity_temp = abs_salinity_option.temperature;
-    abs_salinity_pres = abs_salinity_option.pressure;
-    abs_salinity_lat = abs_salinity_option.latitude;
-    abs_salinity_long = abs_salinity_option.longitude;
-    if all(isfield(data_proc, {abs_salinity_cond abs_salinity_temp abs_salinity_pres abs_salinity_lat abs_salinity_long}))
-      % Compute abs_salinity from temperature, pressure and conductivity ratio.
+  for absolute_salinity_option_idx = 1:numel(options.absolute_salinity_list)
+    absolute_salinity_option = options.absolute_salinity_list(absolute_salinity_option_idx);
+    absolute_salinity_salt = absolute_salinity_option.absolute_salinity;
+    absolute_salinity_cond = absolute_salinity_option.conductivity;
+    absolute_salinity_temp = absolute_salinity_option.temperature;
+    absolute_salinity_pres = absolute_salinity_option.pressure;
+    absolute_salinity_lat = absolute_salinity_option.latitude;
+    absolute_salinity_long = absolute_salinity_option.longitude;
+    if all(isfield(data_proc, {absolute_salinity_cond absolute_salinity_temp absolute_salinity_pres absolute_salinity_lat absolute_salinity_long}))
+      % Compute absolute_salinity from temperature, pressure and conductivity ratio.
       % Input conductivity is given in S/m (Siemens per metre), 
       % but reference conductivity returned by sw_c3515 is in mS/cm.
-      fprintf('Deriving abs_salinity %d with settings:\n', abs_salinity_option_idx);
-      fprintf('  input conductivity sequence: %s\n', abs_salinity_cond);
-      fprintf('  input temperature sequence : %s\n', abs_salinity_temp);
-      fprintf('  input pressure sequence    : %s\n', abs_salinity_pres);
-      fprintf('  input latitude sequence    : %s\n', abs_salinity_lat);
-      fprintf('  input longitude sequence    : %s\n', abs_salinity_long);
+      fprintf('Deriving absolute_salinity %d with settings:\n', absolute_salinity_option_idx);
+      fprintf('  input conductivity sequence: %s\n', absolute_salinity_cond);
+      fprintf('  input temperature sequence : %s\n', absolute_salinity_temp);
+      fprintf('  input pressure sequence    : %s\n', absolute_salinity_pres);
+      fprintf('  input latitude sequence    : %s\n', absolute_salinity_lat);
+      fprintf('  input longitude sequence    : %s\n', absolute_salinity_long);
             
      %practical salinity = gsw_SP_from_C(conductivity in mS/cm,temperature,pressure);  
-     prac_sal = gsw_SP_from_C(data_proc.(abs_salinity_cond)*10,data_proc.(abs_salinity_temp),data_proc.(abs_salinity_pres));
+     prac_sal = gsw_SP_from_C(data_proc.(absolute_salinity_cond)*10,data_proc.(absolute_salinity_temp),data_proc.(absolute_salinity_pres));
      %absolute Salinity= gsw_SA_from_SP(SalPractical,p,long,lat)
-     [data_proc.(abs_salinity_salt), in_ocean] = gsw_SA_from_SP(prac_sal,data_proc.(abs_salinity_pres),data_proc.(abs_salinity_long),data_proc.(abs_salinity_lat)); 
+     [data_proc.(absolute_salinity_salt), in_ocean] = gsw_SA_from_SP(prac_sal,data_proc.(absolute_salinity_pres),data_proc.(absolute_salinity_long),data_proc.(absolute_salinity_lat)); 
  
-      meta_proc.(abs_salinity_salt).sources = ...
-        {abs_salinity_cond abs_salinity_temp abs_salinity_pres abs_salinity_lat abs_salinity_long}';
-      meta_proc.(abs_salinity_salt).method = 'gsw_SA_from_SP  TEOS-10';
+      meta_proc.(absolute_salinity_salt).sources = ...
+        {absolute_salinity_cond absolute_salinity_temp absolute_salinity_pres absolute_salinity_lat absolute_salinity_long}';
+      meta_proc.(absolute_salinity_salt).method = 'gsw_SA_from_SP  TEOS-10';
     end
   end
   
@@ -1450,24 +1450,24 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   for sigmat_option_idx = 1:numel(options.sigmat_list)
     sigmat_option = options.sigmat_list(sigmat_option_idx);
     sigmat_dens = sigmat_option.sigmat;
-    sigmat_abs_salt = sigmat_option.abs_salinity;
+    sigmat_absolute_salt = sigmat_option.absolute_salinity;
     sigmat_temp = sigmat_option.temperature;
     sigmat_pres = sigmat_option.pressure;
-    if all(isfield(data_proc, {sigmat_abs_salt sigmat_temp sigmat_pres}))
+    if all(isfield(data_proc, {sigmat_absolute_salt sigmat_temp sigmat_pres}))
       % Compute sigmat from temperature, pressure and salinity.
       fprintf('Deriving sigmat %d with settings:\n', sigmat_option_idx);
       fprintf('  output sigmat sequence   : %s\n', sigmat_dens);
-      fprintf('  input salinity sequence   : %s\n', sigmat_abs_salt);
+      fprintf('  input salinity sequence   : %s\n', sigmat_absolute_salt);
       fprintf('  input temperature sequence: %s\n', sigmat_temp);
       fprintf('  input pressure sequence   : %s\n', sigmat_pres);
       
       %conservative temperature = gsw_CT_from_t(SA,t,p)
-      CT = gsw_CT_from_t(data_proc.(sigmat_abs_salt),data_proc.(sigmat_temp),data_proc.(sigmat_pres));
+      CT = gsw_CT_from_t(data_proc.(sigmat_absolute_salt),data_proc.(sigmat_temp),data_proc.(sigmat_pres));
       % potential density =  gsw_rho(SA,CT,pressure_ref); 
-      data_proc.(sigmat_dens) =  gsw_rho(data_proc.(sigmat_abs_salt),CT,0)-1000;
+      data_proc.(sigmat_dens) =  gsw_rho(data_proc.(sigmat_absolute_salt),CT,0)-1000;
       
       meta_proc.(sigmat_dens).sources = ...
-        {sigmat_abs_salt sigmat_temp sigmat_pres}';
+        {sigmat_absolute_salt sigmat_temp sigmat_pres}';
       meta_proc.(sigmat_dens).method = 'gsw_rho  TEOS-10';
     end
   end
@@ -1523,25 +1523,25 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   end
   
     %% Derive oxygene saturation from oxygen concentration, salinity and temperature, if available.
-  for oxygen_sat_option_idx = 1:numel(options.oxygen_sat_list)
-    oxygen_sat_option = options.oxygen_sat_list(oxygen_sat_option_idx);
-    oxygen_sat_oxs = oxygen_sat_option.oxygen_sat;
-    oxygen_sat_oxc = oxygen_sat_option.oxygen_conc;
-    oxygen_sat_salt = oxygen_sat_option.salinity;
-    oxygen_sat_temp = oxygen_sat_option.temperature;
-    if all(isfield(data_proc, {oxygen_sat_oxc oxygen_sat_salt oxygen_sat_temp}))
+  for oxygen_saturation_option_idx = 1:numel(options.oxygen_saturation_list)
+    oxygen_saturation_option = options.oxygen_saturation_list(oxygen_saturation_option_idx);
+    oxygen_saturation_oxs = oxygen_saturation_option.oxygen_sat;
+    oxygen_saturation_oxc = oxygen_saturation_option.oxygen_conc;
+    oxygen_saturation_salt = oxygen_saturation_option.salinity;
+    oxygen_saturation_temp = oxygen_saturation_option.temperature;
+    if all(isfield(data_proc, {oxygen_saturation_oxc oxygen_saturation_salt oxygen_saturation_temp}))
      
-      fprintf('Deriving oxygen_sat %d with settings:\n', oxygen_sat_option_idx);
-      fprintf('  output oxygen_sat sequence   : %s\n', oxygen_sat_oxs);
-      fprintf('  input oxygen_conc sequence: %s\n', oxygen_sat_oxc);
-      fprintf('  input salinity sequence: %s\n', oxygen_sat_salt);
-      fprintf('  input temperature sequence : %s\n', oxygen_sat_temp);
-      data_proc.(oxygen_sat_oxs) = ...
-        (data_proc.(oxygen_sat_oxc)./sw_satO2(data_proc.(oxygen_sat_salt),data_proc.(oxygen_sat_temp)))*100;
+      fprintf('Deriving oxygen_sat %d with settings:\n', oxygen_saturation_option_idx);
+      fprintf('  output oxygen_sat sequence   : %s\n', oxygen_saturation_oxs);
+      fprintf('  input oxygen_conc sequence: %s\n', oxygen_saturation_oxc);
+      fprintf('  input salinity sequence: %s\n', oxygen_saturation_salt);
+      fprintf('  input temperature sequence : %s\n', oxygen_saturation_temp);
+      data_proc.(oxygen_saturation_oxs) = ...
+        (data_proc.(oxygen_saturation_oxc)./sw_satO2(data_proc.(oxygen_saturation_salt),data_proc.(oxygen_saturation_temp)))*100;
 
-      meta_proc.(oxygen_sat_oxc).sources = ...
-        {oxygen_sat_oxc oxygen_sat_salt oxygen_sat_temp}';
-      meta_proc.(oxygen_sat_oxc).method = 'sw_satO2';
+      meta_proc.(oxygen_saturation_oxc).sources = ...
+        {oxygen_saturation_oxc oxygen_saturation_salt oxygen_saturation_temp}';
+      meta_proc.(oxygen_saturation_oxc).method = 'sw_satO2';
     end
   end
   
