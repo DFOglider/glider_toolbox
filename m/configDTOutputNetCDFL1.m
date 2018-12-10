@@ -562,17 +562,6 @@ function ncl1_info = configDTOutputNetCDFL1()
     'calibration'            []
     'calibration_parameters' [] };
 
-   var_attr_list.oxygen_conc = {
-    'long_name'     'oxygen concentration'
-    'standard_name' 'concentration_of_dissolved_oxygen_in_sea_water'
-    'units'         'ml l-1'
-    'coordinates'   'time depth latitude longitude'
-    '_FillValue'    default_fill_value
-    'sources'                []
-    'conversion'             []
-    'calibration'            []
-    'calibration_parameters' [] };
-
   var_attr_list.time_oxygen = {
     'long_name'     'oxygen sensor epoch time'
     'standard_name' 'time'

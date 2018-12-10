@@ -48,9 +48,6 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %      - Density derivation:
 %        In situ density may be derived from any set of conductivity,
 %        temperature and pressure sequences already selected or produced.
-%      - Oxygen derivation:
-%        Oxygen concentration may be derived from any set of oxygen frequency,
-%        temperature, pressure ands salinity sequences already selected or produced.
 %
 %    DATA_PRE should be a struct in the format returned by PREPROCESSGLIDERDATA,
 %    where each field is a sequence of measurements of the variable with the 
@@ -442,12 +439,6 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'temperature', {'temperature' 'temperature'}, ...
            'pressure',    {'pressure'    'pressure'});
   
-  options.oxygen_conc_list = ...
-    struct('oxygen_conc',  {'oxygen_conc'     'oxygen_conc_corrected_thermal'}, ...
-           'oxygen_freq',  {'oxygen_freq'     'oxygen_freq'}, ...
-           'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
-           'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
-           'pressure',     {'pressure'     'pressure'});
   
   %% Get options from extra arguments.
   % Parse option key-value pairs in any accepted call signature.
@@ -1390,58 +1381,4 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
     end
   end
   
-  %% Derive oxygene concentration from oxygen frequency, pressure, salinity and temperature, if available.
-  for oxygen_conc_option_idx = 1:numel(options.oxygen_conc_list)
-    oxygen_conc_option = options.oxygen_conc_list(oxygen_conc_option_idx);
-    oxygen_conc_oxc = oxygen_conc_option.oxygen_conc;
-    oxygen_conc_oxf = oxygen_conc_option.oxygen_freq;
-    oxygen_conc_salt = oxygen_conc_option.salinity;
-    oxygen_conc_temp = oxygen_conc_option.temperature;
-    oxygen_conc_pres = oxygen_conc_option.pressure;
-    if all(isfield(data_proc, {oxygen_conc_oxf oxygen_conc_salt oxygen_conc_temp oxygen_conc_pres}))
-      % Compute oxygen_conc from temperature, pressure and salinity ratio.
-      % Input oxygen frequency is in Hz, Ox conc (ml/l)
-%calibration parameters in cal sheets 
-%         if strcmp(glider,'sea019') ==1 
-%             %2016- Oct 2018
-%            Soc = 3.2305e-4; Foffset = -830.74; A = -3.4562e-3; B = 1.1709e-4;C = -1.7302e-6; Enom = 0.036;
-%             %Dec 2018-...
-%             
-%         elseif strcmp(glider,'sea021') ==1
-%             %2016-July 2018
-%            Soc = 2.7945e-4; Foffset = -794.20; A = -3.4437e-3; B = 1.5480e-4;C = -2.3721e-6; Enom = 0.036;    
-%              %Aug 2018-...
-%            Soc = 2.8722e-4; Foffset = -777.23; A = -4.4454e-3; B = 1.8630e-4;C = -2.8650e-6; Enom = 0.036;      
-%         elseif strcmp(glider,'sea022') ==1
-%             %2016-...
-%           Soc = 3.1884e-4; Foffset = -807.15; A = -4.2074e-3; B = 2.2413e-4;C = -3.4516e-6; Enom = 0.036;        
-%         elseif strcmp(glider,'sea024') ==1
-%              %2016-July 2018
-%           Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;           
-%              %Aug 2018-...
-           Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;              
-%         elseif strcmp(glider,'sea032') ==1
-%            disp('the Oxygen concentration and saturation calculations for SEA032 has not been included here yet')
-%         end
-      fprintf('Deriving oxygen_conc %d with settings:\n', oxygen_conc_option_idx);
-      fprintf('  output oxygen_conc sequence   : %s\n', oxygen_conc_oxc);
-      fprintf('  input oxygen_freq sequence: %s\n', oxygen_conc_freq);
-      fprintf('  input salinity sequence: %s\n', oxygen_conc_salt);
-      fprintf('  input temperature sequence : %s\n', oxygen_conc_temp);
-      fprintf('  input pressure sequence    : %s\n', oxygen_conc_pres);
-      data_proc.(oxygen_conc_oxc) = ...
-        Soc*(data_proc.(oxygen_conc_oxf) + Foffset).*(1.0+A*data_proc.(oxygen_conc_temp)+B*data_proc.(oxygen_conc_temp).^2+C*data_proc.(oxygen_conc_temp).^3).*sw_satO2(data_proc.(oxygen_conc_salt),data_proc.(oxygen_conc_temp))...
-    .*exp(Enom*data_proc.(oxygen_conc_pres)./(data_proc.(oxygen_conc_temp)+273.15));
-
-
-      meta_proc.(oxygen_conc_oxc).sources = ...
-        {oxygen_conc_oxf oxygen_conc_salt oxygen_conc_temp oxygen_conc_pres}';
-      meta_proc.(oxygen_conc_oxc).method = 'calibration formula';
-    end
-  end
-  
 end
-
-
- 
-oxySat=(oxyConc./sw_satO2(L1_salinity,L1_temp))*100;
