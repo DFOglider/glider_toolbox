@@ -573,39 +573,6 @@ function ncl1_info = configDTOutputNetCDFL1()
     'calibration'            []
     'calibration_parameters' [] };
 
-var_attr_list.oxygen_sat = {
-    'long_name'     'oxygen saturation'
-    'standard_name' 'saturation_of_dissolved_oxygen_in_sea_water'
-    'units'         '%'
-    'coordinates'   'time depth latitude longitude'
-    '_FillValue'    default_fill_value
-    'sources'                []
-    'conversion'             []
-    'calibration'            []
-    'calibration_parameters' [] };
-
-var_attr_list.sigmat = {
-    'long_name'     'sigma_theta'
-    'standard_name' 'potential_density_anomaly'
-    'units'         'kg m-3'
-    'coordinates'   'time depth latitude longitude'
-    '_FillValue'    default_fill_value
-    'sources'                []
-    'conversion'             []
-    'calibration'            []
-    'calibration_parameters' [] };
-
-var_attr_list.abs_salinity = {
-    'long_name'     'absolute salinity'
-    'standard_name' 'mass_fraction_of_dissolved_material_in_seawater'
-    'units'         'g kg-1'
-    'coordinates'   'time depth latitude longitude'
-    '_FillValue'    default_fill_value
-    'sources'                []
-    'conversion'             []
-    'calibration'            []
-    'calibration_parameters' [] };
-
   var_attr_list.time_oxygen = {
     'long_name'     'oxygen sensor epoch time'
     'standard_name' 'time'
@@ -819,7 +786,6 @@ var_attr_list.abs_salinity = {
     'time_coverage_start'          'undefined'
     'title'                        'Glider deployment delayed time processed data'
     'transmission_system'          'IRIDIUM'
-    'oxygen calibration coef'      'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
   };
 
 

@@ -45,19 +45,13 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %      - Salinity derivation:
 %        In situ salinity may be derived from any set of conductivity,
 %        temperature and pressure sequences already selected or produced.
-%        Absolute salinity may be derived from any set of conductivity,
-%        temperature, pressure, latitude and longitude sequences already selected or produced.
 %      - Density derivation:
 %        In situ density may be derived from any set of conductivity,
-%        temperature and pressure sequences already selected or produced.
-%        Potential density anomaly may be derived from any set of absolute salinity,
 %        temperature and pressure sequences already selected or produced.
 %      - Oxygen derivation:
 %        Oxygen concentration may be derived from any set of oxygen frequency,
 %        temperature, pressure ands salinity sequences already selected or produced.
-%        Oxygen saturation may be derived from any set of oxygen concentration,
-%        temperature, and salinity sequences already selected or produced.
-
+%
 %    DATA_PRE should be a struct in the format returned by PREPROCESSGLIDERDATA,
 %    where each field is a sequence of measurements of the variable with the 
 %    same name.
@@ -441,24 +435,10 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'conductivity', {'conductivity' 'conductivity'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
            'pressure',     {'pressure'     'pressure'});
-       
-  options.abs_salinity_list = ...
-    struct('absolute_salinity', {'absolute_salinity'     'absolute_salinity_corrected_thermal'}, ...
-           'conductivity', {'conductivity' 'conductivity'}, ...
-           'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
-           'pressure',     {'pressure'     'pressure'}, ...
-           'latitude',     {'latitude'     'latitude'}, ...
-           'longitude',    {'longitude'     'longitude'});
   
   options.density_list = ...
     struct('density',     {'density'     'density_corrected_thermal'}, ...
            'salinity',    {'salinity'    'salinity_corrected_thermal'}, ...
-           'temperature', {'temperature' 'temperature'}, ...
-           'pressure',    {'pressure'    'pressure'});
-   
-   options.sigmat_list = ...
-    struct('sigma_theta', {'sigma_theta'     'sigma_theta_corrected_thermal'}, ...
-           'abs_salinity',    {'abs_salinity'    'abs_salinity_corrected_thermal'}, ...
            'temperature', {'temperature' 'temperature'}, ...
            'pressure',    {'pressure'    'pressure'});
   
@@ -468,12 +448,6 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
            'pressure',     {'pressure'     'pressure'});
-       
-   options.oxygen_sat_list = ...
-    struct('oxygen_sat',  {'oxygen_sat'     'oxygen_sat_corrected_thermal'}, ...
-           'oxygen_conc',  {'oxygen_conc'     'oxygen_conc_corrected_thermal'}, ...
-           'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
-           'temperature',  {'temperature'  'temperature_corrected_thermal'});
   
   %% Get options from extra arguments.
   % Parse option key-value pairs in any accepted call signature.
@@ -1392,36 +1366,6 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
     end
   end
   
-  %% Derive absolute salinity from pressure, conductivity, temperature, lat and long if available.
-  for abs_salinity_option_idx = 1:numel(options.abs_salinity_list)
-    abs_salinity_option = options.abs_salinity_list(abs_salinity_option_idx);
-    abs_salinity_salt = abs_salinity_option.abs_salinity;
-    abs_salinity_cond = abs_salinity_option.conductivity;
-    abs_salinity_temp = abs_salinity_option.temperature;
-    abs_salinity_pres = abs_salinity_option.pressure;
-    abs_salinity_lat = abs_salinity_option.latitude;
-    abs_salinity_long = abs_salinity_option.longitude;
-    if all(isfield(data_proc, {abs_salinity_cond abs_salinity_temp abs_salinity_pres abs_salinity_lat abs_salinity_long}))
-      % Compute abs_salinity from temperature, pressure and conductivity ratio.
-      % Input conductivity is given in S/m (Siemens per metre), 
-      % but reference conductivity returned by sw_c3515 is in mS/cm.
-      fprintf('Deriving abs_salinity %d with settings:\n', abs_salinity_option_idx);
-      fprintf('  input conductivity sequence: %s\n', abs_salinity_cond);
-      fprintf('  input temperature sequence : %s\n', abs_salinity_temp);
-      fprintf('  input pressure sequence    : %s\n', abs_salinity_pres);
-      fprintf('  input latitude sequence    : %s\n', abs_salinity_lat);
-      fprintf('  input longitude sequence    : %s\n', abs_salinity_long);
-            
-     %practical salinity = gsw_SP_from_C(conductivity in mS/cm,temperature,pressure);  
-     prac_sal = gsw_SP_from_C(data_proc.(abs_salinity_cond)*10,data_proc.(abs_salinity_temp),data_proc.(abs_salinity_pres));
-     %absolute Salinity= gsw_SA_from_SP(SalPractical,p,long,lat)
-     [data_proc.(abs_salinity_salt), in_ocean] = gsw_SA_from_SP(prac_sal,data_proc.(abs_salinity_pres),data_proc.(abs_salinity_long),data_proc.(abs_salinity_lat)); 
- 
-      meta_proc.(abs_salinity_salt).sources = ...
-        {abs_salinity_cond abs_salinity_temp abs_salinity_pres abs_salinity_lat abs_salinity_long}';
-      meta_proc.(abs_salinity_salt).method = 'gsw_SA_from_SP  TEOS-10';
-    end
-  end
   
   %% Derive density from pressure, salinity and temperature, if available.
   for density_option_idx = 1:numel(options.density_list)
@@ -1443,32 +1387,6 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       meta_proc.(density_dens).sources = ...
         {density_salt density_temp density_pres}';
       meta_proc.(density_dens).method = 'sw_dens';
-    end
-  end
-  
-  %% Derive sigma_theta from pressure, absolute salinity and temperature, if available.
-  for sigmat_option_idx = 1:numel(options.sigmat_list)
-    sigmat_option = options.sigmat_list(sigmat_option_idx);
-    sigmat_dens = sigmat_option.sigmat;
-    sigmat_abs_salt = sigmat_option.abs_salinity;
-    sigmat_temp = sigmat_option.temperature;
-    sigmat_pres = sigmat_option.pressure;
-    if all(isfield(data_proc, {sigmat_abs_salt sigmat_temp sigmat_pres}))
-      % Compute sigmat from temperature, pressure and salinity.
-      fprintf('Deriving sigmat %d with settings:\n', sigmat_option_idx);
-      fprintf('  output sigmat sequence   : %s\n', sigmat_dens);
-      fprintf('  input salinity sequence   : %s\n', sigmat_abs_salt);
-      fprintf('  input temperature sequence: %s\n', sigmat_temp);
-      fprintf('  input pressure sequence   : %s\n', sigmat_pres);
-      
-      %conservative temperature = gsw_CT_from_t(SA,t,p)
-      CT = gsw_CT_from_t(data_proc.(sigmat_abs_salt),data_proc.(sigmat_temp),data_proc.(sigmat_pres));
-      % potential density =  gsw_rho(SA,CT,pressure_ref); 
-      data_proc.(sigmat_dens) =  gsw_rho(data_proc.(sigmat_abs_salt),CT,0)-1000;
-      
-      meta_proc.(sigmat_dens).sources = ...
-        {sigmat_abs_salt sigmat_temp sigmat_pres}';
-      meta_proc.(sigmat_dens).method = 'gsw_rho  TEOS-10';
     end
   end
   
@@ -1519,29 +1437,6 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       meta_proc.(oxygen_conc_oxc).sources = ...
         {oxygen_conc_oxf oxygen_conc_salt oxygen_conc_temp oxygen_conc_pres}';
       meta_proc.(oxygen_conc_oxc).method = 'calibration formula';
-    end
-  end
-  
-    %% Derive oxygene saturation from oxygen concentration, salinity and temperature, if available.
-  for oxygen_sat_option_idx = 1:numel(options.oxygen_sat_list)
-    oxygen_sat_option = options.oxygen_sat_list(oxygen_sat_option_idx);
-    oxygen_sat_oxs = oxygen_sat_option.oxygen_sat;
-    oxygen_sat_oxc = oxygen_sat_option.oxygen_conc;
-    oxygen_sat_salt = oxygen_sat_option.salinity;
-    oxygen_sat_temp = oxygen_sat_option.temperature;
-    if all(isfield(data_proc, {oxygen_sat_oxc oxygen_sat_salt oxygen_sat_temp}))
-     
-      fprintf('Deriving oxygen_sat %d with settings:\n', oxygen_sat_option_idx);
-      fprintf('  output oxygen_sat sequence   : %s\n', oxygen_sat_oxs);
-      fprintf('  input oxygen_conc sequence: %s\n', oxygen_sat_oxc);
-      fprintf('  input salinity sequence: %s\n', oxygen_sat_salt);
-      fprintf('  input temperature sequence : %s\n', oxygen_sat_temp);
-      data_proc.(oxygen_sat_oxs) = ...
-        (data_proc.(oxygen_sat_oxc)./sw_satO2(data_proc.(oxygen_sat_salt),data_proc.(oxygen_sat_temp)))*100;
-
-      meta_proc.(oxygen_sat_oxc).sources = ...
-        {oxygen_sat_oxc oxygen_sat_salt oxygen_sat_temp}';
-      meta_proc.(oxygen_sat_oxc).method = 'sw_satO2';
     end
   end
   
