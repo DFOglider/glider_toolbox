@@ -83,17 +83,17 @@ function processing_options = configDataProcessingSeaExplorer()
   processing_options.oxygen_conc_list(1).temperature     = 'temperature';
   processing_options.oxygen_conc_list(1).pressure        = 'pressure';
   
-  processing_options.oxygen_sat_list(1).oxygen_saturation     = 'oxygen_sat';
-  processing_options.oxygen_sat_list(1).oxygen_conc     = 'oxygen_conc';
-  processing_options.oxygen_sat_list(1).temperature     = 'temperature';
-  processing_options.oxygen_sat_list(1).salinity        = 'salinity';
+  processing_options.oxygen_saturation_list(1).oxygen_saturation     = 'oxygen_sat';
+  processing_options.oxygen_saturation_list(1).oxygen_conc     = 'oxygen_conc';
+  processing_options.oxygen_saturation_list(1).temperature     = 'temperature';
+  processing_options.oxygen_saturation_list(1).salinity        = 'salinity';
   
-  processing_options.abs_salinity_list(1).absolute_salinity     = 'absolute_salinity';
-  processing_options.abs_salinity_list(1).conductivity        = 'conductivity';
-  processing_options.abs_salinity_list(1).latitude         = 'latitude';
-  processing_options.abs_salinity_list(1).longitude         = 'longitude';
-  processing_options.abs_salinity_list(1).temperature     = 'temperature';
-  processing_options.abs_salinity_list(1).pressure        = 'pressure';
+  processing_options.absolute_salinity_list(1).absolute_salinity     = 'absolute_salinity';
+  processing_options.absolute_salinity_list(1).conductivity        = 'conductivity';
+  processing_options.absolute_salinity_list(1).latitude         = 'latitude';
+  processing_options.absolute_salinity_list(1).longitude         = 'longitude';
+  processing_options.absolute_salinity_list(1).temperature     = 'temperature';
+  processing_options.absolute_salinity_list(1).pressure        = 'pressure';
   
   processing_options.sigmat_list(1).sigmat          = 'sigma_theta';
   processing_options.sigmat_list(1).absolute_salinity    = 'absolute_salinity';

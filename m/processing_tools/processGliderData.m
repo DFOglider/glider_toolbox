@@ -1488,7 +1488,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %             %2016- Oct 2018
 %            Soc = 3.2305e-4; Foffset = -830.74; A = -3.4562e-3; B = 1.1709e-4;C = -1.7302e-6; Enom = 0.036;
 %             %Dec 2018-...
-%             
+%            Soc = 2.8304e-4; Foffset = -835.35; A = -3.7649e-3; B = 1.1716e-4;C = -1.3298e-6; Enom = 0.036; 
 %         elseif strcmp(glider,'sea021') ==1
 %             %2016-July 2018
 %            Soc = 2.7945e-4; Foffset = -794.20; A = -3.4437e-3; B = 1.5480e-4;C = -2.3721e-6; Enom = 0.036;    
@@ -1497,7 +1497,9 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %         elseif strcmp(glider,'sea022') ==1
 %             %2016-...
 %           Soc = 3.1884e-4; Foffset = -807.15; A = -4.2074e-3; B = 2.2413e-4;C = -3.4516e-6; Enom = 0.036;        
-%         elseif strcmp(glider,'sea024') ==1
+% 
+%
+%          elseif strcmp(glider,'sea024') ==1
 %              %2016-July 2018
 %           Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;           
 %              %Aug 2018-...
@@ -1525,17 +1527,18 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
     %% Derive oxygene saturation from oxygen concentration, salinity and temperature, if available.
   for oxygen_saturation_option_idx = 1:numel(options.oxygen_saturation_list)
     oxygen_saturation_option = options.oxygen_saturation_list(oxygen_saturation_option_idx);
-    oxygen_saturation_oxs = oxygen_saturation_option.oxygen_sat;
+    oxygen_saturation_oxs = oxygen_saturation_option.oxygen_saturation;
     oxygen_saturation_oxc = oxygen_saturation_option.oxygen_conc;
     oxygen_saturation_salt = oxygen_saturation_option.salinity;
     oxygen_saturation_temp = oxygen_saturation_option.temperature;
     if all(isfield(data_proc, {oxygen_saturation_oxc oxygen_saturation_salt oxygen_saturation_temp}))
-     
-      fprintf('Deriving oxygen_sat %d with settings:\n', oxygen_saturation_option_idx);
-      fprintf('  output oxygen_sat sequence   : %s\n', oxygen_saturation_oxs);
+ 
+      fprintf('Deriving oxygen_saturation %d with settings:\n', oxygen_saturation_option_idx);
+      fprintf('  output oxygen_saturation sequence   : %s\n', oxygen_saturation_oxs);
       fprintf('  input oxygen_conc sequence: %s\n', oxygen_saturation_oxc);
       fprintf('  input salinity sequence: %s\n', oxygen_saturation_salt);
       fprintf('  input temperature sequence : %s\n', oxygen_saturation_temp);
+  
       data_proc.(oxygen_saturation_oxs) = ...
         (data_proc.(oxygen_saturation_oxc)./sw_satO2(data_proc.(oxygen_saturation_salt),data_proc.(oxygen_saturation_temp)))*100;
 
@@ -1544,5 +1547,5 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       meta_proc.(oxygen_saturation_oxc).method = 'sw_satO2';
     end
   end
-  
+
 end

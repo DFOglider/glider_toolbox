@@ -540,16 +540,16 @@ function ncl1_info = configDTOutputNetCDFL1()
     'calibration'            []
     'calibration_parameters' [] };
 
-  var_attr_list.oxygen_saturation = {
-    'long_name'     'oxygen saturation'
-    'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
-    'units'         '1'
-    'coordinates'   'time depth latitude longitude'
-    '_FillValue'    default_fill_value
-    'sources'                []
-    'conversion'             []
-    'calibration'            []
-    'calibration_parameters' [] };
+%   var_attr_list.oxygen_saturation = {
+%     'long_name'     'oxygen saturation'
+%     'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
+%     'units'         '1'
+%     'coordinates'   'time depth latitude longitude'
+%     '_FillValue'    default_fill_value
+%     'sources'                []
+%     'conversion'             []
+%     'calibration'            []
+%     'calibration_parameters' [] };
 
   var_attr_list.oxygen_frequency = {
     'long_name'     'oxygen frequency'
@@ -819,89 +819,113 @@ var_attr_list.absolute_salinity = {
     'time_coverage_start'          ''
     'title'                        'Glider deployment delayed time processed data'
     'transmission_system'          'IRIDIUM'
-    'country code'                 '1810'
-    'deployment platform'          'CCGS Sigma-t'
-    'cruise number'                ''
+    'country_code'                 '1810'
+    'deployment_platform'          'CCGS Sigma-t'
+    'cruise_number'                ''
    
 %    %SEA019
+%     'glider_s/n'                   'SEA019'
 %     'wmo_platform_code'            '4800925'
 %     'wmo_inst_type'                '830'
-%     'GPCTD s/n'                    '0186'
-%     'GPCTD cal date'               'May 2016'
-%     'Oxygen sensor s/n'            '43-3338'
-%     'Oxygen sensor cal date'       'April 2016'
-%     'CTD pump s/n'                 '05-8709'
-%     'Ecopuck sensor s/n'           '4551'
-%     'Ecopuck sensor cal date'      'November 2016' 
+%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
+%     'GPCTD_s/n'                    '0186'
+%     'CTD_pump_s/n'                 '05-8709'
+%     'Ecopuck_sensor_s/n'           '4551'
+%     'Ecopuck_sensor_cal_date'      'November 2016' 
 %         %2016- Oct 2018
-%     'oxygen calibration coef'      'Soc = 3.2305e-4; Foffset = -830.74; A = -3.4562e-3; B = 1.1709e-4;C = -1.7302e-6; Enom = 0.036;'
+%     'GPCTD_cal_date'               'May 2016'
+%     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+%     'oxygen_sensor_s/n'            '43-3338'
+%     'oxygen_sensor_cal_date'       'April 2016'
+%     'oxygen_cal_coef'              'Soc = 3.2305e-4; Foffset = -830.74; A = -3.4562e-3; B = 1.1709e-4;C = -1.7302e-6; Enom = 0.036;'
 %         %Dec 2018-...
-% %     'oxygen calibration coef'      ''
-   %SEA021
-    'wmo_platform_code'            '4800926'
-    'wmo_inst_type'                '830'
-    'GPCTD s/n'                    '0184'
-    'CTD pump s/n'                 '05-8698'
-    'Ecopuck sensor s/n'           '4548'
-    'Ecopuck sensor cal date'      'December 2016' 
-        %2016-July 2018
-    'GPCTD cal date'               'May 2016'
-    'Oxygen sensor s/n'            '43-3336'
-    'Oxygen sensor cal date'       'April 2016'
-    'oxygen calibration coef'      'Soc = 2.7945e-4; Foffset = -794.20; A = -3.4437e-3; B = 1.5480e-4;C = -2.3721e-6; Enom = 0.036;'
-        %Aug 2018-...
-    'GPCTD cal date'               ''
-    'Oxygen sensor s/n'            '43-3336'
-    'Oxygen sensor cal date'       ''        
-    'oxygen calibration coef'      'Soc = 2.8722e-4; Foffset = -777.23; A = -4.4454e-3; B = 1.8630e-4;C = -2.8650e-6; Enom = 0.036;'
+% %     'GPCTD_cal_date'               'December 2018'
+% %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+% %     'oxygen_sensor_s/n'            '43-3338'
+% %     'oxygen_sensor_cal_date'       'December 2018'
+% %     'oxygen_cal_coef'             'Soc = 2.8304e-4; Foffset = -835.35; A = -3.7649e-3; B = 1.1716e-4;C = -1.3298e-6; Enom = 0.036;'
+%    %SEA021
+%     'glider_s/n'                   'SEA021'
+%     'wmo_platform_code'            '4800926'
+%     'wmo_inst_type'                '830'
+%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
+%     'GPCTD_s/n'                    '0184'
+%     'CTD_pump_s/n'                 '05-8698'
+%     'Ecopuck_sensor_s/n'           '4548'
+%     'Ecopuck_sensor_cal_date'      'December 2016' 
+%         %2016-July 2018
+%     'GPCTD_cal_date'               'May 2016'
+%     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+%     'oxygen_sensor_s/n'            '43-3336'
+%     'oxygen_sensor_cal_date'       'April 2018'
+%     'oxygen_cal_coef'              'Soc = 2.7945e-4; Foffset = -794.20; A = -3.4437e-3; B = 1.5480e-4;C = -2.3721e-6; Enom = 0.036;'
+% %         %Aug 2018-...
+% %     'GPCTD_cal_date'               'July 2016'
+% %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+% %     'oxygen_sensor_s/n'            '43-3336'
+% %     'oxygen_sensor_cal_date'       'August 2018'        
+% %     'oxygen_cal_coef'              'Soc = 2.8722e-4; Foffset = -777.23; A = -4.4454e-3; B = 1.8630e-4;C = -2.8650e-6; Enom = 0.036;'
 %    %SEA022
+%     'glider_s/n'                   'SEA022'
 %     'wmo_platform_code'            '4800993'
 %     'wmo_inst_type'                '830'
-%     'Ecopuck sensor s/n'           '4546'
-%     'Ecopuck sensor cal date'      'December 2016' 
-%     'GPCTD s/n'                    '0175'
-%     'CTD pump s/n'                 '05-8272'
+%     'Ecopuck_sensor_s/n'           '4546'
+%     'Ecopuck_sensor_cal_date'      'December 2016' 
+%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
+%     'GPCTD_s/n'                    '0175'
+%     'CTD_pump_s/n'                 '05-8272'
 %         %2016- Dec 2018... 
-%     'GPCTD cal date'               'March 2016'
-%     'Oxygen sensor s/n'            '43-3276'
-%     'Oxygen sensor cal date'       'January 2016'    
-%     'oxygen calibration coef'      'Soc = 3.1884e-4; Foffset = -807.15; A = -4.2074e-3; B = 2.2413e-4;C = -3.4516e-6; Enom = 0.036;'
+%     'GPCTD_cal_date'               'March 2016'
+%     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+%     'oxygen_sensor_s/n'            '43-3276'
+%     'oxygen_sensor_cal_date'       'January 2016'    
+%     'oxygen_cal_coef'             'Soc = 3.1884e-4; Foffset = -807.15; A = -4.2074e-3; B = 2.2413e-4;C = -3.4516e-6; Enom = 0.036;'
 % %         %2019-...
-% %     'GPCTD cal date'               ''
-% %     'Oxygen sensor s/n'            '43-3276'
-% %     'Oxygen sensor cal date'       ''    
-% %     'oxygen calibration coef'      ''
+% %     'GPCTD_cal_date'               ''
+% %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+% %     'oxygen_sensor_s/n'            '43-3276'
+% %     'oxygen_sensor_cal_date'       ''    
+% %     'oxygen_cal_coef'      ''
 %    %SEA024
+%     'glider_s/n'                   'SEA024'
 %     'wmo_platform_code'            '4800994'
 %     'wmo_inst_type'                '830'
-%     'Ecopuck sensor s/n'           '4550'
-%     'Ecopuck sensor cal date'      'December 2016' 
-%     'CTD pump s/n'                 '05-8711'
-%     'GPCTD s/n'                    '0188'
+%     'Ecopuck_sensor_s/n'           '4550'
+%     'Ecopuck_sensor_cal_date'      'December 2016' 
+%     'CTD_pump_s/n'                 '05-8711'
+%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
+%     'GPCTD_s/n'                    '0188'
 %         %2016-July 2018 
-%     'GPCTD cal date'               'May 2016'
-%     'Oxygen sensor s/n'            '43-3365'
-%     'Oxygen sensor cal date'       'April 2016'
-%     'oxygen calibration coef'      'Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;'  
+%     'GPCTD_cal_date'               'May 2016'
+%     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+%     'oxygen_sensor_s/n'            '43-3365'
+%     'oxygen_sensor_cal_date'       'April 2016'
+%     'oxygen_cal_coef'             'Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;'  
 % %         %Aug 2018-...
-% %     'GPCTD cal date'               'July 2018'
-% %     'Oxygen sensor s/n'            '43-3365'
-% %     'Oxygen sensor cal date'       'August 2018'    
-% %     'oxygen calibration coef'      'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
+% %     'GPCTD_cal_date'               'July 2018'
+% %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+% %     'oxygen_sensor_s/n'            '43-3365'
+% %     'oxygen_sensor_cal_date'       'August 2018'    
+% %     'oxygen_cal_coef'            'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
 %    %SEA032
+%     'glider_s/n'                   'SEA032'
 %     'wmo_platform_code'            '4800937'
 %     'wmo_inst_type'                '830'
-%     'GPCTD s/n'                    '0241'
-%     'GPCTD cal date'               'November 2017'
-%     'CTD pump s/n'                 '05-9310'
-%     'Oxygen sensor s/n'            '0020'
-%     'Oxygen sensor cal date'       'November 2017'
-%     'Ecopuck sensor s/n'           '4739'
-%     'Ecopuck sensor cal date'      'May 2017' 
+%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
+%     'GPCTD_s/n'                    '0241'
+%     'GPCTD_cal_date'               'November 2017'
+%     'CTD_pump_s/n'                 '05-9310'
+%     'Ecopuck_sensor_s/n'           '4739'
+%     'Ecopuck_sensor_cal_date'      'May 2017' 
 %         %2016-...
-%     'oxygen calibration coef'      'd0 = -3.632811e-4; d1 = -1.540711e-1; d2 = 1.869242e-1; d3 = 0; d4 = 0; c0 = 3.163416e-3; c1 = 1.330233e-4; c2= 2.762195e-6; e0 = 1; Cp = 4.4e-3;'
+%     'oxygen_sensor_model'         'Rinko AROD-FT'
+%     'oxygen_sensor_s/n'            '0020'
+%     'oxygen_sensor_cal_date'       'November 2017'
+%     'oxygen_cal_coef'             'd0 = -3.632811e-4; d1 = -1.540711e-1; d2 = 1.869242e-1; d3 = 0; d4 = 0; c0 = 3.163416e-3; c1 = 1.330233e-4; c2= 2.762195e-6; e0 = 1; Cp = 4.4e-3;'
 %         %
-%     %'oxygen calibration coef'      ''
+% %     'oxygen_sensor_s/n'            '0020'
+% %     'oxygen_sensor_cal_date'       ''
+% %     %'oxygen_cal_coef'      ''
      };
 
   %% Define preset dimensions.
