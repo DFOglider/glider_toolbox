@@ -1525,6 +1525,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   end
   
     %% Derive oxygene saturation from oxygen concentration, salinity and temperature, if available.
+  %SBE
   for oxygen_saturation_option_idx = 1:numel(options.oxygen_saturation_list)
     oxygen_saturation_option = options.oxygen_saturation_list(oxygen_saturation_option_idx);
     oxygen_saturation_oxs = oxygen_saturation_option.oxygen_saturation;
@@ -1532,15 +1533,13 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
     oxygen_saturation_salt = oxygen_saturation_option.salinity;
     oxygen_saturation_temp = oxygen_saturation_option.temperature;
     if all(isfield(data_proc, {oxygen_saturation_oxc oxygen_saturation_salt oxygen_saturation_temp}))
-     
+ 
       fprintf('Deriving oxygen_saturation %d with settings:\n', oxygen_saturation_option_idx);
       fprintf('  output oxygen_saturation sequence   : %s\n', oxygen_saturation_oxs);
       fprintf('  input oxygen_conc sequence: %s\n', oxygen_saturation_oxc);
       fprintf('  input salinity sequence: %s\n', oxygen_saturation_salt);
       fprintf('  input temperature sequence : %s\n', oxygen_saturation_temp);
-    if isfield(data_proc,oxygen_conc_oxf)
-   
-    end
+  
       data_proc.(oxygen_saturation_oxs) = ...
         (data_proc.(oxygen_saturation_oxc)./sw_satO2(data_proc.(oxygen_saturation_salt),data_proc.(oxygen_saturation_temp)))*100;
 
@@ -1549,5 +1548,40 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       meta_proc.(oxygen_saturation_oxc).method = 'sw_satO2';
     end
   end
+  %RINKO
+  for oxygen_saturationr_option_idx = 1:numel(options.oxygen_saturationr_list)
+    oxygen_saturationr_option = options.oxygen_saturationr_list(oxygen_saturationr_option_idx);
+    oxygen_saturationr_oxs = oxygen_saturationr_option.oxygen_saturationr;
+    oxygen_saturationr_oxc = oxygen_saturationr_option.oxygen_conc;
+    oxygen_saturationr_salt = oxygen_saturationr_option.salinity;
+    oxygen_saturationr_temp = oxygen_saturationr_option.temperature;
+    if all(isfield(data_proc, {oxygen_saturationr_oxc oxygen_saturationr_salt oxygen_saturationr_temp}))
+ 
+      fprintf('Deriving oxygen_saturation rinko %d with settings:\n', oxygen_saturationr_option_idx);
+      fprintf('  output oxygen_saturation sequence   : %s\n', oxygen_saturationr_oxs);
+      fprintf('  input oxygen_conc sequence: %s\n', oxygen_saturationr_oxc);
+      fprintf('  input salinity sequence: %s\n', oxygen_saturationr_salt);
+      fprintf('  input temperature sequence : %s\n', oxygen_saturationr_temp);
   
+% (S=0 is used)
+ i=find(isnan(oxygen_concentration) == 0);  
+ oxy.time=time(i)';  
+ oxy.ptime=ptime(i)';  
+ oxy.lat=latitude(i)';  
+ oxy.lon=longitude(i)';  
+ oxy.tw=temperature_oxygen(i)';  
+ oxy.o2=oxygen_concentration(i)'*22.391/1000.; % 1 ?mol O2 = .022391 ml ..... 1 ml/l = 1000/22.391 = 44.661 ?mol/l
+ oxy.o2percentsat=oxy.o2./sw_satO2(0.*ones(size(i))',oxy.tw)*100.;
+
+oxy.io2=interp1(oxy.time,oxy.o2,ctd.time,'nearest');
+oxy.itw=interp1(oxy.time,oxy.tw,ctd.time,'nearest');
+oxy.io2percentsat=interp1(oxy.time,oxy.o2percentsat,ctd.time,'nearest');
+oxy.cio2=oxy.io2percentsat.*sw_satO2(ctd.s,ctd.tw)/100.;
+
+
+      meta_proc.(oxygen_saturationr_oxc).sources = ...
+        {oxygen_saturationr_oxc oxygen_saturationr_salt oxygen_saturationr_temp}';
+      meta_proc.(oxygen_saturationr_oxc).method = 'sw_satO2';
+    end
+  end
 end
