@@ -553,7 +553,7 @@ function ncl1_info = configDTOutputNetCDFL1()
 
 var_attr_list.oxygen_saturation = {
     'long_name'     'oxygen saturation'
-    'standard_name' 'saturation_of_dissolved_oxygen_in_sea_water'
+    'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
     'units'         '%'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
@@ -575,7 +575,7 @@ var_attr_list.oxygen_saturation = {
 
    var_attr_list.oxygen_conc = {
     'long_name'     'oxygen concentration'
-    'standard_name' 'concentration_of_dissolved_oxygen_in_sea_water'
+    'standard_name' 'volume_fraction_of_oxygen_in_sea_water'
     'units'         'ml l-1'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
@@ -586,7 +586,7 @@ var_attr_list.oxygen_saturation = {
 
 var_attr_list.sigmat = {
     'long_name'     'sigma_theta'
-    'standard_name' 'potential_density_anomaly'
+    'standard_name' 'sea_water_sigma_theta'
     'units'         'kg m-3'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
@@ -597,7 +597,7 @@ var_attr_list.sigmat = {
 
 var_attr_list.absolute_salinity = {
     'long_name'     'absolute salinity'
-    'standard_name' 'mass_fraction_of_dissolved_material_in_seawater'
+    'standard_name' 'sea_water_absolute_salinity'
     'units'         'g kg-1'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
