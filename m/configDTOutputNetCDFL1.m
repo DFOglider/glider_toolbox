@@ -822,6 +822,7 @@ var_attr_list.absolute_salinity = {
     'country_code'                 '1810'
     'deployment_platform'          'CCGS Sigma-t'
     'cruise_number'                ''
+    'mission_number'               'GLI2018_SEA032_M26'
    
 %    %SEA019
 %     'glider_s/n'                   'SEA019'
@@ -831,6 +832,7 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_s/n'                    '0186'
 %     'CTD_pump_s/n'                 '05-8709'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4551'
 %     'Ecopuck_sensor_cal_date'      'November 2016' 
 %         %2016- Oct 2018
@@ -853,6 +855,7 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_s/n'                    '0184'
 %     'CTD_pump_s/n'                 '05-8698'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4548'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %         %2016-July 2018
@@ -872,6 +875,7 @@ var_attr_list.absolute_salinity = {
 %     'wmo_platform_code'            '4800993'
 %     'wmo_inst_type'                '830'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4546'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %     'GPCTD_manufacturer'           'Sea-Bird Electronics'
@@ -894,6 +898,7 @@ var_attr_list.absolute_salinity = {
 %     'wmo_platform_code'            '4800994'
 %     'wmo_inst_type'                '830'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4550'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %     'CTD_pump_s/n'                 '05-8711'
@@ -920,9 +925,11 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_cal_date'               'November 2017'
 %     'CTD_pump_s/n'                 '05-9310'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4739'
 %     'Ecopuck_sensor_cal_date'      'May 2017' 
 %         %2016-...
+%     'oxygen_sensor_manufacturer'  'JFE Advantech Co'
 %     'oxygen_sensor_model'         'Rinko AROD-FT'
 %     'oxygen_sensor_s/n'            '0020'
 %     'oxygen_sensor_cal_date'       'November 2017'

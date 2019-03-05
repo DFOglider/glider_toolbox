@@ -551,6 +551,17 @@ function ncl1_info = configDTOutputNetCDFL1()
 %     'calibration'            []
 %     'calibration_parameters' [] };
 
+var_attr_list.oxygen_saturation = {
+    'long_name'     'oxygen saturation'
+    'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
+    'units'         '%'
+    'coordinates'   'time depth latitude longitude'
+    '_FillValue'    default_fill_value
+    'sources'                []
+    'conversion'             []
+    'calibration'            []
+    'calibration_parameters' [] };
+
   var_attr_list.oxygen_frequency = {
     'long_name'     'oxygen frequency'
     'standard_name' 'frequency_output_of_sensor_for_oxygen_in_sea_water'
@@ -564,19 +575,8 @@ function ncl1_info = configDTOutputNetCDFL1()
 
    var_attr_list.oxygen_conc = {
     'long_name'     'oxygen concentration'
-    'standard_name' 'concentration_of_dissolved_oxygen_in_sea_water'
+    'standard_name' 'volume_fraction_of_oxygen_in_sea_water'
     'units'         'ml l-1'
-    'coordinates'   'time depth latitude longitude'
-    '_FillValue'    default_fill_value
-    'sources'                []
-    'conversion'             []
-    'calibration'            []
-    'calibration_parameters' [] };
-
-var_attr_list.oxygen_saturation = {
-    'long_name'     'oxygen saturation'
-    'standard_name' 'saturation_of_dissolved_oxygen_in_sea_water'
-    'units'         '%'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
     'sources'                []
@@ -586,7 +586,7 @@ var_attr_list.oxygen_saturation = {
 
 var_attr_list.sigmat = {
     'long_name'     'sigma_theta'
-    'standard_name' 'potential_density_anomaly'
+    'standard_name' 'sea_water_sigma_theta'
     'units'         'kg m-3'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
@@ -597,7 +597,7 @@ var_attr_list.sigmat = {
 
 var_attr_list.absolute_salinity = {
     'long_name'     'absolute salinity'
-    'standard_name' 'mass_fraction_of_dissolved_material_in_seawater'
+    'standard_name' 'sea_water_absolute_salinity'
     'units'         'g kg-1'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
@@ -822,6 +822,7 @@ var_attr_list.absolute_salinity = {
     'country_code'                 '1810'
     'deployment_platform'          'CCGS Sigma-t'
     'cruise_number'                ''
+    'mission_number'               'GLI2018_SEA032_M26'
    
 %    %SEA019
 %     'glider_s/n'                   'SEA019'
@@ -830,6 +831,8 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_manufacturer'           'Sea-Bird Electronics'
 %     'GPCTD_s/n'                    '0186'
 %     'CTD_pump_s/n'                 '05-8709'
+%     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4551'
 %     'Ecopuck_sensor_cal_date'      'November 2016' 
 %         %2016- Oct 2018
@@ -851,6 +854,7 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_manufacturer'           'Sea-Bird Electronics'
 %     'GPCTD_s/n'                    '0184'
 %     'CTD_pump_s/n'                 '05-8698'
+%     'Ecopuck_sensor_manufacturer'  'WetLab'
 %     'Ecopuck_sensor_s/n'           '4548'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %         %2016-July 2018
@@ -869,6 +873,7 @@ var_attr_list.absolute_salinity = {
 %     'glider_s/n'                   'SEA022'
 %     'wmo_platform_code'            '4800993'
 %     'wmo_inst_type'                '830'
+%     'Ecopuck_sensor_manufacturer'  'WetLab'
 %     'Ecopuck_sensor_s/n'           '4546'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %     'GPCTD_manufacturer'           'Sea-Bird Electronics'
@@ -890,6 +895,7 @@ var_attr_list.absolute_salinity = {
 %     'glider_s/n'                   'SEA024'
 %     'wmo_platform_code'            '4800994'
 %     'wmo_inst_type'                '830'
+%     'Ecopuck_sensor_manufacturer'  'WetLab'
 %     'Ecopuck_sensor_s/n'           '4550'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %     'CTD_pump_s/n'                 '05-8711'
@@ -915,6 +921,7 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_s/n'                    '0241'
 %     'GPCTD_cal_date'               'November 2017'
 %     'CTD_pump_s/n'                 '05-9310'
+%     'Ecopuck_sensor_manufacturer'  'WetLab'
 %     'Ecopuck_sensor_s/n'           '4739'
 %     'Ecopuck_sensor_cal_date'      'May 2017' 
 %         %2016-...
