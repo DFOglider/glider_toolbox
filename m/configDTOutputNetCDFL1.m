@@ -530,9 +530,10 @@ function ncl1_info = configDTOutputNetCDFL1()
     'conversion'             [] };
 
   var_attr_list.oxygen_concentration = {
-    'long_name'     'oxygen concentration'
+    'long_name'     'oxygen concentration calculated with Salinity=0'
     'standard_name' 'mole_concentration_of_dissolved_molecular_oxygen_in_sea_water'
     'units'         'umol L-1'
+    'comments'      'Output of the sensor where Salinity is assumed to be zero' 
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
     'sources'                []
@@ -562,6 +563,17 @@ var_attr_list.oxygen_saturation = {
     'calibration'            []
     'calibration_parameters' [] };
 
+var_attr_list.oxygen_saturation_rinko = {
+    'long_name'     'oxygen saturation'
+    'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
+    'units'         '%'
+    'coordinates'   'time depth latitude longitude'
+    '_FillValue'    default_fill_value
+    'sources'                ['saturation corrected with practical salinity']
+    'conversion'             []
+    'calibration'            []
+    'calibration_parameters' [] };
+
   var_attr_list.oxygen_frequency = {
     'long_name'     'oxygen frequency'
     'standard_name' 'frequency_output_of_sensor_for_oxygen_in_sea_water'
@@ -580,6 +592,17 @@ var_attr_list.oxygen_saturation = {
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
     'sources'                []
+    'conversion'             []
+    'calibration'            []
+    'calibration_parameters' [] };
+
+var_attr_list.oxygen_conc_rinko = {
+    'long_name'     'oxygen concentration'
+    'standard_name' 'volume_fraction_of_oxygen_in_sea_water'
+    'units'         'ml l-1'
+    'coordinates'   'time depth latitude longitude'
+    '_FillValue'    default_fill_value
+    'sources'                ['concentration corrected with practical salinity']
     'conversion'             []
     'calibration'            []
     'calibration_parameters' [] };

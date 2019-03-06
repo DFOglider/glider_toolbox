@@ -96,7 +96,18 @@ function processing_options = configDataProcessingSeaExplorer()
   processing_options.absolute_salinity_list(1).pressure        = 'pressure';
   
   processing_options.sigmat_list(1).sigmat          = 'sigma_theta';
-  processing_options.sigmat_list(1).absolute_salinity    = 'absolute_salinity';
+  processing_options.sigmat_list(1).absolute_salinity   = 'absolute_salinity';
   processing_options.sigmat_list(1).temperature     = 'temperature';
   processing_options.sigmat_list(1).pressure        = 'pressure';
+  
+  processing_options.oxygen_conc_rinko_list(1).oxygen_conc_rinko   = 'oxygen_conc_rinko';
+  processing_options.oxygen_conc_rinko_list(1).salinity            = 'salinity';
+  processing_options.oxygen_conc_rinko_list(1).temperature_oxygen = 'temperature_oxygen';
+  processing_options.oxygen_conc_rinko_list(1).temperature        = 'temperature';
+  processing_options.oxygen_conc_rinko_list(1).oxygen_concentration   = 'oxygen_concentration';
+  
+  processing_options.oxygen_saturation_rinko_list(1).oxygen_saturation_rinko     = 'oxygen_saturation_rinko';
+  processing_options.oxygen_saturation_rinko_list(1).oxygen_conc_rinko     = 'oxygen_conc_rinko';
+  processing_options.oxygen_saturation_rinko_list(1).temperature     = 'temperature';
+  processing_options.oxygen_saturation_rinko_list(1).salinity        = 'salinity';
 end

@@ -469,8 +469,21 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
            'pressure',     {'pressure'     'pressure'});
        
+  options.oxygen_conc_rinko_list = ...
+    struct('oxygen_conc',  {'oxygen_conc'     'oxygen_conc_rinko_corrected_thermal'}, ...
+           'oxygen_freq',  {'oxygen_freq'     'oxygen_freq'}, ...
+           'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
+           'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
+           'pressure',     {'pressure'     'pressure'});
+       
    options.oxygen_saturation_list = ...
     struct('oxygen_saturation',{'oxygen_saturation'   'oxygen_saturation_corrected_thermal'}, ...
+           'oxygen_conc',  {'oxygen_conc'     'oxygen_conc_corrected_thermal'}, ...
+           'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
+           'temperature',  {'temperature'  'temperature_corrected_thermal'});
+       
+  options.oxygen_saturation_rinko_list = ...
+    struct('oxygen_saturation',{'oxygen_saturation'   'oxygen_saturation_rinko_corrected_thermal'}, ...
            'oxygen_conc',  {'oxygen_conc'     'oxygen_conc_corrected_thermal'}, ...
            'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'});
@@ -1454,6 +1467,8 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
     sigmat_temp = sigmat_option.temperature;
     sigmat_pres = sigmat_option.pressure;
     if all(isfield(data_proc, {sigmat_absolute_salt sigmat_temp sigmat_pres}))
+        disp('yes we are calculating sigma theta')
+        pause
       % Compute sigmat from temperature, pressure and salinity.
       fprintf('Deriving sigmat %d with settings:\n', sigmat_option_idx);
       fprintf('  output sigmat sequence   : %s\n', sigmat_dens);
@@ -1543,45 +1558,62 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       data_proc.(oxygen_saturation_oxs) = ...
         (data_proc.(oxygen_saturation_oxc)./sw_satO2(data_proc.(oxygen_saturation_salt),data_proc.(oxygen_saturation_temp)))*100;
 
-      meta_proc.(oxygen_saturation_oxc).sources = ...
+      meta_proc.(oxygen_saturation_oxs).sources = ...
         {oxygen_saturation_oxc oxygen_saturation_salt oxygen_saturation_temp}';
-      meta_proc.(oxygen_saturation_oxc).method = 'sw_satO2';
+      meta_proc.(oxygen_saturation_oxs).method = 'sw_satO2';
     end
   end
-  %RINKO
-  for oxygen_saturationr_option_idx = 1:numel(options.oxygen_saturationr_list)
-    oxygen_saturationr_option = options.oxygen_saturationr_list(oxygen_saturationr_option_idx);
-    oxygen_saturationr_oxs = oxygen_saturationr_option.oxygen_saturationr;
-    oxygen_saturationr_oxc = oxygen_saturationr_option.oxygen_conc;
-    oxygen_saturationr_salt = oxygen_saturationr_option.salinity;
-    oxygen_saturationr_temp = oxygen_saturationr_option.temperature;
-    if all(isfield(data_proc, {oxygen_saturationr_oxc oxygen_saturationr_salt oxygen_saturationr_temp}))
+  %% Rinko corrected oxygen concentration from oxygen concen at S=0 in umol, CTD salinity, CTD temp, Oxygen sensor Temp
+
+  for oxygen_conc_rinko_option_idx = 1:numel(options.oxygen_conc_rinko_list)
+    oxygen_conc_rinko_option = options.oxygen_conc_rinko_list(oxygen_conc_rinko_option_idx);
+    oxygen_conc_rinko_oxc = oxygen_conc_rinko_option.oxygen_conc_rinko;
+    oxygen_conc_rinko_oxumol = oxygen_conc_rinko_option.oxygen_concentration;
+    oxygen_conc_rinko_ctdtemp = oxygen_conc_rinko_option.temperature;
+    oxygen_conc_rinko_ctdsalt = oxygen_conc_rinko_option.salinity;
+    oxygen_conc_rinko_temp = oxygen_conc_rinko_option.temperature_oxygen;
+    if all(isfield(data_proc, {oxygen_conc_rinko_oxumol oxygen_conc_rinko_ctdtemp oxygen_conc_rinko_temp oxygen_conc_rinko_ctdsalt}))
+   
+  fprintf('Deriving oxygen_conc %d with settings:\n', oxygen_conc_rinko_option_idx);
+      fprintf('  output oxygen_conc sequence   : %s\n', oxygen_conc_rinko_oxc);
+      fprintf('  input oxygen_umol sequence: %s\n', oxygen_conc_rinko_oxumol);
+      fprintf('  input salinity sequence: %s\n', oxygen_conc_rinko_ctdtemp);
+      fprintf('  input ctdsalinity sequence: %s\n', oxygen_conc_rinko_ctdsalt);
+      fprintf('  input temperature sequence : %s\n', oxygen_conc_rinko_temp);
+      %Saturation calculated with S=0
+      
+      Sat = (data_proc.(oxygen_conc_rinko_oxumol)./44.661)./sw_satO2(0.*ones(size(data_proc.(oxygen_conc_rinko_temp))),data_proc.(oxygen_conc_rinko_temp))*100;
+      % Feed Sati in Sat formula to get corrected conctration in ml/l
+      data_proc.(oxygen_conc_rinko_oxc) = ...
+       (Sat.*sw_satO2(data_proc.(oxygen_conc_rinko_ctdsalt),data_proc.(oxygen_conc_rinko_ctdtemp)))./100;
+
+      meta_proc.(oxygen_conc_rinko_oxc).sources = ...
+        {oxygen_conc_rinko_oxumol oxygen_conc_rinko_ctdtemp oxygen_conc_rinko_ctdsalt oxygen_conc_rinko_temp}';
+      meta_proc.(oxygen_conc_rinko_oxc).method = 'Saturation calculated with S=0 feed on Oxygen saturation formula with S from and T from CTD';
+    end
+  end  
  
-      fprintf('Deriving oxygen_saturation rinko %d with settings:\n', oxygen_saturationr_option_idx);
-      fprintf('  output oxygen_saturation sequence   : %s\n', oxygen_saturationr_oxs);
-      fprintf('  input oxygen_conc sequence: %s\n', oxygen_saturationr_oxc);
-      fprintf('  input salinity sequence: %s\n', oxygen_saturationr_salt);
-      fprintf('  input temperature sequence : %s\n', oxygen_saturationr_temp);
+  %% Rinko Oxygen saturation
+ for oxygen_saturation_rinko_option_idx = 1:numel(options.oxygen_saturation_rinko_list)
+    oxygen_saturation_rinko_option = options.oxygen_saturation_rinko_list(oxygen_saturation_rinko_option_idx);
+    oxygen_saturation_rinko_oxs = oxygen_saturation_rinko_option.oxygen_saturation_rinko;
+    oxygen_saturation_rinko_oxc = oxygen_saturation_rinko_option.oxygen_conc_rinko;
+    oxygen_saturation_rinko_salt = oxygen_saturation_rinko_option.salinity;
+    oxygen_saturation_rinko_temp = oxygen_saturation_rinko_option.temperature;
+    if all(isfield(data_proc, {oxygen_saturation_rinko_oxc oxygen_saturation_rinko_salt oxygen_saturation_rinko_temp}))
+ 
+      fprintf('Deriving oxygen_saturation %d with settings:\n', oxygen_saturation_rinko_option_idx);
+      fprintf('  output oxygen_saturation sequence   : %s\n', oxygen_saturation_rinko_oxs);
+      fprintf('  input oxygen_conc sequence: %s\n', oxygen_saturation_rinko_oxc);
+      fprintf('  input salinity sequence: %s\n', oxygen_saturation_rinko_salt);
+      fprintf('  input temperature sequence : %s\n', oxygen_saturation_rinko_temp);
   
-% (S=0 is used)
- i=find(isnan(oxygen_concentration) == 0);  
- oxy.time=time(i)';  
- oxy.ptime=ptime(i)';  
- oxy.lat=latitude(i)';  
- oxy.lon=longitude(i)';  
- oxy.tw=temperature_oxygen(i)';  
- oxy.o2=oxygen_concentration(i)'*22.391/1000.; % 1 ?mol O2 = .022391 ml ..... 1 ml/l = 1000/22.391 = 44.661 ?mol/l
- oxy.o2percentsat=oxy.o2./sw_satO2(0.*ones(size(i))',oxy.tw)*100.;
+      data_proc.(oxygen_saturation_rinko_oxs) = ...
+        (data_proc.(oxygen_saturation_rinko_oxc)./sw_satO2(data_proc.(oxygen_saturation_rinko_salt),data_proc.(oxygen_saturation_rinko_temp)))*100;
 
-oxy.io2=interp1(oxy.time,oxy.o2,ctd.time,'nearest');
-oxy.itw=interp1(oxy.time,oxy.tw,ctd.time,'nearest');
-oxy.io2percentsat=interp1(oxy.time,oxy.o2percentsat,ctd.time,'nearest');
-oxy.cio2=oxy.io2percentsat.*sw_satO2(ctd.s,ctd.tw)/100.;
-
-
-      meta_proc.(oxygen_saturationr_oxc).sources = ...
-        {oxygen_saturationr_oxc oxygen_saturationr_salt oxygen_saturationr_temp}';
-      meta_proc.(oxygen_saturationr_oxc).method = 'sw_satO2';
+      meta_proc.(oxygen_saturation_rinko_oxs).sources = ...
+        {oxygen_saturation_rinko_oxc oxygen_saturation_rinko_salt oxygen_saturation_rinko_temp}';
+      meta_proc.(oxygen_saturation_rinko_oxs).method = 'sw_satO2';
     end
   end
 end
