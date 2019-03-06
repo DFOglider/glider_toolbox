@@ -530,9 +530,10 @@ function ncl1_info = configDTOutputNetCDFL1()
     'conversion'             [] };
 
   var_attr_list.oxygen_concentration = {
-    'long_name'     'oxygen concentration'
+    'long_name'     'oxygen concentration calculated with Salinity=0'
     'standard_name' 'mole_concentration_of_dissolved_molecular_oxygen_in_sea_water'
     'units'         'umol L-1'
+    'comments'      'Output of the sensor where Salinity is assumed to be zero' 
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
     'sources'                []
@@ -562,6 +563,18 @@ var_attr_list.oxygen_saturation = {
     'calibration'            []
     'calibration_parameters' [] };
 
+var_attr_list.oxygen_saturation_rinko = {
+    'long_name'     'oxygen saturation'
+    'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
+    'units'         '%'
+    'comments'      'saturation corrected with practical salinity'
+    'coordinates'   'time depth latitude longitude'
+    '_FillValue'    default_fill_value
+    'sources'                []
+    'conversion'             []
+    'calibration'            []
+    'calibration_parameters' [] };
+
   var_attr_list.oxygen_frequency = {
     'long_name'     'oxygen frequency'
     'standard_name' 'frequency_output_of_sensor_for_oxygen_in_sea_water'
@@ -579,12 +592,24 @@ var_attr_list.oxygen_saturation = {
     'units'         'ml l-1'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
+    'sources'       'Derived from SBE calibration formula'
+    'conversion'             []
+    'calibration'            []
+    'calibration_parameters' [] };
+
+var_attr_list.oxygen_conc_rinko = {
+    'long_name'     'oxygen concentration'
+    'standard_name' 'volume_fraction_of_oxygen_in_sea_water'
+    'units'         'ml l-1'
+    'comments'      'concentration corrected with practical salinity'
+    'coordinates'   'time depth latitude longitude'
+    '_FillValue'    default_fill_value
     'sources'                []
     'conversion'             []
     'calibration'            []
     'calibration_parameters' [] };
 
-var_attr_list.sigmat = {
+var_attr_list.sigma_theta = {
     'long_name'     'sigma_theta'
     'standard_name' 'sea_water_sigma_theta'
     'units'         'kg m-3'
@@ -823,6 +848,7 @@ var_attr_list.absolute_salinity = {
     'deployment_platform'          'CCGS Sigma-t'
     'cruise_number'                ''
     'mission_number'               'GLI2018_SEA032_M26'
+    'note'                         'Glider depth sensor had a scaling issue so is wrong. If the glider is physically at 200m depth, the value given by the navigation sensor will be 162m (=(200*850)/1050)'  
    
 %    %SEA019
 %     'glider_s/n'                   'SEA019'
@@ -855,6 +881,7 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_s/n'                    '0184'
 %     'CTD_pump_s/n'                 '05-8698'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4548'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %         %2016-July 2018
@@ -874,6 +901,7 @@ var_attr_list.absolute_salinity = {
 %     'wmo_platform_code'            '4800993'
 %     'wmo_inst_type'                '830'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4546'
 %     'Ecopuck_sensor_cal_date'      'December 2016' 
 %     'GPCTD_manufacturer'           'Sea-Bird Electronics'
@@ -891,28 +919,29 @@ var_attr_list.absolute_salinity = {
 % %     'oxygen_sensor_s/n'            '43-3276'
 % %     'oxygen_sensor_cal_date'       ''    
 % %     'oxygen_cal_coef'      ''
-%    %SEA024
-%     'glider_s/n'                   'SEA024'
-%     'wmo_platform_code'            '4800994'
-%     'wmo_inst_type'                '830'
-%     'Ecopuck_sensor_manufacturer'  'WetLab'
-%     'Ecopuck_sensor_s/n'           '4550'
-%     'Ecopuck_sensor_cal_date'      'December 2016' 
-%     'CTD_pump_s/n'                 '05-8711'
-%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
-%     'GPCTD_s/n'                    '0188'
+   %SEA024
+    'glider_s/n'                   'SEA024'
+    'wmo_platform_code'            '4800994'
+    'wmo_inst_type'                '830'
+    'Ecopuck_sensor_manufacturer'  'WetLab'
+    'Ecopuck_sensor_model'         'FLBBCD - EXP'
+    'Ecopuck_sensor_s/n'           '4550'
+    'Ecopuck_sensor_cal_date'      'December 2016' 
+    'CTD_pump_s/n'                 '05-8711'
+    'GPCTD_manufacturer'           'Sea-Bird Electronics'
+    'GPCTD_s/n'                    '0188'
 %         %2016-July 2018 
 %     'GPCTD_cal_date'               'May 2016'
 %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
 %     'oxygen_sensor_s/n'            '43-3365'
 %     'oxygen_sensor_cal_date'       'April 2016'
 %     'oxygen_cal_coef'             'Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;'  
-% %         %Aug 2018-...
-% %     'GPCTD_cal_date'               'July 2018'
-% %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
-% %     'oxygen_sensor_s/n'            '43-3365'
-% %     'oxygen_sensor_cal_date'       'August 2018'    
-% %     'oxygen_cal_coef'            'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
+        %Aug 2018-...
+    'GPCTD_cal_date'               'July 2018'
+    'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+    'oxygen_sensor_s/n'            '43-3365'
+    'oxygen_sensor_cal_date'       'August 2018'    
+    'oxygen_cal_coef'            'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
 %    %SEA032
 %     'glider_s/n'                   'SEA032'
 %     'wmo_platform_code'            '4800937'
@@ -922,9 +951,11 @@ var_attr_list.absolute_salinity = {
 %     'GPCTD_cal_date'               'November 2017'
 %     'CTD_pump_s/n'                 '05-9310'
 %     'Ecopuck_sensor_manufacturer'  'WetLab'
+%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
 %     'Ecopuck_sensor_s/n'           '4739'
 %     'Ecopuck_sensor_cal_date'      'May 2017' 
 %         %2016-...
+%     'oxygen_sensor_manufacturer'  'JFE Advantech Co'
 %     'oxygen_sensor_model'         'Rinko AROD-FT'
 %     'oxygen_sensor_s/n'            '0020'
 %     'oxygen_sensor_cal_date'       'November 2017'

@@ -90,6 +90,7 @@ function ncl1_info = configDTOutputNetCDFL1()
     'long_name'     'glider depth'
     'standard_name' 'depth'
     'units'         'm'
+    'comments'      'Values are wrong for this mission, see metadata'
     'positive'      'down'
     'axis'          'Z'
     'coordinates'   'time depth latitude longitude'
@@ -567,9 +568,10 @@ var_attr_list.oxygen_saturation_rinko = {
     'long_name'     'oxygen saturation'
     'standard_name' 'fractional_saturation_of_oxygen_in_sea_water'
     'units'         '%'
+    'comments'      'saturation corrected with practical salinity'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
-    'sources'                ['saturation corrected with practical salinity']
+    'sources'                []
     'conversion'             []
     'calibration'            []
     'calibration_parameters' [] };
@@ -591,7 +593,7 @@ var_attr_list.oxygen_saturation_rinko = {
     'units'         'ml l-1'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
-    'sources'                []
+    'sources'       'Derived from SBE calibration formula'
     'conversion'             []
     'calibration'            []
     'calibration_parameters' [] };
@@ -600,9 +602,10 @@ var_attr_list.oxygen_conc_rinko = {
     'long_name'     'oxygen concentration'
     'standard_name' 'volume_fraction_of_oxygen_in_sea_water'
     'units'         'ml l-1'
+    'comments'      'concentration corrected with practical salinity'
     'coordinates'   'time depth latitude longitude'
     '_FillValue'    default_fill_value
-    'sources'                ['concentration corrected with practical salinity']
+    'sources'                []
     'conversion'             []
     'calibration'            []
     'calibration_parameters' [] };
@@ -846,6 +849,7 @@ var_attr_list.absolute_salinity = {
     'deployment_platform'          'CCGS Sigma-t'
     'cruise_number'                ''
     'mission_number'               'GLI2018_SEA032_M26'
+    'note'                         'Glider depth sensor had a scaling distortion so is wrong. If the parameter pressure.range=85 is not added in the sea.cfg file, by default, the range of the navigation sensor is between 0 and 105bar. If the glider is physically at 200m depth, the value given by the glider sensor will be 162m (=(200*850)/1050)'  
    
 %    %SEA019
 %     'glider_s/n'                   'SEA019'
@@ -916,29 +920,29 @@ var_attr_list.absolute_salinity = {
 % %     'oxygen_sensor_s/n'            '43-3276'
 % %     'oxygen_sensor_cal_date'       ''    
 % %     'oxygen_cal_coef'      ''
-%    %SEA024
-%     'glider_s/n'                   'SEA024'
-%     'wmo_platform_code'            '4800994'
-%     'wmo_inst_type'                '830'
-%     'Ecopuck_sensor_manufacturer'  'WetLab'
-%     'Ecopuck_sensor_model'         'FLBBCD - EXP'
-%     'Ecopuck_sensor_s/n'           '4550'
-%     'Ecopuck_sensor_cal_date'      'December 2016' 
-%     'CTD_pump_s/n'                 '05-8711'
-%     'GPCTD_manufacturer'           'Sea-Bird Electronics'
-%     'GPCTD_s/n'                    '0188'
+   %SEA024
+    'glider_s/n'                   'SEA024'
+    'wmo_platform_code'            '4800994'
+    'wmo_inst_type'                '830'
+    'Ecopuck_sensor_manufacturer'  'WetLab'
+    'Ecopuck_sensor_model'         'FLBBCD - EXP'
+    'Ecopuck_sensor_s/n'           '4550'
+    'Ecopuck_sensor_cal_date'      'December 2016' 
+    'CTD_pump_s/n'                 '05-8711'
+    'GPCTD_manufacturer'           'Sea-Bird Electronics'
+    'GPCTD_s/n'                    '0188'
 %         %2016-July 2018 
 %     'GPCTD_cal_date'               'May 2016'
 %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
 %     'oxygen_sensor_s/n'            '43-3365'
 %     'oxygen_sensor_cal_date'       'April 2016'
 %     'oxygen_cal_coef'             'Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;'  
-% %         %Aug 2018-...
-% %     'GPCTD_cal_date'               'July 2018'
-% %     'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
-% %     'oxygen_sensor_s/n'            '43-3365'
-% %     'oxygen_sensor_cal_date'       'August 2018'    
-% %     'oxygen_cal_coef'            'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
+        %Aug 2018-...
+    'GPCTD_cal_date'               'July 2018'
+    'oxygen_sensor_manufacturer'   'Sea-Bird Electronics'
+    'oxygen_sensor_s/n'            '43-3365'
+    'oxygen_sensor_cal_date'       'August 2018'    
+    'oxygen_cal_coef'            'Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;'
 %    %SEA032
 %     'glider_s/n'                   'SEA032'
 %     'wmo_platform_code'            '4800937'

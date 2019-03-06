@@ -83,7 +83,7 @@ function processing_options = configDataProcessingSeaExplorer()
   processing_options.oxygen_conc_list(1).temperature     = 'temperature';
   processing_options.oxygen_conc_list(1).pressure        = 'pressure';
   
-  processing_options.oxygen_saturation_list(1).oxygen_saturation     = 'oxygen_sat';
+  processing_options.oxygen_saturation_list(1).oxygen_saturation     = 'oxygen_saturation';
   processing_options.oxygen_saturation_list(1).oxygen_conc     = 'oxygen_conc';
   processing_options.oxygen_saturation_list(1).temperature     = 'temperature';
   processing_options.oxygen_saturation_list(1).salinity        = 'salinity';

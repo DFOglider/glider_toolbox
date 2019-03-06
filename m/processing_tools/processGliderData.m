@@ -1519,9 +1519,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %           Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;           
 %              %Aug 2018-...
            Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;              
-%         elseif strcmp(glider,'sea032') ==1
-%            disp('the Oxygen concentration and saturation calculations for SEA032 has not been included here yet')
-%         end
+%         
       fprintf('Deriving oxygen_conc %d with settings:\n', oxygen_conc_option_idx);
       fprintf('  output oxygen_conc sequence   : %s\n', oxygen_conc_oxc);
       fprintf('  input oxygen_freq sequence: %s\n', oxygen_conc_oxf);
