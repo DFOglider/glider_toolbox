@@ -607,7 +607,7 @@ var_attr_list.oxygen_conc_rinko = {
     'calibration'            []
     'calibration_parameters' [] };
 
-var_attr_list.sigmat = {
+var_attr_list.sigma_theta = {
     'long_name'     'sigma_theta'
     'standard_name' 'sea_water_sigma_theta'
     'units'         'kg m-3'

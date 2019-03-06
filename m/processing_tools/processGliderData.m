@@ -456,7 +456,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'temperature', {'temperature' 'temperature'}, ...
            'pressure',    {'pressure'    'pressure'});
    
-   options.sigmat_list = ...
+   options.sigma_theta_list = ...
     struct('sigma_theta', {'sigma_theta'     'sigma_theta_corrected_thermal'}, ...
            'absolute_salinity',    {'absolute_salinity'    'absolute_salinity_corrected_thermal'}, ...
            'temperature', {'temperature' 'temperature'}, ...
@@ -470,11 +470,11 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'pressure',     {'pressure'     'pressure'});
        
   options.oxygen_conc_rinko_list = ...
-    struct('oxygen_conc',  {'oxygen_conc'     'oxygen_conc_rinko_corrected_thermal'}, ...
-           'oxygen_freq',  {'oxygen_freq'     'oxygen_freq'}, ...
+    struct('oxygen_conc_rinko',  {'oxygen_conc_rinko'     'oxygen_conc_rinko_corrected_thermal'}, ...
+           'oxygen_concentration',  {'oxygen_concentration'     'oxygen_concentration'}, ...
            'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'}, ...
-           'pressure',     {'pressure'     'pressure'});
+           'temperature_oxygen',     {'temperature_oxygen'     'temperature_oxygen'});
        
    options.oxygen_saturation_list = ...
     struct('oxygen_saturation',{'oxygen_saturation'   'oxygen_saturation_corrected_thermal'}, ...
@@ -483,8 +483,8 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
            'temperature',  {'temperature'  'temperature_corrected_thermal'});
        
   options.oxygen_saturation_rinko_list = ...
-    struct('oxygen_saturation',{'oxygen_saturation'   'oxygen_saturation_rinko_corrected_thermal'}, ...
-           'oxygen_conc',  {'oxygen_conc'     'oxygen_conc_corrected_thermal'}, ...
+    struct('oxygen_saturation_rinko',{'oxygen_saturation_rinko'   'oxygen_saturation_rinko_corrected_thermal'}, ...
+           'oxygen_conc_rinko',  {'oxygen_conc_rinko'     'oxygen_conc_rinko_corrected_thermal'}, ...
            'salinity',     {'salinity'     'salinity_corrected_thermal'}, ...
            'temperature',  {'temperature'  'temperature_corrected_thermal'});
   
@@ -1460,29 +1460,30 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
   end
   
   %% Derive sigma_theta from pressure, absolute salinity and temperature, if available.
-  for sigmat_option_idx = 1:numel(options.sigmat_list)
-    sigmat_option = options.sigmat_list(sigmat_option_idx);
-    sigmat_dens = sigmat_option.sigmat;
-    sigmat_absolute_salt = sigmat_option.absolute_salinity;
-    sigmat_temp = sigmat_option.temperature;
-    sigmat_pres = sigmat_option.pressure;
-    if all(isfield(data_proc, {sigmat_absolute_salt sigmat_temp sigmat_pres}))
+  for sigma_theta_option_idx = 1:numel(options.sigma_theta_list)
+    sigma_theta_option = options.sigma_theta_list(sigma_theta_option_idx);
+    sigma_theta_dens = sigma_theta_option.sigma_theta;
+    sigma_theta_absolute_salt = sigma_theta_option.absolute_salinity;
+    sigma_theta_temp = sigma_theta_option.temperature;
+    sigma_theta_pres = sigma_theta_option.pressure;
+    if all(isfield(data_proc, {sigma_theta_absolute_salt sigma_theta_temp sigma_theta_pres}))
        
-      % Compute sigmat from temperature, pressure and salinity.
-      fprintf('Deriving sigmat %d with settings:\n', sigmat_option_idx);
-      fprintf('  output sigmat sequence   : %s\n', sigmat_dens);
-      fprintf('  input salinity sequence   : %s\n', sigmat_absolute_salt);
-      fprintf('  input temperature sequence: %s\n', sigmat_temp);
-      fprintf('  input pressure sequence   : %s\n', sigmat_pres);
+      % Compute sigma_theta from temperature, pressure and salinity.
+      fprintf('Deriving sigma_theta %d with settings:\n', sigma_theta_option_idx);
+      fprintf('  output sigma_theta sequence   : %s\n', sigma_theta_dens);
+      fprintf('  input salinity sequence   : %s\n', sigma_theta_absolute_salt);
+      fprintf('  input temperature sequence: %s\n', sigma_theta_temp);
+      fprintf('  input pressure sequence   : %s\n', sigma_theta_pres);
       
       %conservative temperature = gsw_CT_from_t(SA,t,p)
-      CT = gsw_CT_from_t(data_proc.(sigmat_absolute_salt),data_proc.(sigmat_temp),data_proc.(sigmat_pres));
+      CT = gsw_CT_from_t(data_proc.(sigma_theta_absolute_salt),data_proc.(sigma_theta_temp),data_proc.(sigma_theta_pres));
       % potential density =  gsw_rho(SA,CT,pressure_ref); 
-      data_proc.(sigmat_dens) =  gsw_rho(data_proc.(sigmat_absolute_salt),CT,0)-1000;
+      data_proc.(sigma_theta_dens) =  gsw_rho(data_proc.(sigma_theta_absolute_salt),CT,0)-1000;
       
-      meta_proc.(sigmat_dens).sources = ...
-        {sigmat_absolute_salt sigmat_temp sigmat_pres}';
-      meta_proc.(sigmat_dens).method = 'gsw_rho  TEOS-10';
+      meta_proc.(sigma_theta_dens).sources = ...
+        {sigma_theta_absolute_salt sigma_theta_temp sigma_theta_pres}';
+      meta_proc.(sigma_theta_dens).method = 'gsw_rho  TEOS-10';
+
     end
   end
   
