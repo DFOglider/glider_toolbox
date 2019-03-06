@@ -1518,7 +1518,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
 %              %2016-July 2018
 %           Soc = 2.8277e-4; Foffset = -847.84; A = -2.8377e-3; B = 1.2076e-4;C = -2.0639e-6; Enom = 0.036;           
 %              %Aug 2018-...
-           Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;              
+%            Soc = 3.1993e-4; Foffset = -834.99; A = -3.6818e-3; B = 1.4127e-4;C = -2.2880e-6; Enom = 0.036;              
 %         
       fprintf('Deriving oxygen_conc %d with settings:\n', oxygen_conc_option_idx);
       fprintf('  output oxygen_conc sequence   : %s\n', oxygen_conc_oxc);

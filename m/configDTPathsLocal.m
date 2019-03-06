@@ -56,14 +56,14 @@ function local_paths = configDTPathsLocal()
 
   error(nargchk(0, 0, nargin, 'struct'));
 
-  local_paths.binary_path    = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/binary';
-  local_paths.cache_path     = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/binary';
-  local_paths.log_path       = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/logfiles';
-  local_paths.ascii_path     = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/all_data';
-  local_paths.figure_path    = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/figures';
-  local_paths.netcdf_l0      = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/netcdf/GLI2018_SEA024_032DM_L0.nc';
-  local_paths.netcdf_l1      = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/netcdf/GLI2018_SEA024_032DM_L1.nc';
-  local_paths.netcdf_l2      = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/netcdf/GLI2018_SEA024_032DM_L2.nc';
-  local_paths.processing_log = 'C:/Users/BelzileM/Desktop/SEA024/Data/M32/test2SOCIBox/processing.log';
+  local_paths.binary_path    = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/binary';
+  local_paths.cache_path     = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/binary';
+  local_paths.log_path       = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/logfiles';
+  local_paths.ascii_path     = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/all_data';
+  local_paths.figure_path    = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/figures';
+  local_paths.netcdf_l0      = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/netcdf/GLI2018_SEA032_026DM_L0.nc';
+  local_paths.netcdf_l1      = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/netcdf/GLI2018_SEA032_026DM_L1.nc';
+  local_paths.netcdf_l2      = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/netcdf/GLI2018_SEA032_026DM_L2.nc';
+  local_paths.processing_log = 'C:/Users/BelzileM/Desktop/SEA032/Data/M26/test2SOCIBox/processing.log';
 
 end
