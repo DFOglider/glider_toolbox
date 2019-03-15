@@ -1580,7 +1580,7 @@ function [data_proc, meta_proc] = processGliderData(data_pre, meta_pre, varargin
       fprintf('  input temperature sequence : %s\n', oxygen_conc_rinko_temp);
       %Saturation calculated with S=0
       
-      Sat = (data_proc.(oxygen_conc_rinko_oxumol)./44.661)./sw_satO2(0.*ones(size(data_proc.(oxygen_conc_rinko_temp))),data_proc.(oxygen_conc_rinko_temp))*100;
+      Sat = ((data_proc.(oxygen_conc_rinko_oxumol)./44.661)./sw_satO2(0.*ones(size(data_proc.(oxygen_conc_rinko_temp))),data_proc.(oxygen_conc_rinko_temp)))*100;
       % Feed Sati in Sat formula to get corrected conctration in ml/l
       data_proc.(oxygen_conc_rinko_oxc) = ...
        (Sat.*sw_satO2(data_proc.(oxygen_conc_rinko_ctdsalt),data_proc.(oxygen_conc_rinko_ctdtemp)))./100;

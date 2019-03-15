@@ -90,7 +90,7 @@ function ncl1_info = configDTOutputNetCDFL1()
     'long_name'     'glider depth'
     'standard_name' 'depth'
     'units'         'm'
-    'comments'      'Values are wrong for this mission, see metadata'
+    %'comments'      'Values are wrong for this mission, see metadata'
     'positive'      'down'
     'axis'          'Z'
     'coordinates'   'time depth latitude longitude'
@@ -848,8 +848,8 @@ var_attr_list.absolute_salinity = {
     'country_code'                 '1810'
     'deployment_platform'          'CCGS Sigma-t'
     'cruise_number'                ''
-    'mission_number'               'GLI2018_SEA032_M26'
-     'note'                         'Glider depth sensor had a scaling distortion so is wrong. If the parameter pressure.range=85 is not added in the sea.cfg file, by default, the range of the navigation sensor is between 0 and 105bar. If the glider is physically at 200m depth, the value given by the glider sensor will be 162m (=(200*850)/1050)'  
+    'mission_number'               'GLI2018_SEA032_M30'
+%      'note'                         'Glider depth sensor had a scaling distortion so is wrong. If the parameter pressure.range=85 is not added in the sea.cfg file, by default, the range of the navigation sensor is between 0 and 105bar. If the glider is physically at 200m depth, the value given by the glider sensor will be 162m (=(200*850)/1050)'  
    
 %    %SEA019
 %     'glider_sn'                   'SEA019'
@@ -920,7 +920,7 @@ var_attr_list.absolute_salinity = {
 % %     'oxygen_sensor_sn'            '43-3276'
 % %     'oxygen_sensor_cal_date'       ''    
 % %     'oxygen_cal_coef'      ''
-%    %SEA024
+% %    %SEA024
 %     'glider_sn'                   'SEA024'
 %     'wmo_platform_code'            '4800994'
 %     'wmo_inst_type'                '830'
