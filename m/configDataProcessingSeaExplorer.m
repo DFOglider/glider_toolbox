@@ -47,7 +47,7 @@ function processing_options = configDataProcessingSeaExplorer()
   processing_options.heading_filling = true;
   processing_options.waypoint_filling = false;
 
-  processing_options.pressure_filtering = true;
+  processing_options.pressure_filtering = false;
   processing_options.pressure_filter_constant = 4; % Recommended setting from Seabird Data Processing Manual.
   processing_options.depth_ctd_derivation = true;
 
